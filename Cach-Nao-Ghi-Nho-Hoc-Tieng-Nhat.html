@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Não ghi nhớ – Học tiếng Nhật</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ec; --paper:#fffdf9; --ink:#2a2823; --muted:#6b655a; --line:#e6dfd3;
+  --accent:#4f52a8; --accent-soft:#eceefb; --accent-ink:#3a3d86; --on-accent:#ffffff;
+  --warn:#b42318; --warn-soft:#fdecea; --on-warn:#ffffff;
+  --zebra:#faf6ef; --head:#f1ebe0;
+  --g-bg:#e6f4ea; --y-bg:#fff6d1; --o-bg:#ffe8d2;
+  --kid:#d9a441;
+  --shadow:0 1px 2px rgba(60,40,10,.06),0 4px 14px rgba(60,40,10,.06);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17161b; --paper:#211f26; --ink:#ebe7df; --muted:#a59e92; --line:#38343e;
+    --accent:#a3a7f0; --accent-soft:#2b2c4a; --accent-ink:#c7c9fa; --on-accent:#17161b;
+    --warn:#ff8a7a; --warn-soft:#3a1f20; --on-warn:#1d1213;
+    --zebra:#1d1b22; --head:#2a2730;
+    --g-bg:#1f3327; --y-bg:#3a3217; --o-bg:#3d2a17;
+    --kid:#e0b25c;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17161b; --paper:#211f26; --ink:#ebe7df; --muted:#a59e92; --line:#38343e;
+  --accent:#a3a7f0; --accent-soft:#2b2c4a; --accent-ink:#c7c9fa; --on-accent:#17161b;
+  --warn:#ff8a7a; --warn-soft:#3a1f20; --on-warn:#1d1213;
+  --zebra:#1d1b22; --head:#2a2730;
+  --g-bg:#1f3327; --y-bg:#3a3217; --o-bg:#3d2a17;
+  --kid:#e0b25c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Be Vietnam Pro','Noto Sans JP',system-ui,sans-serif;
+  font-size:17px; line-height:1.7; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word;
+}
+[lang="ja"]{font-family:'Noto Sans JP','Be Vietnam Pro',system-ui,sans-serif; font-weight:500}
+a{color:var(--accent); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+strong{font-weight:700}
+p{margin:.6em 0}
+section{scroll-margin-top:20px}
+
+.layout{
+  display:grid; grid-template-columns:230px minmax(0,760px); gap:44px;
+  max-width:1060px; margin:0 auto; padding:0 16px; justify-content:center;
+}
+.toc-side{
+  position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px);
+  overflow:auto; padding:24px 0;
+}
+.toc-side h2{font-size:13px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0 0 10px}
+.toc a{
+  display:block; padding:7px 12px; margin:2px 0; border-radius:10px; color:var(--ink);
+  text-decoration:none; font-size:15px; line-height:1.4;
+}
+.toc a:hover{background:var(--accent-soft); color:var(--accent-ink)}
+.toc a.active{background:var(--accent-soft); color:var(--accent-ink); font-weight:600}
+.mobile-toc{display:none}
+
+main{min-width:0; padding:28px 0 72px}
+
+.hero{
+  background:linear-gradient(135deg,var(--paper) 0%,var(--accent-soft) 100%);
+  border:1px solid var(--line); border-radius:22px; padding:34px 30px; box-shadow:var(--shadow);
+}
+.hero h1{font-size:clamp(26px,5vw,36px); line-height:1.25; margin:0 0 14px; letter-spacing:-.01em}
+.subtitle{font-size:18px; color:var(--muted); margin:0 0 18px}
+.badges{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px}
+.badges span{
+  display:inline-block; padding:6px 13px; border-radius:999px; background:var(--paper);
+  border:1px solid var(--line); font-size:14px; font-weight:600; color:var(--accent-ink);
+}
+.hero-note{font-size:15px; color:var(--muted); margin:0}
+
+h2{
+  font-size:clamp(23px,4vw,27px); line-height:1.3; margin:64px 0 18px;
+  padding-top:18px; border-top:1px solid var(--line);
+}
+main > section:first-of-type h2, .hero + section h2{border-top:none; padding-top:0}
+h3{font-size:19px; line-height:1.35; margin:30px 0 12px; color:var(--accent-ink)}
+h4.tool-title{font-size:18px; line-height:1.4; margin:0 0 10px}
+.sub-title{
+  font-size:14px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); margin:38px 0 4px;
+}
+
+blockquote{
+  margin:18px 0; padding:14px 18px; border-left:4px solid var(--accent);
+  background:var(--accent-soft); border-radius:0 14px 14px 0; color:var(--ink);
+}
+blockquote p{margin:.3em 0}
+
+hr{border:0; border-top:1px solid var(--line); margin:40px 0}
+
+/* Đọc 1 phút */
+.quick{list-style:none; padding:0; margin:20px 0; display:grid; gap:12px}
+.quick li{
+  display:flex; gap:14px; align-items:flex-start; background:var(--paper);
+  border:1px solid var(--line); border-radius:16px; padding:16px 18px; box-shadow:var(--shadow);
+  break-inside:avoid;
+}
+.num{
+  flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--accent);
+  color:var(--on-accent); display:grid; place-items:center; font-weight:700; font-size:15px;
+}
+.quick li > div{min-width:0}
+
+/* Tables */
+.table-wrap{
+  overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line);
+  border-radius:16px; margin:18px 0; box-shadow:var(--shadow); background:var(--paper);
+}
+table{width:100%; border-collapse:collapse; font-size:15.5px; line-height:1.55}
+thead th{background:var(--head); text-align:left; font-weight:700; color:var(--accent-ink)}
+th,td{padding:11px 13px; vertical-align:top; border-bottom:1px solid var(--line); text-align:left}
+tbody tr:nth-child(even){background:var(--zebra)}
+tbody tr:last-child td{border-bottom:none}
+td .jp-inline{white-space:nowrap}
+tr.row-g td{background:var(--g-bg)}
+tr.row-y td{background:var(--y-bg)}
+tr.row-o td{background:var(--o-bg)}
+
+/* Ladder (Section 2) */
+.ladder{display:flex; flex-direction:column; gap:12px; margin:24px 0}
+.rung{
+  position:relative; display:flex; align-items:center; gap:14px; padding:15px 18px;
+  border-radius:16px; background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow);
+}
+.rung:nth-child(1){margin-left:72px}
+.rung:nth-child(2){margin-left:48px}
+.rung:nth-child(3){margin-left:24px}
+.rung:nth-child(4){margin-left:0}
+.rung .lv{flex:0 0 auto; min-width:76px; font-weight:700; color:var(--accent-ink); font-size:15px; letter-spacing:.04em}
+.rung .ic{flex:0 0 auto; font-size:20px}
+.rung .txt{min-width:0}
+.rung .txt b{display:block}
+.rung.here{border:2px solid var(--warn); background:var(--warn-soft)}
+.rung.here .lv{color:var(--warn)}
+.here-tag{
+  position:absolute; right:14px; top:-13px; background:var(--warn); color:var(--on-warn);
+  font-size:13px; font-weight:700; padding:3px 11px; border-radius:999px; white-space:nowrap;
+}
+.ladder-base{
+  height:8px; border-radius:8px; background:linear-gradient(90deg,transparent,var(--line),transparent);
+  margin:-2px 24px 0;
+}
+
+/* Tool cards (Section 3) */
+.group-note{margin:8px 0 0}
+.tool{
+  background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:20px 22px;
+  margin:18px 0; box-shadow:var(--shadow); break-inside:avoid;
+}
+.tool .circled{color:var(--accent); font-weight:700}
+.ln{padding:9px 13px; margin:9px 0; border-radius:12px; line-height:1.65}
+.ln-kid{border-left:4px solid var(--kid); background:transparent; padding-left:14px}
+.ln-res{border-left:4px solid var(--accent); background:transparent; padding-left:14px}
+.ln-warn{background:var(--warn-soft); border-left:4px solid var(--warn); color:var(--ink)}
+.ln-do{background:var(--accent-soft); border:1px solid var(--accent-soft); color:var(--ink)}
+.ln-do .tag,.ln-warn .tag{font-weight:700}
+.ln-warn .tag{color:var(--warn)}
+.ln-do .tag{color:var(--accent-ink)}
+.ln-tag{font-size:18px; margin-right:4px}
+.tool .ln:first-of-type{margin-top:0}
+
+/* Kanji breakdown table is inside a tool card */
+.tool .table-wrap{margin:12px 0 4px}
+
+/* Section 4 & others */
+.note-box{
+  background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 18px; margin:16px 0; box-shadow:var(--shadow);
+}
+
+/* Section 5 */
+.flow-intro{margin:8px 0 6px}
+.stepper{
+  list-style:none; padding:0; margin:20px 0 26px; display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px;
+}
+.stepper li{
+  position:relative; background:var(--paper); border:1px solid var(--line); border-radius:16px;
+  padding:16px 14px; box-shadow:var(--shadow); break-inside:avoid;
+}
+.stepper li:not(:last-child)::after{
+  content:"→"; position:absolute; right:-12px; top:50%; transform:translateY(-50%);
+  color:var(--accent); font-weight:700; font-size:18px; background:var(--bg); line-height:1;
+  z-index:1; padding:2px 0;
+}
+.st-no{
+  width:34px; height:34px; border-radius:50%; background:var(--accent); color:var(--on-accent);
+  display:grid; place-items:center; font-weight:700; margin-bottom:10px;
+}
+.st-name{font-weight:700; letter-spacing:.04em; color:var(--accent-ink); font-size:16px}
+.stepper p{margin:6px 0 0; font-size:15.5px; line-height:1.55}
+.chip{
+  display:inline-block; margin:8px 5px 0 0; background:var(--accent-soft); color:var(--accent-ink);
+  padding:2px 10px; border-radius:999px; font-size:15px; font-weight:700;
+}
+.worked{
+  background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:20px 22px;
+  margin:18px 0; box-shadow:var(--shadow);
+}
+.worked ol{padding-left:22px; margin:8px 0}
+.worked li{margin:8px 0; padding-left:4px}
+.worked-tip{font-size:15px; color:var(--muted)}
+
+/* Sources */
+.src-group{margin:18px 0}
+.src{margin:0; padding:0; list-style:none}
+.src li{
+  padding:9px 0 9px 14px; border-left:3px solid var(--line); margin:6px 0; overflow-wrap:anywhere;
+  font-size:15.5px; line-height:1.6;
+}
+.src li a{word-break:break-all}
+
+.footer-note{
+  margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted);
+  font-size:15px; font-style:italic;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr); gap:0; padding:0 16px}
+  .toc-side{display:none}
+  .mobile-toc{
+    display:block; position:sticky; top:0; z-index:10; background:var(--bg);
+    margin:0 -16px; padding:10px 16px; border-bottom:1px solid var(--line);
+  }
+  .mobile-toc summary{
+    cursor:pointer; list-style:none; font-weight:600; color:var(--accent-ink);
+    padding:6px 0; font-size:15px;
+  }
+  .mobile-toc summary::-webkit-details-marker{display:none}
+  .mobile-toc summary::after{content:" ▾"}
+  .mobile-toc[open] summary::after{content:" ▴"}
+  .mobile-toc nav{padding:8px 0 4px; display:grid; grid-template-columns:1fr 1fr; gap:4px}
+  .mobile-toc nav a{padding:8px 10px; border-radius:10px; background:var(--paper); border:1px solid var(--line); font-size:14.5px; text-decoration:none; color:var(--ink)}
+  main{padding:20px 0 56px}
+}
+@media (max-width:700px){
+  .stepper{grid-template-columns:minmax(0,1fr); gap:10px}
+  .stepper li{display:grid; grid-template-columns:40px minmax(0,1fr); gap:12px; align-items:start; padding:14px}
+  .stepper li:not(:last-child)::after{content:"↓"; right:auto; left:31px; top:auto; bottom:-14px; transform:none; font-size:16px; padding:0}
+  .st-no{margin:0}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .hero{padding:24px 20px; border-radius:18px}
+  .rung:nth-child(1){margin-left:36px}
+  .rung:nth-child(2){margin-left:24px}
+  .rung:nth-child(3){margin-left:12px}
+  .rung .lv{min-width:0}
+  .rung{gap:10px; padding:14px 14px}
+  .tool{padding:18px 16px; border-radius:16px}
+  .quick li{padding:14px 14px}
+  .worked{padding:18px 16px}
+  .ladder-base{margin:-2px 12px 0}
+  h2{margin-top:50px}
+}
+
+/* Print */
+@media print{
+  .toc-side,.mobile-toc{display:none !important}
+  .layout{display:block; padding:0}
+  main{padding:0}
+  body{background:#fff; color:#000; font-size:12pt}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact; box-shadow:none !important}
+  .hero,.tool,.quick li,.stepper li,.rung,.worked,.note-box,.table-wrap,blockquote,.ln,.src li{
+    break-inside:avoid; page-break-inside:avoid; background:#fff !important; border-color:#bbb !important; color:#000;
+  }
+  h2,h3,h4{break-after:avoid; page-break-after:avoid; color:#000}
+  h2{border-top:1px solid #bbb}
+  a{color:#000; text-decoration:underline}
+  .src li a{word-break:normal}
+  tbody tr:nth-child(even){background:#f5f5f5 !important}
+  thead th{background:#eee !important; color:#000}
+  .here-tag{background:#000; color:#fff}
+  .rung.here{background:#fff !important; border:2px solid #000}
+  .ln-warn,.ln-do{background:#fff !important}
+  .stepper li:not(:last-child)::after{content:none}
+  .num,.st-no{background:#000 !important; color:#fff !important; -webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside class="toc-side" aria-label="Mục lục">
+  <h2>Mục lục</h2>
+  <nav class="toc" id="toc-desktop">
+    <a href="#doc-1p">⏱️ Đọc 1 phút</a>
+    <a href="#s1">1. Nhận ra ≠ nhớ ra</a>
+    <a href="#s2">2. Cái thang 4 bậc</a>
+    <a href="#s3">3. 17 công cụ</a>
+    <a href="#s4">4. Điều dễ bị bỏ qua</a>
+    <a href="#s5">5. Quy trình 1 từ – 5 cửa</a>
+    <a href="#s6">6. Lịch một ngày</a>
+    <a href="#s7">7. Mức độ chắc chắn</a>
+    <a href="#s8">8. Nguồn</a>
+  </nav>
+</aside>
+
+<main>
+
+<details class="mobile-toc">
+  <summary>Mục lục</summary>
+  <nav>
+    <a href="#doc-1p">⏱️ Đọc 1 phút</a>
+    <a href="#s1">1. Nhận ra ≠ nhớ ra</a>
+    <a href="#s2">2. Cái thang 4 bậc</a>
+    <a href="#s3">3. 17 công cụ</a>
+    <a href="#s4">4. Điều dễ bị bỏ qua</a>
+    <a href="#s5">5. Quy trình 1 từ – 5 cửa</a>
+    <a href="#s6">6. Lịch một ngày</a>
+    <a href="#s7">7. Mức độ chắc chắn</a>
+    <a href="#s8">8. Nguồn</a>
+  </nav>
+</details>
+
+<header class="hero">
+  <h1>🧠 Não nhớ thế nào? – Cách học tiếng Nhật cho "nhớ ra" và "viết ra"</h1>
+  <p class="subtitle">Giải thích kiểu cho bé 5 tuổi. Mỗi phần: 🧒 Hiểu đơn giản → 🔬 Nghiên cứu nói gì → 🇯🇵 Làm với tiếng Nhật.</p>
+  <div class="badges">
+    <span>~40 lượt tìm kiếm</span>
+    <span>~300 trang</span>
+    <span>~45 nghiên cứu</span>
+  </div>
+  <p class="hero-note">Tổng hợp từ ~40 lượt tìm kiếm, ~300 trang kết quả, ~45 nghiên cứu (danh sách nguồn ở cuối).</p>
+</header>
+
+<section id="doc-1p">
+<h2>⏱️ ĐỌC 1 PHÚT</h2>
+<ol class="quick">
+  <li><span class="num">1</span><div><strong>Bạn không "dở trí nhớ".</strong> Bạn đang luyện <em>nhận ra</em> (trắc nghiệm, ghép cặp), nhưng bài thi lại bắt <em>nhớ ra</em> và <em>viết ra</em>. Đó là <strong>hai kỹ năng khác nhau</strong>.</div></li>
+  <li><span class="num">2</span><div><strong>Luyện kiểu nào thì giỏi kiểu đó.</strong> Muốn viết được → phải luyện <em>viết từ trí nhớ</em>, không phải luyện chọn đáp án.</div></li>
+  <li><span class="num">3</span><div><strong>Não nhớ tốt nhất khi một từ đi qua nhiều "cửa"</strong>: tay (viết, vẽ), miệng (đọc to, hát), cơ thể (cử chỉ), và <strong>chính bạn</strong> (câu chuyện về bạn).</div></li>
+  <li><span class="num">4</span><div><strong>Thấy dễ = dấu hiệu nguy hiểm.</strong> Ghép cặp nhanh làm bạn <em>cảm thấy</em> giỏi, nhưng cái gì vào dễ thì ra cũng dễ.</div></li>
+  <li><span class="num">5</span><div><strong>Ngủ là một buổi học miễn phí.</strong> Học tối → ngủ → sáng tự viết lại. Nhanh gấp đôi.</div></li>
+</ol>
+</section>
+
+<section id="s1">
+<h2>1. 🔍 Vì sao trắc nghiệm đúng hết mà viết ra lại quên?</h2>
+
+<h3>🧒 Hiểu đơn giản</h3>
+<div class="ln ln-kid">Nhìn mặt bạn thân trong đám đông → bạn <strong>nhận ra</strong> ngay.</div>
+<div class="ln ln-kid">Nhưng bảo bạn <strong>vẽ lại</strong> mặt bạn ấy → khó hơn rất nhiều.</div>
+<p>Trắc nghiệm = nhận mặt. Viết ra = vẽ lại mặt. <strong>Não cất hai thứ này ở hai ngăn khác nhau.</strong></p>
+
+<h3>🔬 Nghiên cứu nói gì</h3>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Phát hiện</th><th>Nghĩa là</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Có 4 kiểu nhớ một từ: <strong>nhận ra</strong> → <strong>nhớ ra</strong> → <strong>dùng có gợi ý</strong> → <strong>dùng tự do</strong> (Laufer &amp; Nation). Biết thụ động <em>không</em> tự chuyển thành biết chủ động.</td><td>Tab 2 của bạn chỉ luyện bậc 1</td></tr>
+    <tr><td>Một nghiên cứu thấy chỉ khoảng <strong>75%</strong> từ biết thụ động là biết dùng chủ động (Fan, 2000)</td><td>Cứ 4 từ "biết" thì 1 từ không viết/nói ra được</td></tr>
+    <tr><td><strong>Luyện kiểu nhớ ra</strong> tốt hơn kiểu chọn đáp án khi cần <em>viết đúng chữ</em> (Nakata, 2016)</td><td>Muốn viết kanji → phải luyện tự viết</td></tr>
+    <tr><td><strong>Transfer-appropriate processing</strong> (Morris, Bransford &amp; Franks, 1977): trí nhớ tốt nhất khi cách luyện <strong>giống</strong> cách thi</td><td>Luyện chọn → giỏi chọn. Luyện viết → giỏi viết</td></tr>
+    <tr><td>Học một chiều (Nhật→Việt) chỉ giúp <strong>một phần</strong> cho chiều ngược lại (Việt→Nhật) (Bernardi, Dunlosky và cộng sự)</td><td>Phải luyện <strong>cả hai chiều</strong></td></tr>
+    <tr><td><strong>Ảo giác trôi chảy</strong> (Bjork): việc gì thấy dễ, mượt → ta tưởng đã thuộc, nhưng quên nhanh</td><td>Ghép cặp 7,9 giây cho cảm giác "giỏi" nhưng là cảm giác giả</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>😮 Điều bất ngờ: người Nhật cũng quên viết kanji</h3>
+<p>Năm 2012, khảo sát của Cục Văn hóa Nhật Bản: <strong>66,5%</strong> người Nhật nói khả năng viết tay kanji của họ đang kém đi vì gõ máy. Người Trung Quốc gọi hiện tượng này là <span lang="ja">提笔忘字</span> – "cầm bút lên là quên chữ". Tiếng Nhật có từ <span lang="ja">ワープロ馬鹿</span> (<span lang="ja">わーぷろばか</span> – "ngốc vì máy đánh chữ").</p>
+<p>→ <strong>Đọc được ≠ viết được, kể cả với người bản xứ.</strong> Viết là một kỹ năng riêng, phải luyện riêng.</p>
+
+<h3>✅ Kết luận cho bạn</h3>
+<div class="ln ln-do"><span class="tag">✅</span> Tab 2 <strong>không sai</strong>. Nó là <strong>bậc 1 của cái thang</strong>. Bạn chỉ đang thiếu các bậc trên.</div>
+</section>
+
+<section id="s2">
+<h2>2. 🪜 CÁI THANG 4 BẬC (ý quan trọng nhất)</h2>
+
+<div class="ladder" role="img" aria-label="Thang 4 bậc: bậc 4 dùng ra, bậc 3 viết ra, bậc 2 nhớ ra, bậc 1 nhận ra. Tab 2 của bạn đang ở bậc 1.">
+  <div class="rung">
+    <span class="lv">BẬC 4</span>
+    <span class="ic">✍️🗣️</span>
+    <span class="txt"><b>DÙNG RA</b>Tự đặt câu về mình, nói/viết không gợi ý</span>
+  </div>
+  <div class="rung">
+    <span class="lv">BẬC 3</span>
+    <span class="ic">✍️</span>
+    <span class="txt"><b>VIẾT RA</b>Nhìn nghĩa tiếng Việt → tự viết kanji ra giấy</span>
+  </div>
+  <div class="rung">
+    <span class="lv">BẬC 2</span>
+    <span class="ic">🧠</span>
+    <span class="txt"><b>NHỚ RA</b>Nhìn kanji → tự nói cách đọc + nghĩa (không có đáp án để chọn)</span>
+  </div>
+  <div class="rung here">
+    <span class="here-tag">Tab 2 của bạn đang ở đây</span>
+    <span class="lv">BẬC 1</span>
+    <span class="ic">👀</span>
+    <span class="txt"><b>NHẬN RA</b>Trắc nghiệm, ghép cặp</span>
+  </div>
+</div>
+<div class="ladder-base" aria-hidden="true"></div>
+
+<p><strong>Quy tắc:</strong> mỗi từ phải leo <strong>ít nhất tới bậc 3</strong>. Bậc 1 chỉ là khởi động.</p>
+<p><strong>Mẹo chuyển Tab 2 lên bậc 2 ngay:</strong> đảo chiều (cho nghĩa tiếng Việt → tìm kanji), và thay "chọn" bằng "gõ đáp án". Chọn = nhận ra, gõ = nhớ ra.</p>
+</section>
+
+<section id="s3">
+<h2>3. 🧰 17 CÔNG CỤ – chia theo "cửa" vào não</h2>
+
+<blockquote><p>🧒 <strong>Hình dung:</strong> mỗi từ là một ngôi nhà trong rừng. Mỗi giác quan là một con đường dẫn tới nhà. Càng nhiều đường, càng nhiều lối để tìm lại nhà khi cần.</p></blockquote>
+
+<h3>✋ CỬA TAY</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">①</span> Viết tay – từ trí nhớ, không phải chép</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Tay "nhớ" hình dạng chữ giống như tay nhớ cách buộc dây giày.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Wiley &amp; Rapp (2021, Johns Hopkins):</strong> 42 người lớn học bảng chữ Ả Rập theo 3 cách: viết tay, gõ phím, xem video. Nhóm viết tay <strong>học nhanh hơn</strong> (một số chỉ cần 2 buổi) và <strong>giỏi hơn ở mọi bài khác</strong>: đánh vần, đọc từ lạ. Tác giả khuyên người học ngôn ngữ có chữ khác nên viết tay bổ sung cho app.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Naka (1998):</strong> trẻ em Nhật lớp 1, 3, 5 nhớ chữ lạ tốt hơn khi <strong>viết</strong> so với chỉ nhìn.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Van der Weel &amp; Van der Meer (2024):</strong> đo sóng não 36 sinh viên, viết tay tạo kết nối não rộng hơn gõ phím (dùng bút cảm ứng cũng được). <em>Lưu ý:</em> có nhà khoa học phản biện cách đo của nghiên cứu này (Pinet &amp; Longcamp, 2025), nên xem đây là bằng chứng phụ.</div>
+  <div class="ln ln-warn"><span class="tag">⚠️</span> <strong>Chép 10 lần trong khi nhìn mẫu ≠ viết từ trí nhớ.</strong> Cái làm não mạnh lên là <em>cố nhớ ra</em> rồi mới viết.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> che kanji, nhìn nghĩa "suối nước nóng" → tự viết <span lang="ja">温泉</span> (<span lang="ja">おんせん</span>) → mở ra so → sai nét nào khoanh đỏ.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">②</span> Vẽ – 4 giây là đủ</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Vẽ bắt não làm 3 việc cùng lúc: nghĩ nghĩa, tưởng tượng hình, cử động tay → 3 con đường.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Wammes, Meade &amp; Fernandes (2016, Waterloo):</strong> vẽ một từ giúp nhớ <strong>thường gấp hơn 2 lần</strong> so với viết từ đó ra. Vẽ thắng cả: tưởng tượng hình, xem ảnh có sẵn, liệt kê đặc điểm. <strong>Vẽ xấu cũng không sao</strong>, và <strong>chỉ 4 giây</strong> vẽ vẫn có hiệu quả.</div>
+  <div class="ln ln-warn"><span class="tag">⚠️</span> Mới được kiểm chứng chủ yếu với từ đơn, cụ thể (táo, xe…).</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> <span lang="ja">自転車</span> (<span lang="ja">じてんしゃ</span>) → vẽ que hai bánh xe. <span lang="ja">屋上</span> (<span lang="ja">おくじょう</span>) → vẽ mái nhà + người đứng trên.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">③</span> Kūsho <span lang="ja">空書</span> (<span lang="ja">くうしょ</span>) – viết bằng ngón tay trên không</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Người Nhật hay vô thức vẽ chữ lên không khí khi nghĩ một kanji khó. Bạn có thể bắt chước.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> Margaret Thomas (2014): người học tiếng Nhật cũng tự làm điều này khi cố nhớ kanji khó, và nó giúp việc học kanji. Gần như ai biết đọc tiếng Nhật đều nhận ra hành động này.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> đi bộ, đứng chờ tàu → viết lại 3 kanji hôm qua lên không khí. Không cần giấy.</div>
+</article>
+
+<h3>👀 CỬA MẮT</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">④</span> Hình ảnh – nhưng <strong>tự vẽ</strong> mạnh hơn <strong>xem ảnh có sẵn</strong></h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Bạn nói đúng: não nhớ hình tốt hơn chữ. Đó là <strong>hiệu ứng ưu thế hình ảnh</strong>. Lý do (thuyết mã hóa kép, Paivio): ảnh được lưu <strong>2 lần</strong> – một bản hình, một bản lời.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Nhưng có bất ngờ:</strong> Lotto &amp; de Groot (1998) cho 56 người lớn học tiếng Ý. Học bằng <strong>dịch nghĩa</strong> lại tốt hơn học bằng <strong>ảnh</strong>. Ảnh giúp nhiều hơn ở trẻ em (Tonzar và cộng sự, 2009).</div>
+  <div class="ln ln-do"><span class="tag">✅</span> <strong>Kết luận:</strong> ảnh là <strong>thêm vào</strong>, không phải <strong>thay thế</strong> nghĩa. Và ảnh <strong>bạn tự vẽ</strong> (công cụ ②) &gt; ảnh xem sẵn.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> thẻ từ = kanji + nghĩa tiếng Việt + hình que bạn tự vẽ.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑤</span> Tách kanji thành các mảnh (bộ thủ)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Kanji giống Lego. Thuộc 200 mảnh Lego thì ráp được hàng nghìn chữ.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Flaherty &amp; Noguchi (1998):</strong> học kanji bằng <strong>tách mảnh + câu chuyện nối các mảnh</strong> nhớ tốt hơn hẳn học cả khối, kể cả <strong>sau 1 tháng</strong>. Hurley (2021): cách này đặc biệt hợp với <strong>người mới bắt đầu</strong>.</div>
+  <div class="ln ln-warn"><span class="tag">⚠️</span> <strong>Rose (2013, Oxford):</strong> câu chuyện quá phức tạp làm <strong>mất nghĩa</strong> của chữ. Giữ chuyện <strong>ngắn và có nghĩa</strong>.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Ví dụ (từ chính bài của bạn):</strong></div>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Kanji</th><th>Mảnh</th><th>Chuyện ngắn</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span lang="ja">親</span> (<span lang="ja">おや</span>)</td><td><span lang="ja">立</span> đứng + <span lang="ja">木</span> cây + <span lang="ja">見</span> nhìn</td><td>Bố mẹ <strong>đứng</strong> trên <strong>cây</strong> <strong>nhìn</strong> ngóng con về</td></tr>
+      <tr><td><span lang="ja">泉</span> (<span lang="ja">いずみ</span>)</td><td><span lang="ja">白</span> trắng + <span lang="ja">水</span> nước</td><td><strong>Nước trắng</strong> phun lên = suối</td></tr>
+      <tr><td><span lang="ja">温</span> (<span lang="ja">おん</span>)</td><td><span lang="ja">氵</span> nước + <span lang="ja">日</span> mặt trời + <span lang="ja">皿</span> cái đĩa</td><td><strong>Nước</strong> trong <strong>đĩa</strong> phơi <strong>nắng</strong> → ấm</td></tr>
+      <tr><td><span lang="ja">自転車</span> (<span lang="ja">じてんしゃ</span>)</td><td><span lang="ja">自</span> tự + <span lang="ja">転</span> quay + <span lang="ja">車</span> xe</td><td>Xe <strong>tự quay</strong> bánh = xe đạp</td></tr>
+      <tr><td><span lang="ja">屋上</span> (<span lang="ja">おくじょう</span>)</td><td><span lang="ja">屋</span> nhà + <span lang="ja">上</span> trên</td><td><strong>Trên</strong> nóc <strong>nhà</strong> = sân thượng</td></tr>
+    </tbody>
+  </table>
+  </div>
+</article>
+
+<h3>🗣️ CỬA MIỆNG &amp; TAI</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑥</span> Đọc to (hiệu ứng sản xuất)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Khi bạn nói, não nghe <strong>giọng của chính bạn</strong> → từ trở nên "của mình".</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Forrin &amp; MacLeod (2018):</strong> so 4 cách (đọc thầm, nghe người khác đọc, nghe ghi âm giọng mình, tự đọc to). <strong>Tự đọc to nhớ tốt nhất</strong>, đọc thầm kém nhất.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> mọi lần viết kanji → <strong>nói to</strong> cách đọc cùng lúc: "<span lang="ja">おんせん</span>!"</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑦</span> Hát</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Giai điệu là cái móc treo chữ. Bạn nhớ lời bài hát hồi nhỏ mà không cần học.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Ludke và cộng sự (2014):</strong> 60 người học câu tiếng Hung. Nhóm <strong>hát</strong> thắng 4/5 bài kiểm tra, có bài <strong>gấp đôi</strong> nhóm nói.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> chế 5–10 từ mới vào giai điệu một bài bạn thuộc. Hoặc học lời bài hát Nhật bạn thích.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑧</span> Shadowing (nhại theo ngay khi nghe)</h4>
+  <div class="ln ln-res"><span class="tag">🔬</span> Bằng chứng tốt cho <strong>nghe</strong> và <strong>nói trôi chảy</strong> (Kadota; Hamada), nhưng không phải nghiên cứu nào cũng thấy hiệu quả. Đây là công cụ cho <strong>tai và miệng</strong>, không phải để nhớ chữ viết.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> 10 phút/ngày nhại theo một đoạn ngắn có phụ đề.</div>
+</article>
+
+<h3>🤸 CỬA CƠ THỂ</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑨</span> Cử chỉ (học bằng cơ thể)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Nói "<span lang="ja">泳ぐ</span> (<span lang="ja">およぐ</span> – bơi)" + làm động tác bơi → cơ thể nhớ hộ.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Mayer, Macedonia và cộng sự (2015, <em>Current Biology</em>):</strong> học từ ngoại ngữ kèm <strong>tự làm cử chỉ</strong> tốt hơn kèm <strong>ảnh</strong>, và cả hai tốt hơn chỉ nghe/đọc. Kiểm tra lại <strong>sau 2 và 6 tháng</strong>, cử chỉ vẫn thắng. Điều quan trọng là <strong>tự làm</strong>, không chỉ xem người khác làm. Asher (TPR, thập niên 1960): làm theo lệnh bằng cơ thể giúp nhớ lâu hơn viết bản dịch.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> <span lang="ja">上着を着る</span> (<span lang="ja">うわぎをきる</span>) → giả vờ khoác áo. <span lang="ja">泊まる</span> (<span lang="ja">とまる</span>) → nghiêng đầu ngủ.</div>
+</article>
+
+<h3>💭 CỬA ĐẦU (cách suy nghĩ)</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑩</span> Câu chuyện về <strong>chính bạn</strong> (sửa lỗi Tab 1)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Bạn thấy Tab 1 (câu chuyện liên kết) "ổn nhưng không ấn tượng". Lý do có thể là: <strong>chuyện về người khác</strong>. Não ưu tiên nhớ thứ liên quan đến <strong>mình</strong>.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Symons &amp; Johnson (1997):</strong> tổng hợp ~130 nghiên cứu, <strong>hiệu ứng tự tham chiếu</strong> (gắn thông tin với bản thân) giúp nhớ tốt hơn rõ rệt, mức hiệu quả trung bình khoảng 0,45. Đây là một trong những cách mã hóa mạnh nhất từng được đo.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Hài hước giúp nhớ</strong> (Schmidt, 1994). Một nghiên cứu với người học tiếng Anh thấy văn bản hài giúp người trình độ thấp học từ tốt hơn, cả ngay sau và sau một thời gian.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> đừng viết "Tanaka đi suối nước nóng". Viết: "<strong>Tôi</strong> ở Nhật, cuối tuần <strong>tôi</strong> muốn đi <span lang="ja">温泉</span> (<span lang="ja">おんせん</span>) nhưng lại <span lang="ja">泊まる</span> (<span lang="ja">とまる</span>) nhầm khách sạn đắt". <strong>Có bạn + có chút buồn cười = nhớ.</strong></div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑪</span> Đoán trước khi xem đáp án (sai cũng được)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Cố đoán làm não "khát" đáp án. Khi thấy đáp án, não hút vào mạnh hơn.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Kornell, Hays &amp; Bjork (2009):</strong> <strong>cố nhớ mà thất bại</strong> vẫn giúp học tốt hơn so với chỉ đọc đáp án, <strong>miễn là sau đó xem đáp án đúng</strong>. Hiệu ứng này đã được lặp lại nhiều lần, kể cả với từ vựng ngoại ngữ.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> gặp <span lang="ja">屋上</span>, đoán cách đọc trước ("やじょう?") → mở ra: <span lang="ja">おくじょう</span>. Cái sai chính là thứ làm bạn nhớ.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑫</span> Dạy lại (giải thích cho bé 5 tuổi)</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Bạn đang dùng chính cách này! Muốn dạy ai đó, bạn phải sắp xếp lại kiến thức trong đầu.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Nestojko và cộng sự (2014):</strong> chỉ cần <strong>nghĩ rằng mình sẽ phải dạy lại</strong> (dù không dạy thật) → nhớ nhiều hơn và có tổ chức hơn so với người chỉ nghĩ sẽ bị kiểm tra.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> cuối tuần, giải thích 10 từ mới cho bạn bè, quay video, hoặc nói với AI như đang dạy bé 5 tuổi.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑬</span> Tự đặt câu (bậc 4 của thang)</h4>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Laufer &amp; Hulstijn (2001), giả thuyết "độ dấn thân":</strong> việc nào bắt bạn <strong>cần</strong> từ, <strong>tìm</strong> từ và <strong>cân nhắc</strong> dùng từ đúng chỗ thì nhớ lâu hơn. Trong nhiều thí nghiệm, <strong>tự viết câu</strong> với từ mới thắng đọc và điền chỗ trống.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Swain, giả thuyết đầu ra:</strong> khi cố nói/viết, bạn <strong>phát hiện chỗ mình không biết</strong> → lần sau gặp sẽ để ý và học được.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> mỗi từ mới = 1 câu thật về cuộc sống của bạn ở Nhật.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑭</span> Tò mò trước khi học</h4>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Gruber và cộng sự (2014, <em>Neuron</em>):</strong> khi đang tò mò, não bật hệ thống phần thưởng (dopamine) và nhớ tốt hơn – kể cả những thứ <strong>không liên quan</strong> xuất hiện cùng lúc.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> trước buổi học, tự hỏi một câu: "Sao 'xe đạp' lại có chữ 'tự' (<span lang="ja">自</span>)?" → rồi mới học.</div>
+</article>
+
+<h3>😴 CỬA THỜI GIAN</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑮</span> Ngủ giữa hai buổi học</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Khi ngủ, não "xếp đồ" của ngày hôm đó vào tủ dài hạn.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Mazza và cộng sự (2016):</strong> 40 người học từ ngoại ngữ, 2 buổi cách 12 tiếng. Nhóm <strong>học tối → ngủ → học lại sáng</strong> cần <strong>chỉ một nửa</strong> công sức ôn (khoảng 3 lượt so với 6), và vẫn nhớ hơn sau <strong>1 tuần</strong> và <strong>6 tháng</strong>.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> học từ mới <strong>buổi tối</strong>. Sáng hôm sau, <strong>trước khi mở sổ</strong>, viết lại từ trí nhớ.</div>
+</article>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑯</span> Ôn giãn cách – không nhất thiết bằng flashcard</h4>
+  <div class="ln ln-kid"><span class="tag">🧒</span> Bạn ghét flashcard? Không sao. <strong>Giãn cách là nguyên tắc về thời gian, không phải về công cụ.</strong> Bạn có thể giãn cách bằng game ghép cặp, bằng viết, bằng vẽ.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> Cepeda và cộng sự (2008, hơn 1.350 người): khoảng ôn tối ưu ≈ 10–20% khoảng thời gian bạn muốn nhớ. Ôn <strong>quá sớm</strong> hại hơn ôn <strong>quá muộn</strong>.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> lịch đơn giản: <strong>hôm sau → 3 ngày sau → 1 tuần sau → 1 tháng sau</strong>. Mỗi lần ôn chọn một "cửa" khác (lần 1 viết, lần 2 vẽ, lần 3 đặt câu).</div>
+  <div class="ln ln-warn"><span class="tag">⚠️</span> <strong>Xen kẽ (interleaving):</strong> tốt cho bài toán và nhận dạng hình ảnh, nhưng tổng hợp lớn (Brunmair &amp; Richter, 2019) khuyên <strong>thận trọng với việc học từ</strong>. Đừng cố trộn lẫn mọi thứ.</div>
+</article>
+
+<h3>🗾 CỬA MÔI TRƯỜNG (bạn đang ở Nhật – lợi thế lớn)</h3>
+
+<article class="tool">
+  <h4 class="tool-title"><span class="circled">⑰</span> Gặp lại từ ngoài đời</h4>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Waring &amp; Takaki (2003):</strong> chỉ đọc truyện thôi thì học được rất ít từ mới. Từ gặp <strong>dưới 8 lần</strong> thường <strong>mất sau 3 tháng</strong>. Đọc tốt nhất để <strong>củng cố</strong> từ đã biết lơ mơ.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Webb (2008):</strong> <strong>ngữ cảnh rõ</strong> giúp hiểu <strong>nghĩa</strong>. <strong>Số lần gặp</strong> giúp nhớ <strong>hình dạng chữ</strong>.</div>
+  <div class="ln ln-res"><span class="tag">🔬</span> <strong>Du học ở Nhật</strong> (Dewey, 2006, 2008): từ vựng tăng nhiều, nhưng <strong>chủ yếu là thụ động</strong>. Càng <strong>tiếp xúc, nói chuyện, viết</strong> bằng tiếng Nhật thì từ vựng càng tăng.</div>
+  <div class="ln ln-do"><span class="tag">🇯🇵</span> <strong>Làm:</strong> chụp ảnh biển hiệu/menu có từ vừa học → mang về đặt câu. Ở Nhật mà chỉ "nhìn" thì vẫn kẹt ở bậc 1.</div>
+</article>
+</section>
+
+<section id="s4">
+<h2>4. 💡 NHỮNG ĐIỀU DỄ BỊ BỎ QUA</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Điều bất ngờ</th><th>Nên làm</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Dễ = quên nhanh. Hơi khó = nhớ lâu ("khó khăn đáng giá", Bjork)</td><td>Thấy quá mượt → nâng độ khó</td></tr>
+    <tr><td>Sai trước rồi sửa → nhớ hơn đúng ngay</td><td>Luôn đoán trước khi xem đáp án</td></tr>
+    <tr><td>Ảnh có sẵn chưa chắc hơn dịch nghĩa (với người lớn)</td><td>Tự vẽ, đừng chỉ xem</td></tr>
+    <tr><td>Người Nhật cũng quên viết kanji</td><td>Viết là kỹ năng riêng → luyện riêng</td></tr>
+    <tr><td>Chỉ cần <em>định</em> dạy lại đã nhớ hơn</td><td>Học như thể tối nay phải dạy</td></tr>
+    <tr><td>Mẹo nhớ quá rắc rối làm mất nghĩa</td><td>Chuyện ngắn, có nghĩa, về bạn</td></tr>
+    <tr><td>Ngủ cắt một nửa công ôn</td><td>Học tối, kiểm tra sáng</td></tr>
+    <tr><td>Ghép cặp nhanh có thể là ảo giác</td><td>Đo bằng <em>viết ra</em>, không đo bằng <em>thời gian ghép</em></td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section id="s5">
+<h2>5. 🔄 QUY TRÌNH "1 TỪ – 5 CỬA" (thay thế flashcard)</h2>
+
+<p class="flow-intro">Mỗi từ mới đi qua 5 bước, khoảng <strong>1–2 phút/từ</strong>:</p>
+
+<ol class="stepper" aria-label="Quy trình 1 từ 5 cửa">
+  <li>
+    <div class="st-no">1</div>
+    <div>
+      <div class="st-name">ĐOÁN</div>
+      <p>Nhìn kanji, đoán cách đọc/nghĩa (sai cũng được)</p>
+      <span class="chip">⑪</span>
+    </div>
+  </li>
+  <li>
+    <div class="st-no">2</div>
+    <div>
+      <div class="st-name">TÁCH</div>
+      <p>Chia mảnh + chuyện ngắn VỀ BẠN, có chút buồn cười</p>
+      <span class="chip">⑤</span><span class="chip">⑩</span>
+    </div>
+  </li>
+  <li>
+    <div class="st-no">3</div>
+    <div>
+      <div class="st-name">CHẠM</div>
+      <p>Vẽ que 4 giây + làm cử chỉ + đọc TO</p>
+      <span class="chip">②</span><span class="chip">⑨</span><span class="chip">⑥</span>
+    </div>
+  </li>
+  <li>
+    <div class="st-no">4</div>
+    <div>
+      <div class="st-name">VIẾT RA</div>
+      <p>Che lại → viết kanji từ trí nhớ → so → sửa</p>
+      <span class="chip">①</span>
+    </div>
+  </li>
+  <li>
+    <div class="st-no">5</div>
+    <div>
+      <div class="st-name">DÙNG</div>
+      <p>1 câu thật về cuộc sống của bạn ở Nhật</p>
+      <span class="chip">⑬</span>
+    </div>
+  </li>
+</ol>
+
+<p><strong>Ví dụ với <span lang="ja">泊まる</span> (<span lang="ja">とまる</span> – trọ qua đêm):</strong></p>
+<div class="worked">
+<ol>
+  <li><strong>Đoán:</strong> "<span lang="ja">はくまる</span>?" → sai → đáp án: <span lang="ja">とまる</span>. (Cái sai làm bạn nhớ.)</li>
+  <li><strong>Tách:</strong> <span lang="ja">氵</span> nước + <span lang="ja">白</span> trắng → "ngủ lại cạnh <strong>dòng nước trắng</strong>". Chuyện về bạn: "Tôi <strong>trọ</strong> ở ryokan cạnh suối, sáng ra nước trắng xóa."</li>
+  <li><strong>Chạm:</strong> vẽ cái giường + gợn sóng (4 giây) · nghiêng đầu giả vờ ngủ · đọc to "<span lang="ja">とまる</span>!"</li>
+  <li><strong>Viết ra:</strong> che lại, nhìn "trọ qua đêm" → viết <span lang="ja">泊まる</span> → so lại.</li>
+  <li><strong>Dùng:</strong> <span lang="ja">今週末(こんしゅうまつ)、温泉(おんせん)の宿(やど)に泊(と)まりたい。</span>– Cuối tuần này tôi muốn trọ ở nhà nghỉ suối nước nóng.</li>
+</ol>
+</div>
+
+<h3>🛠️ Nâng cấp app của bạn (Tab 1 + Tab 2 + thêm 3 tab)</h3>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Tab</th><th>Hiện tại</th><th>Nâng cấp</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Tab 1 – Câu chuyện</strong></td><td>Chuyện liên kết chung</td><td>Chuyện <strong>về chính người học</strong>, có ô <strong>vẽ 4 giây</strong></td></tr>
+    <tr><td><strong>Tab 2 – Ghép cặp</strong></td><td>Kanji ↔ nghĩa, chọn</td><td>Thêm <strong>chiều ngược lại</strong> (nghĩa → kanji) và chế độ <strong>gõ đáp án</strong> thay vì chọn</td></tr>
+    <tr><td><strong>Tab 3 – Viết ra</strong> <em>(mới)</em></td><td>–</td><td>Hiện nghĩa → người học <strong>viết kanji bằng tay/bút</strong> → hiện đáp án để tự so</td></tr>
+    <tr><td><strong>Tab 4 – Câu của tôi</strong> <em>(mới)</em></td><td>–</td><td>Đặt 1 câu thật với từ mới, lưu lại thành nhật ký</td></tr>
+    <tr><td><strong>Tab 5 – Dạy lại</strong> <em>(mới)</em></td><td>–</td><td>Ghi âm/gõ lời giải thích từ đó "cho bé 5 tuổi"</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Đổi cách đo tiến bộ:</strong> đừng đo "ghép xong trong bao nhiêu giây". Đo <strong>"viết đúng bao nhiêu từ khi che đáp án"</strong>.</p>
+</section>
+
+<section id="s6">
+<h2>6. 📅 LỊCH MỘT NGÀY (hợp với đi học T2–T6 ở Nhật)</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Lúc</th><th>Việc</th><th>Thời gian</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>☀️ <strong>Sáng</strong> (trước khi mở sổ)</td><td>Viết lại từ trí nhớ các từ học tối qua</td><td>10 phút</td></tr>
+    <tr><td>🚶 <strong>Trong ngày</strong></td><td>Kūsho lúc chờ tàu · gặp từ ngoài đời thì chụp lại</td><td>rải rác</td></tr>
+    <tr><td>🌙 <strong>Tối</strong></td><td>Học <strong>10–20 từ mới</strong> theo quy trình 5 cửa</td><td>30–40 phút</td></tr>
+    <tr><td>🌙 <strong>Tối</strong></td><td>Ôn các từ đến hạn (hôm qua / 3 ngày / 1 tuần), mỗi lần đổi "cửa"</td><td>15–20 phút</td></tr>
+    <tr><td>🎌 <strong>Cuối tuần</strong></td><td>Dạy lại 20 từ trong tuần (cho bạn, cho AI, hoặc quay video) + viết nhật ký 5 câu</td><td>30 phút</td></tr>
+  </tbody>
+</table>
+</div>
+
+<blockquote><p>Vì sao <strong>10–20 từ</strong> (ít hơn mức 30–50 trước đây)? Vì mỗi từ giờ được luyện tới <strong>bậc 3–4</strong> (viết và dùng được), không chỉ bậc 1. Ít hơn nhưng <strong>dùng được thật</strong>.</p></blockquote>
+</section>
+
+<section id="s7">
+<h2>7. 📊 MỨC ĐỘ CHẮC CHẮN CỦA TỪNG CÔNG CỤ</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Mức</th><th>Công cụ</th></tr>
+  </thead>
+  <tbody>
+    <tr class="row-g"><td>🟢 <strong>Rất chắc</strong> (nhiều nghiên cứu, tổng hợp lớn)</td><td>Tự nhớ ra/tự kiểm tra · Ôn giãn cách · Viết tay khi học chữ mới · Tự tham chiếu (về bạn) · Đọc to</td></tr>
+    <tr class="row-y"><td>🟡 <strong>Khá chắc</strong> (nhiều thí nghiệm, ít trong lớp học thật)</td><td>Vẽ · Cử chỉ · Ngủ giữa 2 buổi · Đoán trước · Tách kanji · Tự đặt câu · Dạy lại · Tò mò</td></tr>
+    <tr class="row-o"><td>🟠 <strong>Có triển vọng</strong> (ít nghiên cứu hoặc kết quả lẫn lộn)</td><td>Hát · Shadowing (cho nghe/nói) · Kūsho · Hài hước · Ảnh có sẵn · Xen kẽ khi học từ</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section id="s8">
+<h2>8. 📚 NGUỒN (chọn lọc)</h2>
+
+<h3>Nhận ra vs nhớ ra</h3>
+<ul class="src">
+  <li>Nakata (2016) – recall vs recognition formats: <a href="https://www.degruyterbrill.com/document/doi/10.1515/iral-2015-0022/html" target="_blank" rel="noopener">https://www.degruyterbrill.com/document/doi/10.1515/iral-2015-0022/html</a></li>
+  <li>Caspi &amp; Lowie (2013) – khoảng cách thụ động/chủ động: <a href="https://www.redalyc.org/pdf/3398/339829651005.pdf" target="_blank" rel="noopener">https://www.redalyc.org/pdf/3398/339829651005.pdf</a></li>
+  <li>Bernardi, Vaughn, Dunlosky, Rawson – chuyển giao hai chiều: <a href="https://busqueda.bvsalud.org/portal/resource/es/mdl-39222444" target="_blank" rel="noopener">https://busqueda.bvsalud.org/portal/resource/es/mdl-39222444</a></li>
+  <li>Transfer-appropriate processing (Morris và cộng sự, 1977): <a href="https://concepts.dsebastien.net/concept/transfer-appropriate-processing/" target="_blank" rel="noopener">https://concepts.dsebastien.net/concept/transfer-appropriate-processing/</a></li>
+  <li>Desirable difficulties &amp; ảo giác trôi chảy (Bjork): <a href="https://en.wikipedia.org/wiki/Desirable_difficulty" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Desirable_difficulty</a></li>
+  <li>Character amnesia: <a href="https://en.wikipedia.org/wiki/Character_amnesia" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Character_amnesia</a> · <a href="https://languagelog.ldc.upenn.edu/nll/?p=4214" target="_blank" rel="noopener">https://languagelog.ldc.upenn.edu/nll/?p=4214</a></li>
+</ul>
+
+<h3>Viết tay, vẽ, kūsho</h3>
+<ul class="src">
+  <li>Wiley &amp; Rapp (2021): <a href="https://hub.jhu.edu/2021/07/07/handwriting-more-effectively-teaches-reading-skills-brenda-rapp/" target="_blank" rel="noopener">https://hub.jhu.edu/2021/07/07/handwriting-more-effectively-teaches-reading-skills-brenda-rapp/</a></li>
+  <li>Naka (1998): <a href="https://eprints.lib.hokudai.ac.jp/dspace/handle/2115/44681" target="_blank" rel="noopener">https://eprints.lib.hokudai.ac.jp/dspace/handle/2115/44681</a></li>
+  <li>Van der Weel &amp; Van der Meer (2024): <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10853352/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC10853352/</a></li>
+  <li>Phản biện Pinet &amp; Longcamp (2025): <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1517235/epub" target="_blank" rel="noopener">https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1517235/epub</a></li>
+  <li>Wammes, Meade &amp; Fernandes (2016): <a href="https://uwaterloo.ca/psychology/news/need-remember-something-better-draw-it-study-finds" target="_blank" rel="noopener">https://uwaterloo.ca/psychology/news/need-remember-something-better-draw-it-study-finds</a></li>
+  <li>Thomas (2014) – kūsho: <a href="https://boots.bc.edu/islandora/object/bc-ir:107508/datastream/PDF/view" target="_blank" rel="noopener">https://boots.bc.edu/islandora/object/bc-ir:107508/datastream/PDF/view</a></li>
+</ul>
+
+<h3>Hình ảnh, kanji</h3>
+<ul class="src">
+  <li>Picture superiority &amp; dual coding: <a href="https://en.wikipedia.org/wiki/Picture_superiority_effect" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Picture_superiority_effect</a></li>
+  <li>Lotto &amp; de Groot (1998): <a href="https://research.unipd.it/handle/11577/147234" target="_blank" rel="noopener">https://research.unipd.it/handle/11577/147234</a></li>
+  <li>Tonzar, Lotto &amp; Job (2009): <a href="https://research.unipd.it/handle/11577/2378543" target="_blank" rel="noopener">https://research.unipd.it/handle/11577/2378543</a></li>
+  <li>Flaherty &amp; Noguchi (1998): <a href="https://jalt-publications.org/jj/articles/2769-effectiveness-different-approaches-kanji-education-second-language-learners" target="_blank" rel="noopener">https://jalt-publications.org/jj/articles/2769-effectiveness-different-approaches-kanji-education-second-language-learners</a></li>
+  <li>Hurley (2021): <a href="https://doras.dcu.ie/26121/" target="_blank" rel="noopener">https://doras.dcu.ie/26121/</a></li>
+  <li>Rose (2013): <a href="https://ora.ox.ac.uk/objects/uuid:51a0c552-8389-4d77-8071-e09a37be859f" target="_blank" rel="noopener">https://ora.ox.ac.uk/objects/uuid:51a0c552-8389-4d77-8071-e09a37be859f</a></li>
+</ul>
+
+<h3>Miệng, tai, cơ thể</h3>
+<ul class="src">
+  <li>Forrin &amp; MacLeod (2018) – đọc to: <a href="https://www.sci.news/othersciences/psychology/reading-aloud-improves-long-term-memory-05500.html" target="_blank" rel="noopener">https://www.sci.news/othersciences/psychology/reading-aloud-improves-long-term-memory-05500.html</a></li>
+  <li>Ludke và cộng sự (2014) – hát: <a href="https://culturecase-os.kdl.kcl.ac.uk/research/2014/12/singing-can-facilitate-foreign-language-learning" target="_blank" rel="noopener">https://culturecase-os.kdl.kcl.ac.uk/research/2014/12/singing-can-facilitate-foreign-language-learning</a></li>
+  <li>Kadota – shadowing: <a href="https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-23320124/" target="_blank" rel="noopener">https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-23320124/</a></li>
+  <li>Mayer và cộng sự (2015) – cử chỉ: <a href="https://archive.memory-key.com/node/3973" target="_blank" rel="noopener">https://archive.memory-key.com/node/3973</a></li>
+  <li>Macedonia (2014): <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4260465" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC4260465</a></li>
+  <li>Asher – TPR: <a href="https://apps.dtic.mil/sti/pdfs/AD0674868.pdf" target="_blank" rel="noopener">https://apps.dtic.mil/sti/pdfs/AD0674868.pdf</a></li>
+</ul>
+
+<h3>Cách suy nghĩ</h3>
+<ul class="src">
+  <li>Symons &amp; Johnson (1997) – tự tham chiếu: <a href="https://digitalcommons.lib.uconn.edu/chip_docs/9" target="_blank" rel="noopener">https://digitalcommons.lib.uconn.edu/chip_docs/9</a> · <a href="https://www.crumplab.com/self-reference" target="_blank" rel="noopener">https://www.crumplab.com/self-reference</a></li>
+  <li>Kornell, Hays &amp; Bjork (2009) – đoán trước: <a href="https://www.scientificamerican.com/article/the-pluses-of-getting-it-wrong/" target="_blank" rel="noopener">https://www.scientificamerican.com/article/the-pluses-of-getting-it-wrong/</a></li>
+  <li>Nestojko và cộng sự (2014) – định dạy lại: <a href="https://source.washu.edu/2014/07/expecting-to-teach-enhances-learning-recall/" target="_blank" rel="noopener">https://source.washu.edu/2014/07/expecting-to-teach-enhances-learning-recall/</a></li>
+  <li>Laufer &amp; Hulstijn (2001) – độ dấn thân: <a href="https://www.cambridge.org/core/product/5C5984B326F37FBF3A3DDA3C0EB2996C" target="_blank" rel="noopener">https://www.cambridge.org/core/product/5C5984B326F37FBF3A3DDA3C0EB2996C</a></li>
+  <li>Swain – giả thuyết đầu ra: <a href="https://en.wikipedia.org/wiki/Merrill_Swain" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Merrill_Swain</a></li>
+  <li>Gruber và cộng sự (2014) – tò mò: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4252494/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC4252494/</a></li>
+  <li>Hài hước &amp; học từ: <a href="https://cls.uok.ac.ir/article_61569.html" target="_blank" rel="noopener">https://cls.uok.ac.ir/article_61569.html</a></li>
+</ul>
+
+<h3>Thời gian, giấc ngủ, môi trường</h3>
+<ul class="src">
+  <li>Mazza và cộng sự (2016) – ngủ: <a href="https://www.psychologicalscience.org/journals/psychological-science/0956797616659930/" target="_blank" rel="noopener">https://www.psychologicalscience.org/journals/psychological-science/0956797616659930/</a></li>
+  <li>Cepeda và cộng sự (2008) – giãn cách: <a href="https://digitalcommons.usf.edu/psy_facpub/1766/" target="_blank" rel="noopener">https://digitalcommons.usf.edu/psy_facpub/1766/</a></li>
+  <li>Brunmair &amp; Richter (2019) – xen kẽ: <a href="https://www.x-mol.com/paper/1213055298318831616" target="_blank" rel="noopener">https://www.x-mol.com/paper/1213055298318831616</a></li>
+  <li>Waring &amp; Takaki (2003): <a href="https://www.wgtn.ac.nz/__data/assets/pdf_file/0008/1626146/Waring-Takaki-2003.pdf" target="_blank" rel="noopener">https://www.wgtn.ac.nz/__data/assets/pdf_file/0008/1626146/Waring-Takaki-2003.pdf</a></li>
+  <li>Webb (2008) – ngữ cảnh: <a href="https://nflrc.hawaii.edu/rfl/item-detail/178" target="_blank" rel="noopener">https://nflrc.hawaii.edu/rfl/item-detail/178</a></li>
+  <li>Dewey (2006, 2008) – du học Nhật: <a href="https://scholarspace.manoa.hawaii.edu/items/bb966ae1-16c1-4dbf-a56b-512e452f5456" target="_blank" rel="noopener">https://scholarspace.manoa.hawaii.edu/items/bb966ae1-16c1-4dbf-a56b-512e452f5456</a> · <a href="https://scholarsarchive.byu.edu/facpub/7890" target="_blank" rel="noopener">https://scholarsarchive.byu.edu/facpub/7890</a></li>
+</ul>
+
+<h3>Tổng quan phương pháp học</h3>
+<ul class="src">
+  <li>Dunlosky và cộng sự (2013): <a href="https://www.psychologicalscience.org/news/releases/which-study-strategies-make-the-grade.html" target="_blank" rel="noopener">https://www.psychologicalscience.org/news/releases/which-study-strategies-make-the-grade.html</a></li>
+  <li>Roediger &amp; Karpicke (2006): <a href="https://psychology.ecu.edu/wp-content/pv-uploads/sites/216/2019/03/Roediger-Karpicke-2006.pdf" target="_blank" rel="noopener">https://psychology.ecu.edu/wp-content/pv-uploads/sites/216/2019/03/Roediger-Karpicke-2006.pdf</a></li>
+</ul>
+</section>
+
+<p class="footer-note">Tạo ngày 26/10/2026.</p>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var links = document.querySelectorAll('.toc a');
+  var mobile = document.querySelector('.mobile-toc');
+  document.querySelectorAll('.mobile-toc nav a').forEach(function (a) {
+    a.addEventListener('click', function () { if (mobile) mobile.removeAttribute('open'); });
+  });
+  if (!('IntersectionObserver' in window)) return;
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && map[e.target.id]) {
+        links.forEach(function (l) { l.classList.remove('active'); });
+        map[e.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  Object.keys(map).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

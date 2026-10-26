@@ -1,0 +1,33 @@
+# Dependencies
+**/node_modules/
+**/.pnpm-store/
+
+# Next.js build
+**/.next/
+**/out/
+**/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment
+.env*.local
+
+# Vercel
+.vercel/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Large raw dataset files (>10MB)
+**/data/raw/*.csv
+**/data/raw/*.zip
+
+# OS files
+.DS_Store
+Thumbs.db

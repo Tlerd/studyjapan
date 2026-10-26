@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Tần suất từ – minh họa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f5f4ef;
+  --card:#ffffff;
+  --text:#1f2328;
+  --muted:#5b6170;
+  --line:#e2e0d8;
+  --accent:#2f5fd0;
+  --accent-ink:#ffffff;
+  --accent-soft:rgba(47,95,208,.18);
+  --green:#1f9d68;
+  --yellow:#f0b429;
+  --gray:#9aa0a6;
+  --bar-track:#e9e7e0;
+  --bar-fill:#2f5fd0;
+  --bar-log:#7a5be0;
+  --ok-bg:#e2f5ea;
+  --ok-ink:#16714a;
+  --no-bg:#fde9e7;
+  --no-ink:#b3261e;
+  --unk-bg:#ececea;
+  --unk-ink:#4a4f58;
+  --note-bg:#fff1c2;
+  --note-ink:#7a5300;
+  --chip-bg:#ffffff;
+  --chip-line:#d6d3c9;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417;
+    --card:#1b1e23;
+    --text:#e8eaed;
+    --muted:#9ca3af;
+    --line:#2c3038;
+    --accent:#7fa6ff;
+    --accent-ink:#0b1220;
+    --accent-soft:rgba(127,166,255,.25);
+    --green:#3ccf8e;
+    --yellow:#f5c451;
+    --gray:#6b717c;
+    --bar-track:#2a2e36;
+    --bar-fill:#7fa6ff;
+    --bar-log:#b59dff;
+    --ok-bg:#15301f;
+    --ok-ink:#7be0a8;
+    --no-bg:#3a1c1b;
+    --no-ink:#ff9b93;
+    --unk-bg:#2a2d33;
+    --unk-ink:#c9cdd4;
+    --note-bg:#3b2f0f;
+    --note-ink:#f7d77a;
+    --chip-bg:#22262d;
+    --chip-line:#3a3f48;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#121417;
+  --card:#1b1e23;
+  --text:#e8eaed;
+  --muted:#9ca3af;
+  --line:#2c3038;
+  --accent:#7fa6ff;
+  --accent-ink:#0b1220;
+  --accent-soft:rgba(127,166,255,.25);
+  --green:#3ccf8e;
+  --yellow:#f5c451;
+  --gray:#6b717c;
+  --bar-track:#2a2e36;
+  --bar-fill:#7fa6ff;
+  --bar-log:#b59dff;
+  --ok-bg:#15301f;
+  --ok-ink:#7be0a8;
+  --no-bg:#3a1c1b;
+  --no-ink:#ff9b93;
+  --unk-bg:#2a2d33;
+  --unk-ink:#c9cdd4;
+  --note-bg:#3b2f0f;
+  --note-ink:#f7d77a;
+  --chip-bg:#22262d;
+  --chip-line:#3a3f48;
+  --shadow:none;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Be Vietnam Pro","Noto Sans JP",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+b{font-weight:700}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
+.hero{padding:6px 0 18px}
+.badge{display:inline-block;max-width:100%;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--note-bg);color:var(--note-ink)}
+h1{font-size:clamp(26px,7vw,36px);line-height:1.2;font-weight:800;margin:12px 0 8px}
+.lead{margin:0;color:var(--muted);max-width:62ch}
+
+.grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);min-width:0}
+.card h2{font-size:19px;font-weight:700;margin:0 0 6px;line-height:1.3}
+.sub{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+.sub.small{font-size:13px;margin:6px 0 0}
+
+@media (min-width:900px){
+  .grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+  .card.hd{grid-column:1;grid-row:1}
+  .card.search{grid-column:1;grid-row:2}
+  .card.ladder{grid-column:2;grid-row:1 / span 2}
+  .track{height:640px}
+  .mk .lbl{font-size:13px}
+}
+
+/* Hinh dung */
+.big-bar{height:64px;border-radius:16px;background:var(--bar-fill);display:flex;align-items:center;justify-content:center;text-align:center;padding:0 12px;color:var(--accent-ink);font-weight:800;font-size:17px}
+.map{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:14px}
+.map li{background:var(--bg);border-radius:12px;padding:9px 12px}
+
+/* Tra cuu */
+.search-row{display:flex;gap:8px}
+.search-row input{flex:1;min-width:0;font:inherit;font-size:16px;padding:0 14px;min-height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--text)}
+.search-row input:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.search-row button{font:inherit;font-weight:700;font-size:15px;min-height:48px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);cursor:pointer;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.chips-lbl{font-size:13px;color:var(--muted);margin-right:2px}
+.chip{font:inherit;font-size:15px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--chip-line);background:var(--chip-bg);color:var(--text);cursor:pointer}
+.chip:hover,.chip:focus-visible{border-color:var(--accent)}
+
+.result{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+.word{font-size:28px;font-weight:800;line-height:1.25;margin:0 0 12px;overflow-wrap:anywhere}
+.word .rd{font-size:16px;font-weight:600;color:var(--muted)}
+.stats{display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:480px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tile{background:var(--bg);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{display:block;font-size:12px;color:var(--muted)}
+.tile .v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+
+.zoom{margin-top:6px}
+.zoom h3{font-size:14px;font-weight:700;margin:14px 0 6px}
+.bar{position:relative;height:20px;border-radius:10px;background:var(--bar-track);overflow:hidden}
+.fill{height:100%;min-width:3px;border-radius:10px;background:var(--bar-fill)}
+.bar.log .fill{background:var(--bar-log)}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px}
+.zoom .sub{margin:6px 0 0;font-size:13px}
+
+.check{margin:14px 0 0;padding:12px 14px;border-radius:12px;font-weight:700;font-size:16px}
+.check small{display:block;font-weight:500;font-size:13px;margin-top:2px;opacity:.9}
+.check.yes{background:var(--ok-bg);color:var(--ok-ink)}
+.check.no{background:var(--no-bg);color:var(--no-ink)}
+.check.unk{background:var(--unk-bg);color:var(--unk-ink)}
+
+/* Bang hang */
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);margin:0 0 12px}
+.slider label{display:block;font-weight:700;font-size:15px}
+#nS{width:100%;margin:8px 0 0;accent-color:var(--accent);height:28px}
+.track{position:relative;height:560px;margin-top:10px}
+.axis{position:absolute;top:0;bottom:0;left:50%;width:14px;transform:translateX(-50%);border-radius:7px 7px 0 0;overflow:hidden;background:var(--yellow)}
+.axis .z-top{position:absolute;left:0;right:0;top:0;height:calc(var(--pN,1) * 100%);background:var(--green)}
+.tick{position:absolute;left:0;top:calc(var(--p) * 100%);transform:translateY(-50%);font-size:11px;line-height:1;color:var(--muted);font-variant-numeric:tabular-nums}
+.mk{position:absolute;left:50%;top:calc(var(--p) * 100%);width:0;height:0;z-index:1}
+.mk .dot{position:absolute;left:0;top:0;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);background:var(--yellow);box-shadow:0 0 0 2px var(--card)}
+.mk.in .dot{background:var(--green)}
+.mk .lbl{position:absolute;top:0;transform:translateY(-50%);font-size:12.5px;line-height:16px;white-space:nowrap;padding:0 3px;border-radius:5px;color:var(--text)}
+.mk.a .lbl{right:12px;text-align:right}
+.mk.b .lbl{left:12px}
+.mk.hit{z-index:3}
+.mk.hit .dot{width:18px;height:18px;background:var(--accent);box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--accent)}
+.mk.hit .lbl{font-weight:800;color:var(--accent);background:var(--card);box-shadow:0 0 0 1px var(--accent)}
+.tail{display:flex;flex-direction:column;align-items:center}
+.tail-bar{display:block;width:14px;height:22px;background:var(--gray);border-radius:0 0 7px 7px}
+.tail.hit .tail-bar{background:var(--accent)}
+.tail-lbl{margin-top:6px;font-size:12.5px;color:var(--muted);text-align:center;max-width:100%}
+.tail.hit .tail-lbl{color:var(--text);font-weight:700}
+
+/* Cong thuc */
+.fx{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.fx li{background:var(--bg);border-radius:14px;padding:12px 14px;font-size:15px}
+.fx .ex{margin-top:4px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.foot{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="badge">Số liệu minh họa – chưa phải dữ liệu thật</span>
+    <h1>Từ này lặp lại bao nhiêu?</h1>
+    <p class="lead">Ta đếm xem một từ xuất hiện bao nhiêu lần trong một kho chữ thật lớn, rồi xem nó chiếm bao nhiêu phần trăm.</p>
+  </header>
+
+  <main class="grid">
+
+    <section class="card hd" aria-labelledby="t-hd">
+      <h2 id="t-hd">Hình dung</h2>
+      <p class="sub">Kho dữ liệu giống như một cái túi chứa <b>100 triệu viên bi chữ</b>. Mỗi lần gặp một chữ, ta bỏ thêm một viên bi vào túi.</p>
+      <div class="big-bar" role="img" aria-label="Thanh 100 phần trăm, tương ứng 100.000.000 viên bi">100% = 100.000.000 viên bi</div>
+      <ul class="map">
+        <li>👜 Cái túi = cả kho chữ</li>
+        <li>⚫ Mỗi viên bi = một chữ</li>
+        <li>🧮 % của một từ = số bi của từ đó ÷ tổng số bi × 100</li>
+      </ul>
+    </section>
+
+    <section class="card search" aria-labelledby="t-s">
+      <h2 id="t-s">Tra một từ</h2>
+      <p class="sub">Gõ chữ Nhật (<span lang="ja">温泉</span>) hoặc cách đọc (<span lang="ja">おんせん</span>) rồi bấm Tra cứu.</p>
+      <form id="form" class="search-row" autocomplete="off">
+        <label class="sr" for="q">Từ cần tra</label>
+        <input id="q" name="q" lang="ja" type="text" value="温泉" placeholder="Ví dụ: 温泉 hoặc おんせん">
+        <button type="submit">Tra cứu</button>
+      </form>
+      <div class="chips" id="chips">
+        <span class="chips-lbl">Thử nhanh:</span>
+        <button type="button" class="chip" lang="ja" data-q="の">の</button>
+        <button type="button" class="chip" lang="ja" data-q="食べる">食べる</button>
+        <button type="button" class="chip" lang="ja" data-q="温泉">温泉</button>
+        <button type="button" class="chip" lang="ja" data-q="おくじょう">おくじょう</button>
+        <button type="button" class="chip" lang="ja" data-q="上着">上着</button>
+        <button type="button" class="chip" lang="ja" data-q="猫">猫</button>
+      </div>
+      <div id="result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section class="card ladder" aria-labelledby="t-l">
+      <h2 id="t-l">Bảng hạng</h2>
+      <p class="sub">Từ gặp càng nhiều thì càng nằm trên cùng: hạng 1 ở đầu, hạng 10.000 ở cuối. Các vạch chia theo kiểu <b>gấp 10 lần</b>.</p>
+      <div class="legend">
+        <span>🟢 Top N (hạng 1 → <span id="legN">2.000</span>)</span>
+        <span>🟡 N → 10.000</span>
+        <span>⚪ Ngoài danh sách</span>
+      </div>
+      <div class="slider">
+        <label for="nS">Top N = <span id="nOut">2.000</span></label>
+        <input id="nS" type="range" min="500" max="10000" step="500" value="2000">
+        <p class="sub small">Kéo để đổi N. Từ nằm trong N hạng đầu thì được ✅.</p>
+      </div>
+      <div class="track" id="track">
+        <div class="axis"><div class="z-top"></div></div>
+      </div>
+      <div class="tail" id="tail">
+        <i class="tail-bar"></i>
+        <span class="tail-lbl" id="tailLbl">⚪ Ngoài danh sách: hạng trên 10.000 hoặc không có</span>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="card formula" aria-labelledby="t-f" style="margin-top:16px">
+    <h2 id="t-f">Công thức</h2>
+    <ol class="fx">
+      <li>
+        <b>Lặp lại (%)</b> = số lần xuất hiện ÷ tổng số chữ × 100
+        <div class="ex" id="ex1"></div>
+      </li>
+      <li>
+        <b>≈ lần / 1 triệu chữ</b> = số lần xuất hiện × 1.000.000 ÷ tổng số chữ
+        <div class="ex" id="ex2"></div>
+      </li>
+      <li>
+        <b>Có trong top N?</b> = hạng ≤ N thì ✅, còn lại thì ❌
+        <div class="ex" id="ex3"></div>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="foot">Số liệu minh họa – chưa phải dữ liệu thật · Tổng kho giả định: 100.000.000 chữ</footer>
+</div>
+
+<script>
+(function(){
+  var TOTAL = 100000000;
+  var MAX_RANK = 10000;
+  // Du lieu minh hoa: word, reading, rank, count (sap theo hang)
+  var WORDS = [
+    {w:'の',   r:'の',       rank:1,    n:4500000},
+    {w:'は',   r:'は',       rank:3,    n:2600000},
+    {w:'する', r:'する',     rank:10,   n:1200000},
+    {w:'人',   r:'ひと',     rank:45,   n:320000},
+    {w:'食べる',r:'たべる',  rank:300,  n:60000},
+    {w:'駅',   r:'えき',     rank:900,  n:18000},
+    {w:'自転車',r:'じてんしゃ',rank:1400,n:9500},
+    {w:'温泉', r:'おんせん', rank:1850, n:7000},
+    {w:'親子', r:'おやこ',   rank:2600, n:4200},
+    {w:'泊まる',r:'とまる',   rank:3200, n:3300},
+    {w:'屋上', r:'おくじょう',rank:6500, n:1200},
+    {w:'上着', r:'うわぎ',   rank:8000, n:900}
+  ];
+
+  var state = { q: '', w: null, N: 2000 };
+  var marks = [];
+
+  function $(id){ return document.getElementById(id); }
+
+  function fmtInt(n){
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+  function fmtPct(p){
+    return p.toFixed(4).replace('.', ',');
+  }
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  // Thang log tren hang: 0 = hang 1 (tren cung), 1 = hang 10.000 (duoi cung)
+  function logPos(r){
+    return Math.log10(r) / Math.log10(MAX_RANK);
+  }
+  function findWord(q){
+    var t = q.trim();
+    if (!t) return null;
+    for (var i = 0; i < WORDS.length; i++){
+      if (WORDS[i].w === t || WORDS[i].r === t) return WORDS[i];
+    }
+    return null;
+  }
+
+  function buildLadder(){
+    var track = $('track');
+    [1, 10, 100, 1000, 10000].forEach(function(r){
+      var t = document.createElement('div');
+      t.className = 'tick';
+      t.style.setProperty('--p', logPos(r));
+      t.textContent = fmtInt(r);
+      track.appendChild(t);
+    });
+    WORDS.forEach(function(w, i){
+      var m = document.createElement('div');
+      m.className = 'mk ' + (i % 2 ? 'b' : 'a');
+      m.style.setProperty('--p', logPos(w.rank));
+      m.innerHTML = '<span class="dot"></span><span class="lbl"><span lang="ja">' +
+        esc(w.w) + '</span> · ' + fmtInt(w.rank) + '</span>';
+      track.appendChild(m);
+      marks.push({ el: m, w: w });
+    });
+  }
+
+  function updateLadder(){
+    var track = $('track');
+    track.style.setProperty('--pN', logPos(state.N));
+    $('nOut').textContent = fmtInt(state.N);
+    $('legN').textContent = fmtInt(state.N);
+    marks.forEach(function(x){
+      x.el.classList.toggle('in', x.w.rank <= state.N);
+      x.el.classList.toggle('hit', !!state.w && state.w.w === x.w.w);
+    });
+    var unknown = !!state.q && !state.w;
+    $('tail').classList.toggle('hit', unknown);
+    $('tailLbl').innerHTML = unknown
+      ? '⚪ <span lang="ja">' + esc(state.q) + '</span>: không có hạng, nằm ngoài danh sách'
+      : '⚪ Ngoài danh sách: hạng trên 10.000 hoặc không có';
+  }
+
+  function renderResult(){
+    var el = $('result');
+    var q = state.q, w = state.w, N = fmtInt(state.N);
+    if (!q){
+      el.innerHTML = '<p class="sub">Gõ một từ rồi bấm Tra cứu.</p>';
+      return;
+    }
+    if (!w){
+      el.innerHTML =
+        '<h3 class="word"><span lang="ja">' + esc(q) + '</span></h3>' +
+        '<p class="check unk">⚪ Không có trong danh sách – rất hiếm gặp</p>' +
+        '<p class="sub" style="margin:12px 0 0">Từ này không nằm trong ' + WORDS.length +
+        ' từ của bảng minh họa, nên không có hạng và không có %.</p>' +
+        '<p class="check no">❌ Không nằm trong top ' + N + '</p>';
+      return;
+    }
+    var frac = w.n / TOTAL;
+    var pct = frac * 100;
+    var perM = frac * 1000000;
+    var logFill = (Math.log10(frac) + 8) / 8 * 100;
+    var inTop = w.rank <= state.N;
+    el.innerHTML =
+      '<h3 class="word"><span lang="ja">' + w.w + '</span> <span class="rd" lang="ja">(' + w.r + ')</span></h3>' +
+      '<div class="stats">' +
+        '<div class="tile"><span class="k">Lặp lại</span><span class="v">' + fmtPct(pct) + '%</span></div>' +
+        '<div class="tile"><span class="k">Quy đổi</span><span class="v">≈ ' + fmtInt(perM) + ' lần / 1 triệu chữ</span></div>' +
+        '<div class="tile"><span class="k">Hạng</span><span class="v">' + fmtInt(w.rank) + '</span></div>' +
+      '</div>' +
+      '<div class="zoom">' +
+        '<h3>① Kích thước thật (trên thanh 100%)</h3>' +
+        '<div class="bar"><div class="fill" style="width:' + pct + '%"></div></div>' +
+        '<p class="sub">Phần tô màu nhỏ đến mức gần như không thấy. Vệt 3px này chỉ để bạn biết nó có.</p>' +
+        '<h3>② Phóng to bằng thang log</h3>' +
+        '<div class="bar log"><div class="fill" style="width:' + logFill + '%"></div></div>' +
+        '<div class="scale"><span>1 chữ</span><span>100 triệu chữ</span></div>' +
+        '<p class="sub">Mỗi vạch gấp 10 lần, nên từ nhỏ vẫn có chỗ để nhìn. <span lang="ja">' + w.w +
+        '</span> nằm khoảng ' + Math.round(logFill) + '% chiều dài thanh.</p>' +
+      '</div>' +
+      (inTop
+        ? '<p class="check yes">✅ Có nằm trong top ' + N + '<small>Hạng ' + fmtInt(w.rank) + ' ≤ ' + N + '</small></p>'
+        : '<p class="check no">❌ Không nằm trong top ' + N + '<small>Hạng ' + fmtInt(w.rank) + ' > ' + N + '</small></p>');
+  }
+
+  function renderFormula(){
+    var w = state.w;
+    if (!w){
+      $('ex1').textContent = state.q ? 'Từ này không có trong danh sách nên chưa tính được.' : 'Gõ một từ để xem ví dụ.';
+      $('ex2').textContent = '';
+      $('ex3').textContent = '';
+      return;
+    }
+    var pct = w.n / TOTAL * 100;
+    var ok = w.rank <= state.N;
+    $('ex1').innerHTML = 'Ví dụ với <span lang="ja">' + w.w + '</span>: ' + fmtInt(w.n) + ' ÷ ' +
+      fmtInt(TOTAL) + ' × 100 = ' + fmtPct(pct) + '%';
+    $('ex2').textContent = fmtInt(w.n) + ' × 1.000.000 ÷ ' + fmtInt(TOTAL) + ' = ' +
+      fmtInt(w.n * 1000000 / TOTAL);
+    $('ex3').textContent = 'Hạng ' + fmtInt(w.rank) + ' ' + (ok ? '≤' : '>') + ' ' +
+      fmtInt(state.N) + ' → ' + (ok ? '✅ có' : '❌ không');
+  }
+
+  function renderAll(){
+    renderResult();
+    updateLadder();
+    renderFormula();
+  }
+
+  function run(q){
+    state.q = q.trim();
+    state.w = findWord(state.q);
+    renderAll();
+  }
+
+  $('form').addEventListener('submit', function(e){
+    e.preventDefault();
+    run($('q').value);
+  });
+  var chips = document.querySelectorAll('.chip');
+  for (var i = 0; i < chips.length; i++){
+    chips[i].addEventListener('click', (function(btn){
+      return function(){
+        $('q').value = btn.getAttribute('data-q');
+        run(btn.getAttribute('data-q'));
+      };
+    })(chips[i]));
+  }
+  $('nS').addEventListener('input', function(e){
+    state.N = Number(e.target.value);
+    renderAll();
+  });
+
+  buildLadder();
+  run('温泉');
+})();
+</script>
+</body>
+</html>
