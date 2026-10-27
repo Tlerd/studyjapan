@@ -1,39 +1,28 @@
-# Study Japan (Học tiếng Nhật)
+# Học tiếng Nhật theo Kanji + Mạng nhện
 
-Repository tổng hợp tài liệu, phương pháp học tập và các công cụ hỗ trợ học tiếng Nhật.
+Web học tiếng Nhật lấy Kanji làm hạt nhân liên kết, dựa trên đồ thị mạng nhện ngữ cảnh, bộ thủ (mảnh LEGO), thang học 4 bậc (Nhận ra → Nhớ ra → Viết ra → Dùng trong câu) và thuật toán lặp lại ngắt quãng (FSRS).
 
----
+## Cài đặt và chạy
 
-## 📁 Cấu trúc kho lưu trữ
-
-```text
-studyjapan/
-├─ tan-suat-app/                      # Ứng dụng tra cứu tần suất từ tiếng Nhật (Next.js 15)
-│  ├─ app/                            # Next.js App Router (Giao diện chính, Layout, CSS)
-│  ├─ components/                     # Các khối UI: SearchBox, ResultCard, RankLadder
-│  ├─ lib/                            # Xử lý tra cứu (lookup), định dạng số, tải dữ liệu
-│  ├─ public/freq.json                # Dữ liệu 25.000 từ thông dụng đã xử lý (jiten.moe)
-│  ├─ scripts/build-data.ts           # Script tiền xử lý dữ liệu từ CSV
-│  ├─ tests/lookup.test.ts            # Unit tests với Vitest
-│  └─ README.md                       # Hướng dẫn chi tiết cho ứng dụng
-├─ Cach-Nao-Ghi-Nho-Hoc-Tieng-Nhat.md # Phương pháp ghi nhớ tiếng Nhật theo khoa học não bộ
-└─ Cach-Nao-Ghi-Nho-Hoc-Tieng-Nhat.html# Bản HTML đọc nhanh của cẩm nang phương pháp
-```
-
----
-
-## 🚀 Ứng dụng tra cứu tần suất (`tan-suat-app`)
-
-App giúp tra cứu 1 từ tiếng Nhật xem có nằm trong **25.000 từ thông dụng nhất** hay không (đủ học từ N5 lên N1+), xem hạng thông dụng trên **thang logarit**, và kiểm tra từ có nằm trong **ngưỡng Top N** tùy chọn hay không.
-
-### Chạy nhanh ứng dụng trên máy:
 ```bash
-cd tan-suat-app
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
-### Triển khai lên Vercel:
-1. Import repository `Tlerd/studyjapan` trên Vercel.
-2. Tại mục **Root Directory**, bấm **Edit** và chọn thư mục `tan-suat-app`.
-3. Bấm **Deploy**.
+Mở trình duyệt tại [http://localhost:3000](http://localhost:3000).
+
+## Kiểm thử và build
+
+```bash
+pnpm test
+pnpm build
+```
+
+## Dữ liệu và Giấy phép
+
+- **Tần suất từ**: 25.000 từ phổ biến trích xuất từ [jiten.moe](https://jiten.moe) (CC BY-SA 4.0).
+- **Kanji**: Thông tin âm On/Kun, Hán Việt và nghĩa tiếng Anh từ KANJIDIC2 (EDRDG, CC BY-SA 4.0).
+- **Từ vựng**: JMdict (EDRDG, CC BY-SA 4.0).
+- **Nét viết chữ Hán**: Dự án [KanjiVG](https://kanjivg.tagaini.net) (CC BY-SA 3.0).
+- **Bộ thủ & Cấu thành**: KRADFILE / kradfile-u (EDRDG, CC BY-SA 4.0) & KanjiVG elements.
+- **Phân cấp JLPT ước tính**: Jonathan Waller ([tanos.co.uk](https://www.tanos.co.uk/jlpt/), CC BY).

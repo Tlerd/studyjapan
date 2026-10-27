@@ -1,0 +1,17 @@
+{
+  "name": "Học tiếng Nhật Kanji Mạng Nhện",
+  "short_name": "Kanji Mạng Nhện",
+  "description": "Web học tiếng Nhật theo Kanji, mảnh LEGO và mạng nhện ngữ cảnh",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

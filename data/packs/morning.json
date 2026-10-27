@@ -1,0 +1,23 @@
+{
+  "id": "morning",
+  "title": "🌅 Buổi sáng thức dậy",
+  "kind": "story",
+  "items": [
+    {
+      "text": "朝起きる",
+      "vi": "buổi sáng thức dậy"
+    },
+    {
+      "text": "顔を洗う",
+      "vi": "rửa mặt"
+    },
+    {
+      "text": "朝ご飯を食べる",
+      "vi": "ăn bữa sáng"
+    },
+    {
+      "text": "学校へ行く",
+      "vi": "đi đến trường"
+    }
+  ]
+}

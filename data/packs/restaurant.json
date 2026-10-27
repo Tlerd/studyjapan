@@ -1,0 +1,23 @@
+{
+  "id": "restaurant",
+  "title": "🍜 Trong quán ăn",
+  "kind": "situation",
+  "items": [
+    {
+      "text": "注文する",
+      "vi": "gọi món"
+    },
+    {
+      "text": "水を飲む",
+      "vi": "uống nước"
+    },
+    {
+      "text": "美味しく食べる",
+      "vi": "ăn ngon miệng"
+    },
+    {
+      "text": "お金を払う",
+      "vi": "thanh toán tiền"
+    }
+  ]
+}

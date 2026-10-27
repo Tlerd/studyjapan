@@ -1,0 +1,23 @@
+{
+  "id": "eki",
+  "title": "🚉 Ở nhà ga",
+  "kind": "situation",
+  "items": [
+    {
+      "text": "駅",
+      "vi": "nhà ga"
+    },
+    {
+      "text": "切符を買う",
+      "vi": "mua vé"
+    },
+    {
+      "text": "電車に乗る",
+      "vi": "lên tàu"
+    },
+    {
+      "text": "電車が遅れる",
+      "vi": "tàu bị trễ"
+    }
+  ]
+}

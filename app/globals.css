@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --gray: #94a3b8;
+  --bar-track: #e2e8f0;
+  --bar-fill: #2563eb;
+  --bar-log: #8b5cf6;
+  --ok-bg: #ecfdf5;
+  --ok-ink: #065f46;
+  --no-bg: #fef2f2;
+  --no-ink: #991b1b;
+  --unk-bg: #f1f5f9;
+  --unk-ink: #334155;
+  --note-bg: #fef3c7;
+  --note-ink: #92400e;
+  --chip-bg: #ffffff;
+  --chip-line: #cbd5e1;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0f17;
+    --card: #151b26;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --line: #242f42;
+    --accent: #3b82f6;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(59, 130, 246, 0.2);
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --gray: #64748b;
+    --bar-track: #1e293b;
+    --bar-fill: #3b82f6;
+    --bar-log: #a855f7;
+    --ok-bg: #064e3b;
+    --ok-ink: #a7f3d0;
+    --no-bg: #450a0a;
+    --no-ink: #fecaca;
+    --unk-bg: #1e293b;
+    --unk-ink: #cbd5e1;
+    --note-bg: #451a03;
+    --note-ink: #fde68a;
+    --chip-bg: #1e293b;
+    --chip-line: #334155;
+    --shadow: none;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0f17;
+  --card: #151b26;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --line: #242f42;
+  --accent: #3b82f6;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(59, 130, 246, 0.2);
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --gray: #64748b;
+  --bar-track: #1e293b;
+  --bar-fill: #3b82f6;
+  --bar-log: #a855f7;
+  --ok-bg: #064e3b;
+  --ok-ink: #a7f3d0;
+  --no-bg: #450a0a;
+  --no-ink: #fecaca;
+  --unk-bg: #1e293b;
+  --unk-ink: #cbd5e1;
+  --note-bg: #451a03;
+  --note-ink: #fde68a;
+  --chip-bg: #1e293b;
+  --chip-line: #334155;
+  --shadow: none;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+ruby {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  vertical-align: bottom;
+  text-align: center;
+  line-height: 1.1;
+}
+
+ruby rt {
+  font-size: 0.55em;
+  line-height: 1.1;
+  text-align: center;
+  user-select: none;
+}
