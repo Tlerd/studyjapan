@@ -1,0 +1,7787 @@
+[
+  {
+    "part": "口",
+    "vi": "Miệng",
+    "hanViet": "bộ Khẩu",
+    "variantOf": null,
+    "hint": "Cái miệng vuông vắn",
+    "kanjiCount": 319,
+    "reviewed": true
+  },
+  {
+    "part": "丿",
+    "vi": "Phẩy",
+    "hanViet": "bộ Phiệt",
+    "variantOf": null,
+    "hint": "Nét phẩy xiên trái",
+    "kanjiCount": 278,
+    "reviewed": true
+  },
+  {
+    "part": "日",
+    "vi": "Mặt trời",
+    "hanViet": "bộ Nhật",
+    "variantOf": null,
+    "hint": "Mặt trời tròn có đốm giữa",
+    "kanjiCount": 205,
+    "reviewed": true
+  },
+  {
+    "part": "一",
+    "vi": "Một",
+    "hanViet": "bộ Nhất",
+    "variantOf": null,
+    "hint": "Nét ngang số 1",
+    "kanjiCount": 184,
+    "reviewed": true
+  },
+  {
+    "part": "木",
+    "vi": "Cây gỗ",
+    "hanViet": "bộ Mộc",
+    "variantOf": null,
+    "hint": "Cây có thân cành và rễ",
+    "kanjiCount": 180,
+    "reviewed": true
+  },
+  {
+    "part": "亻",
+    "vi": "Người đứng",
+    "hanViet": "bộ Nhân đứng",
+    "variantOf": "人",
+    "hint": "Hình người đứng bên trái",
+    "kanjiCount": 172,
+    "reviewed": true
+  },
+  {
+    "part": "亠",
+    "vi": "Đầu",
+    "hanViet": "bộ Đầu",
+    "variantOf": null,
+    "hint": "Chóp nhọn trên đầu",
+    "kanjiCount": 165,
+    "reviewed": true
+  },
+  {
+    "part": "氵",
+    "vi": "Nước",
+    "hanViet": "bộ Thủy",
+    "variantOf": "水",
+    "hint": "Ba giọt nước bên trái",
+    "kanjiCount": 128,
+    "reviewed": true
+  },
+  {
+    "part": "十",
+    "vi": "Mười",
+    "hanViet": "bộ Thập",
+    "variantOf": null,
+    "hint": "Dấu chữ thập số 10",
+    "kanjiCount": 127,
+    "reviewed": true
+  },
+  {
+    "part": "冖",
+    "vi": "Khăn trùm",
+    "hanViet": "bộ Mịch",
+    "variantOf": null,
+    "hint": "Vải trùm che trên đỉnh",
+    "kanjiCount": 114,
+    "reviewed": true
+  },
+  {
+    "part": "土",
+    "vi": "Đất",
+    "hanViet": "bộ Thổ",
+    "variantOf": null,
+    "hint": "Ụ đất trên mặt phẳng",
+    "kanjiCount": 110,
+    "reviewed": true
+  },
+  {
+    "part": "八",
+    "vi": "Tám",
+    "hanViet": "bộ Bát",
+    "variantOf": null,
+    "hint": "Hai nét tách số 8",
+    "kanjiCount": 99,
+    "reviewed": true
+  },
+  {
+    "part": "艹",
+    "vi": "Cỏ cây",
+    "hanViet": "bộ Thảo",
+    "variantOf": null,
+    "hint": "Hai chồi cỏ xanh tươi",
+    "kanjiCount": 95,
+    "reviewed": true
+  },
+  {
+    "part": "大",
+    "vi": "To lớn",
+    "hanViet": "bộ Đại",
+    "variantOf": null,
+    "hint": "Người dang rộng tay chân",
+    "kanjiCount": 91,
+    "reviewed": true
+  },
+  {
+    "part": "月",
+    "vi": "Mặt trăng",
+    "hanViet": "bộ Nguyệt",
+    "variantOf": null,
+    "hint": "Mảnh trăng khuyết treo cao",
+    "kanjiCount": 91,
+    "reviewed": true
+  },
+  {
+    "part": "扌",
+    "vi": "Tay gảy",
+    "hanViet": "bộ Thủ",
+    "variantOf": "手",
+    "hint": "Cánh tay gảy bên trái",
+    "kanjiCount": 86,
+    "reviewed": true
+  },
+  {
+    "part": "厂",
+    "vi": "Sườn núi",
+    "hanViet": "bộ Hán",
+    "variantOf": null,
+    "hint": "Vách đá sườn núi cheo leo",
+    "kanjiCount": 84,
+    "reviewed": true
+  },
+  {
+    "part": "丨",
+    "vi": "Sổ",
+    "hanViet": "bộ Cổn",
+    "variantOf": null,
+    "hint": "Nét sổ dọc đứng",
+    "kanjiCount": 82,
+    "reviewed": true
+  },
+  {
+    "part": "目",
+    "vi": "Con mắt",
+    "hanViet": "bộ Mục",
+    "variantOf": null,
+    "hint": "Tròng mắt có con ngươi",
+    "kanjiCount": 78,
+    "reviewed": true
+  },
+  {
+    "part": "宀",
+    "vi": "Mái nhà",
+    "hanViet": "bộ Miên",
+    "variantOf": null,
+    "hint": "Nóc nhà có ống khói",
+    "kanjiCount": 76,
+    "reviewed": true
+  },
+  {
+    "part": "人",
+    "vi": "Người",
+    "hanViet": "bộ Nhân",
+    "variantOf": null,
+    "hint": "Người đang đi",
+    "kanjiCount": 74,
+    "reviewed": true
+  },
+  {
+    "part": "糸",
+    "vi": "Sợi tơ",
+    "hanViet": "bộ Mịch",
+    "variantOf": null,
+    "hint": "Bó sợi chỉ tơ cuộn tròn",
+    "kanjiCount": 73,
+    "reviewed": true
+  },
+  {
+    "part": "言",
+    "vi": "Lời nói",
+    "hanViet": "bộ Ngôn",
+    "variantOf": null,
+    "hint": "Lời nói thốt ra từ miệng",
+    "kanjiCount": 65,
+    "reviewed": true
+  },
+  {
+    "part": "丶",
+    "vi": "Chấm",
+    "hanViet": "bộ Chủ",
+    "variantOf": null,
+    "hint": "Dấu chấm",
+    "kanjiCount": 60,
+    "reviewed": true
+  },
+  {
+    "part": "冂",
+    "vi": "Cửa mở",
+    "hanViet": "bộ Quynh",
+    "variantOf": null,
+    "hint": "Khung cửa bao ba cạnh",
+    "kanjiCount": 57,
+    "reviewed": true
+  },
+  {
+    "part": "厶",
+    "vi": "Riêng tư",
+    "hanViet": "bộ Khứ",
+    "variantOf": null,
+    "hint": "Góc kín riêng tư",
+    "kanjiCount": 57,
+    "reviewed": true
+  },
+  {
+    "part": "二",
+    "vi": "Hai",
+    "hanViet": "bộ Nhị",
+    "variantOf": null,
+    "hint": "Hai nét ngang số 2",
+    "kanjiCount": 54,
+    "reviewed": true
+  },
+  {
+    "part": "田",
+    "vi": "Ruộng đồng",
+    "hanViet": "bộ Điền",
+    "variantOf": null,
+    "hint": "Bờ ruộng chia bốn ô vuông",
+    "kanjiCount": 51,
+    "reviewed": true
+  },
+  {
+    "part": "立",
+    "vi": "Đứng thẳng",
+    "hanViet": "bộ Lập",
+    "variantOf": null,
+    "hint": "Người đứng hiên ngang trên đất",
+    "kanjiCount": 47,
+    "reviewed": true
+  },
+  {
+    "part": "又",
+    "vi": "Lại nữa",
+    "hanViet": "bộ Hựu",
+    "variantOf": null,
+    "hint": "Bàn tay nắm lại",
+    "kanjiCount": 46,
+    "reviewed": true
+  },
+  {
+    "part": "貝",
+    "vi": "Vỏ sò",
+    "hanViet": "bộ Bối",
+    "variantOf": null,
+    "hint": "Vỏ sò cổ dùng làm tiền",
+    "kanjiCount": 45,
+    "reviewed": true
+  },
+  {
+    "part": "女",
+    "vi": "Phụ nữ",
+    "hanViet": "bộ Nữ",
+    "variantOf": null,
+    "hint": "Dáng người phụ nữ đoan trang",
+    "kanjiCount": 44,
+    "reviewed": true
+  },
+  {
+    "part": "儿",
+    "vi": "Đôi chân",
+    "hanViet": "bộ Nhi",
+    "variantOf": null,
+    "hint": "Đôi chân người bước đi",
+    "kanjiCount": 43,
+    "reviewed": true
+  },
+  {
+    "part": "卜",
+    "vi": "Bói toán",
+    "hanViet": "bộ Bặc",
+    "variantOf": null,
+    "hint": "Gậy bói toán nứt gãy",
+    "kanjiCount": 41,
+    "reviewed": true
+  },
+  {
+    "part": "禾",
+    "vi": "Cây lúa",
+    "hanViet": "bộ Hòa",
+    "variantOf": null,
+    "hint": "Cây lúa uốn cong bông chín",
+    "kanjiCount": 41,
+    "reviewed": true
+  },
+  {
+    "part": "尸",
+    "vi": "Thân người",
+    "hanViet": "bộ Thi",
+    "variantOf": null,
+    "hint": "Dáng người nằm nghiêng",
+    "kanjiCount": 40,
+    "reviewed": true
+  },
+  {
+    "part": "王",
+    "vi": "Vua",
+    "hanViet": "bộ Vương",
+    "variantOf": "玉",
+    "hint": "Bậc vương đế ba cõi",
+    "kanjiCount": 39,
+    "reviewed": true
+  },
+  {
+    "part": "⺕",
+    "vi": "mảnh ⺕",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⺕",
+    "kanjiCount": 38,
+    "reviewed": false
+  },
+  {
+    "part": "山",
+    "vi": "Ngọn núi",
+    "hanViet": "bộ Sơn",
+    "variantOf": null,
+    "hint": "Ba đỉnh núi nhấp nhô",
+    "kanjiCount": 37,
+    "reviewed": true
+  },
+  {
+    "part": "广",
+    "vi": "Mái hiên",
+    "hanViet": "bộ Nghiễm",
+    "variantOf": null,
+    "hint": "Mái nhà dựng dựa vách đá",
+    "kanjiCount": 37,
+    "reviewed": true
+  },
+  {
+    "part": "𠂉",
+    "vi": "mảnh 𠂉",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠂉",
+    "kanjiCount": 37,
+    "reviewed": false
+  },
+  {
+    "part": "⻌",
+    "vi": "mảnh ⻌",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⻌",
+    "kanjiCount": 35,
+    "reviewed": false
+  },
+  {
+    "part": "𠂊",
+    "vi": "mảnh 𠂊",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠂊",
+    "kanjiCount": 34,
+    "reviewed": false
+  },
+  {
+    "part": "乂",
+    "vi": "nghệ",
+    "hanViet": "chữ NGHỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乂",
+    "kanjiCount": 33,
+    "reviewed": false
+  },
+  {
+    "part": "士",
+    "vi": "Kẻ sĩ",
+    "hanViet": "bộ Sĩ",
+    "variantOf": null,
+    "hint": "Kẻ có học thức",
+    "kanjiCount": 33,
+    "reviewed": true
+  },
+  {
+    "part": "隹",
+    "vi": "Chim đuôi ngắn",
+    "hanViet": "bộ Chuy",
+    "variantOf": null,
+    "hint": "Chú chim sẻ đuôi cụt ngủn",
+    "kanjiCount": 33,
+    "reviewed": true
+  },
+  {
+    "part": "金",
+    "vi": "Kim loại",
+    "hanViet": "bộ Kim",
+    "variantOf": null,
+    "hint": "Quặng vàng chôn sâu trong đất",
+    "kanjiCount": 32,
+    "reviewed": true
+  },
+  {
+    "part": "勹",
+    "vi": "Bao bọc",
+    "hanViet": "bộ Bao",
+    "variantOf": null,
+    "hint": "Bao bọc xung quanh",
+    "kanjiCount": 32,
+    "reviewed": true
+  },
+  {
+    "part": "⻖",
+    "vi": "mảnh ⻖",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⻖",
+    "kanjiCount": 31,
+    "reviewed": false
+  },
+  {
+    "part": "忄",
+    "vi": "Tim đứng",
+    "hanViet": "bộ Tâm đứng",
+    "variantOf": "心",
+    "hint": "Trái tim ép dọc bên trái",
+    "kanjiCount": 31,
+    "reviewed": true
+  },
+  {
+    "part": "三",
+    "vi": "tam",
+    "hanViet": "chữ TAM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 三",
+    "kanjiCount": 30,
+    "reviewed": false
+  },
+  {
+    "part": "心",
+    "vi": "Trái tim",
+    "hanViet": "bộ Tâm",
+    "variantOf": null,
+    "hint": "Quả tim có ba mạch máu",
+    "kanjiCount": 29,
+    "reviewed": true
+  },
+  {
+    "part": "彳",
+    "vi": "Bước ngắn",
+    "hanViet": "bộ Xích",
+    "variantOf": null,
+    "hint": "Bước chân trái tiến lên",
+    "kanjiCount": 29,
+    "reviewed": true
+  },
+  {
+    "part": "灬",
+    "vi": "Bốn chấm lửa",
+    "hanViet": "bộ Hỏa",
+    "variantOf": "火",
+    "hint": "Bốn giọt than hồng dưới đáy",
+    "kanjiCount": 29,
+    "reviewed": true
+  },
+  {
+    "part": "几",
+    "vi": "Bàn trà",
+    "hanViet": "bộ Kỷ",
+    "variantOf": null,
+    "hint": "Cái bàn thấp",
+    "kanjiCount": 29,
+    "reviewed": true
+  },
+  {
+    "part": "冫",
+    "vi": "Băng tuyết",
+    "hanViet": "bộ Băng",
+    "variantOf": null,
+    "hint": "Hai giọt nước đóng băng",
+    "kanjiCount": 28,
+    "reviewed": true
+  },
+  {
+    "part": "⺤",
+    "vi": "mảnh ⺤",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⺤",
+    "kanjiCount": 28,
+    "reviewed": false
+  },
+  {
+    "part": "亅",
+    "vi": "Móc",
+    "hanViet": "bộ Quyết",
+    "variantOf": null,
+    "hint": "Nét móc đứng ngược lên",
+    "kanjiCount": 27,
+    "reviewed": true
+  },
+  {
+    "part": "匕",
+    "vi": "Thìa muỗng",
+    "hanViet": "bộ Chủy",
+    "variantOf": null,
+    "hint": "Cái thìa múc cơm",
+    "kanjiCount": 27,
+    "reviewed": true
+  },
+  {
+    "part": "寸",
+    "vi": "Tấc gang",
+    "hanViet": "bộ Thốn",
+    "variantOf": null,
+    "hint": "Một gang tấc đo đạc",
+    "kanjiCount": 27,
+    "reviewed": true
+  },
+  {
+    "part": "刀",
+    "vi": "Dao",
+    "hanViet": "bộ Đao",
+    "variantOf": null,
+    "hint": "Lưỡi đao sắc bén",
+    "kanjiCount": 25,
+    "reviewed": true
+  },
+  {
+    "part": "小",
+    "vi": "Nhỏ bé",
+    "hanViet": "bộ Tiểu",
+    "variantOf": null,
+    "hint": "Hạt cát nhỏ chia hai",
+    "kanjiCount": 25,
+    "reviewed": true
+  },
+  {
+    "part": "車",
+    "vi": "Cỗ xe",
+    "hanViet": "bộ Xa",
+    "variantOf": null,
+    "hint": "Xe ngựa nhìn từ trên xuống",
+    "kanjiCount": 25,
+    "reviewed": true
+  },
+  {
+    "part": "米",
+    "vi": "Hạt gạo",
+    "hanViet": "bộ Mễ",
+    "variantOf": null,
+    "hint": "Bốn hạt gạo bung nở hoa",
+    "kanjiCount": 25,
+    "reviewed": true
+  },
+  {
+    "part": "廾",
+    "vi": "Chắp tay",
+    "hanViet": "bộ Củng",
+    "variantOf": null,
+    "hint": "Hai bàn tay chắp nâng",
+    "kanjiCount": 25,
+    "reviewed": true
+  },
+  {
+    "part": "廿",
+    "vi": "nhập",
+    "hanViet": "chữ NHẬP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 廿",
+    "kanjiCount": 24,
+    "reviewed": false
+  },
+  {
+    "part": "竹",
+    "vi": "Cây tre",
+    "hanViet": "bộ Trúc",
+    "variantOf": null,
+    "hint": "Cành trúc lá rủ đôi nhánh",
+    "kanjiCount": 24,
+    "reviewed": true
+  },
+  {
+    "part": "乙",
+    "vi": "Can Ất",
+    "hanViet": "bộ Ất",
+    "variantOf": null,
+    "hint": "Hình con mầm uốn lượn",
+    "kanjiCount": 23,
+    "reviewed": true
+  },
+  {
+    "part": "干",
+    "vi": "Cọc khiên",
+    "hanViet": "bộ Can",
+    "variantOf": null,
+    "hint": "Cái cọc gỗ cắm cản phá",
+    "kanjiCount": 23,
+    "reviewed": true
+  },
+  {
+    "part": "斤",
+    "vi": "Chiếc rìu",
+    "hanViet": "bộ Cân",
+    "variantOf": null,
+    "hint": "Cái rìu đốn củi",
+    "kanjiCount": 23,
+    "reviewed": true
+  },
+  {
+    "part": "力",
+    "vi": "Sức lực",
+    "hanViet": "bộ Lực",
+    "variantOf": null,
+    "hint": "Cánh tay gồng sức",
+    "kanjiCount": 22,
+    "reviewed": true
+  },
+  {
+    "part": "止",
+    "vi": "Dừng lại",
+    "hanViet": "bộ Chỉ",
+    "variantOf": null,
+    "hint": "Bàn chân cắm xuống đất",
+    "kanjiCount": 22,
+    "reviewed": true
+  },
+  {
+    "part": "夂",
+    "vi": "Đi chậm",
+    "hanViet": "bộ Trĩ",
+    "variantOf": null,
+    "hint": "Bước đi kéo lê chân",
+    "kanjiCount": 22,
+    "reviewed": true
+  },
+  {
+    "part": "攵",
+    "vi": "Đánh nhẹ",
+    "hanViet": "bộ Phác",
+    "variantOf": null,
+    "hint": "Cầm roi vung đánh khẽ",
+    "kanjiCount": 22,
+    "reviewed": true
+  },
+  {
+    "part": "夕",
+    "vi": "Hoàng hôn",
+    "hanViet": "bộ Tịch",
+    "variantOf": null,
+    "hint": "Vầng trăng buổi chiều tà",
+    "kanjiCount": 21,
+    "reviewed": true
+  },
+  {
+    "part": "⺍",
+    "vi": "Chóp ba tia",
+    "hanViet": "bộ つ",
+    "variantOf": null,
+    "hint": "Ba nét phẩy ngọn lửa trên đầu",
+    "kanjiCount": 21,
+    "reviewed": true
+  },
+  {
+    "part": "罒",
+    "vi": "võng",
+    "hanViet": "chữ VÕNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 罒",
+    "kanjiCount": 21,
+    "reviewed": false
+  },
+  {
+    "part": "卩",
+    "vi": "Đốt tre",
+    "hanViet": "bộ Tiết",
+    "variantOf": null,
+    "hint": "Khớp đốt tre gập khúc",
+    "kanjiCount": 21,
+    "reviewed": true
+  },
+  {
+    "part": "艮",
+    "vi": "Bướng bỉnh",
+    "hanViet": "bộ Cấn",
+    "variantOf": null,
+    "hint": "Ngoảnh mặt lại nhìn trừng",
+    "kanjiCount": 21,
+    "reviewed": true
+  },
+  {
+    "part": "火",
+    "vi": "Ngọn lửa",
+    "hanViet": "bộ Hỏa",
+    "variantOf": null,
+    "hint": "Đốm lửa bùng cháy rực",
+    "kanjiCount": 20,
+    "reviewed": true
+  },
+  {
+    "part": "弋",
+    "vi": "Cọc bắn",
+    "hanViet": "bộ Dặc",
+    "variantOf": null,
+    "hint": "Mũi tên buộc dây bắn sẻ",
+    "kanjiCount": 20,
+    "reviewed": true
+  },
+  {
+    "part": "白",
+    "vi": "Trắng",
+    "hanViet": "bộ Bạch",
+    "variantOf": null,
+    "hint": "Hạt gạo trắng ngần sạch",
+    "kanjiCount": 20,
+    "reviewed": true
+  },
+  {
+    "part": "⺌",
+    "vi": "Nhỏ trên",
+    "hanViet": "bộ Tiểu",
+    "variantOf": "小",
+    "hint": "Ba nét nhỏ trên đỉnh",
+    "kanjiCount": 20,
+    "reviewed": true
+  },
+  {
+    "part": "䒑",
+    "vi": "mảnh 䒑",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 䒑",
+    "kanjiCount": 20,
+    "reviewed": false
+  },
+  {
+    "part": "戈",
+    "vi": "Ngọn giáo",
+    "hanViet": "bộ Qua",
+    "variantOf": null,
+    "hint": "Cây giáo dài có lưỡi ngang",
+    "kanjiCount": 20,
+    "reviewed": true
+  },
+  {
+    "part": "子",
+    "vi": "Đứa con",
+    "hanViet": "bộ Tử",
+    "variantOf": null,
+    "hint": "Đứa trẻ sơ sinh quấn tã",
+    "kanjiCount": 19,
+    "reviewed": true
+  },
+  {
+    "part": "己",
+    "vi": "Bản thân",
+    "hanViet": "bộ Kỷ",
+    "variantOf": null,
+    "hint": "Tơ cuộn quanh mình",
+    "kanjiCount": 19,
+    "reviewed": true
+  },
+  {
+    "part": "龶",
+    "vi": "mảnh 龶",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 龶",
+    "kanjiCount": 19,
+    "reviewed": false
+  },
+  {
+    "part": "刂",
+    "vi": "Dao đứng",
+    "hanViet": "bộ Đao đứng",
+    "variantOf": "刀",
+    "hint": "Hai nét lưỡi dao bên phải",
+    "kanjiCount": 19,
+    "reviewed": true
+  },
+  {
+    "part": "千",
+    "vi": "thiên",
+    "hanViet": "chữ THIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 千",
+    "kanjiCount": 19,
+    "reviewed": false
+  },
+  {
+    "part": "羊",
+    "vi": "Con cừu",
+    "hanViet": "bộ Dương",
+    "variantOf": null,
+    "hint": "Đầu con cừu có sừng nhọn",
+    "kanjiCount": 19,
+    "reviewed": true
+  },
+  {
+    "part": "工",
+    "vi": "Thợ thủ công",
+    "hanViet": "bộ Công",
+    "variantOf": null,
+    "hint": "Thước thợ làm mộc",
+    "kanjiCount": 18,
+    "reviewed": true
+  },
+  {
+    "part": "雨",
+    "vi": "Cơn mưa",
+    "hanViet": "bộ Vũ",
+    "variantOf": null,
+    "hint": "Bầu trời tuôn giọt mưa rơi",
+    "kanjiCount": 18,
+    "reviewed": true
+  },
+  {
+    "part": "石",
+    "vi": "Hòn đá",
+    "hanViet": "bộ Thạch",
+    "variantOf": null,
+    "hint": "Tảng đá lăn dưới sườn dốc",
+    "kanjiCount": 18,
+    "reviewed": true
+  },
+  {
+    "part": "囗",
+    "vi": "Bao quanh",
+    "hanViet": "bộ Vi",
+    "variantOf": null,
+    "hint": "Vòng bao khép kín ngoài",
+    "kanjiCount": 17,
+    "reviewed": true
+  },
+  {
+    "part": "巾",
+    "vi": "Khăn tay",
+    "hanViet": "bộ Cân",
+    "variantOf": null,
+    "hint": "Tấm khăn treo rủ xuống",
+    "kanjiCount": 17,
+    "reviewed": true
+  },
+  {
+    "part": "天",
+    "vi": "thiên",
+    "hanViet": "chữ THIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 天",
+    "kanjiCount": 17,
+    "reviewed": false
+  },
+  {
+    "part": "中",
+    "vi": "trung",
+    "hanViet": "chữ TRUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 中",
+    "kanjiCount": 17,
+    "reviewed": false
+  },
+  {
+    "part": "弓",
+    "vi": "Cung tên",
+    "hanViet": "bộ Cung",
+    "variantOf": null,
+    "hint": "Cây cung uốn cong",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "戸",
+    "vi": "Cửa một cánh",
+    "hanViet": "bộ Hộ",
+    "variantOf": null,
+    "hint": "Cánh cửa phòng đơn",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "牛",
+    "vi": "Con bò",
+    "hanViet": "bộ Ngưu",
+    "variantOf": null,
+    "hint": "Đầu con bò có đôi sừng",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "西",
+    "vi": "Phương Tây",
+    "hanViet": "bộ Tây",
+    "variantOf": null,
+    "hint": "Tổ chim lúc hoàng hôn",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "門",
+    "vi": "Cánh cổng",
+    "hanViet": "bộ Môn",
+    "variantOf": null,
+    "hint": "Cổng nhà lớn hai cánh mở",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "衣",
+    "vi": "Áo mặc",
+    "hanViet": "bộ Y",
+    "variantOf": null,
+    "hint": "Tà áo dài cổ chéo vạt",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "方",
+    "vi": "Phương hướng",
+    "hanViet": "bộ Phương",
+    "variantOf": null,
+    "hint": "Mũi nhọn chỉ phương vị",
+    "kanjiCount": 16,
+    "reviewed": true
+  },
+  {
+    "part": "礻",
+    "vi": "Thần linh đứng",
+    "hanViet": "bộ Thị",
+    "variantOf": "示",
+    "hint": "Bàn thờ nép bên trái",
+    "kanjiCount": 15,
+    "reviewed": true
+  },
+  {
+    "part": "由",
+    "vi": "do",
+    "hanViet": "chữ DO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 由",
+    "kanjiCount": 15,
+    "reviewed": false
+  },
+  {
+    "part": "夫",
+    "vi": "phu",
+    "hanViet": "chữ PHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夫",
+    "kanjiCount": 15,
+    "reviewed": false
+  },
+  {
+    "part": "殳",
+    "vi": "Binh khí",
+    "hanViet": "bộ Thù",
+    "variantOf": null,
+    "hint": "Gậy tre vót nhọn đầu",
+    "kanjiCount": 15,
+    "reviewed": true
+  },
+  {
+    "part": "酉",
+    "vi": "Bình rượu",
+    "hanViet": "bộ Dậu",
+    "variantOf": null,
+    "hint": "Bình rượu ủ lên men thơm",
+    "kanjiCount": 15,
+    "reviewed": true
+  },
+  {
+    "part": "耳",
+    "vi": "Cái tai",
+    "hanViet": "bộ Nhĩ",
+    "variantOf": null,
+    "hint": "Vành tai lắng nghe âm thanh",
+    "kanjiCount": 14,
+    "reviewed": true
+  },
+  {
+    "part": "耂",
+    "vi": "Người già trên",
+    "hanViet": "bộ Lão",
+    "variantOf": "老",
+    "hint": "Lưng còng cụ già ở trên",
+    "kanjiCount": 14,
+    "reviewed": true
+  },
+  {
+    "part": "欠",
+    "vi": "Ngáp dài",
+    "hanViet": "bộ Khiếm",
+    "variantOf": null,
+    "hint": "Há miệng ngáp mệt mỏi",
+    "kanjiCount": 14,
+    "reviewed": true
+  },
+  {
+    "part": "吉",
+    "vi": "cát",
+    "hanViet": "chữ CÁT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 吉",
+    "kanjiCount": 14,
+    "reviewed": false
+  },
+  {
+    "part": "旦",
+    "vi": "đán",
+    "hanViet": "chữ ĐÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旦",
+    "kanjiCount": 14,
+    "reviewed": false
+  },
+  {
+    "part": "古",
+    "vi": "cổ",
+    "hanViet": "chữ CỔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 古",
+    "kanjiCount": 14,
+    "reviewed": false
+  },
+  {
+    "part": "示",
+    "vi": "Thần linh",
+    "hanViet": "bộ Thị",
+    "variantOf": null,
+    "hint": "Bàn thờ dâng cúng thần",
+    "kanjiCount": 14,
+    "reviewed": true
+  },
+  {
+    "part": "龰",
+    "vi": "mảnh 龰",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 龰",
+    "kanjiCount": 13,
+    "reviewed": false
+  },
+  {
+    "part": "矢",
+    "vi": "Mũi tên",
+    "hanViet": "bộ Thỉ",
+    "variantOf": null,
+    "hint": "Mũi tên có lông đuôi bay",
+    "kanjiCount": 13,
+    "reviewed": true
+  },
+  {
+    "part": "幺",
+    "vi": "Nhỏ xíu",
+    "hanViet": "bộ Yêu",
+    "variantOf": null,
+    "hint": "Sợi chỉ non tơ",
+    "kanjiCount": 13,
+    "reviewed": true
+  },
+  {
+    "part": "豕",
+    "vi": "Con lợn",
+    "hanViet": "bộ Thỉ",
+    "variantOf": null,
+    "hint": "Con lợn béo bụng ủn ỉn",
+    "kanjiCount": 13,
+    "reviewed": true
+  },
+  {
+    "part": "マ",
+    "vi": "mảnh マ",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành マ",
+    "kanjiCount": 13,
+    "reviewed": false
+  },
+  {
+    "part": "虫",
+    "vi": "Sâu bọ",
+    "hanViet": "bộ Trùng",
+    "variantOf": null,
+    "hint": "Con rắn sâu bò uốn lượn",
+    "kanjiCount": 13,
+    "reviewed": true
+  },
+  {
+    "part": "林",
+    "vi": "lâm",
+    "hanViet": "chữ LÂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 林",
+    "kanjiCount": 13,
+    "reviewed": false
+  },
+  {
+    "part": "頁",
+    "vi": "Trang đầu",
+    "hanViet": "bộ Hiệt",
+    "variantOf": null,
+    "hint": "Cái đầu người trên chiếc cổ",
+    "kanjiCount": 13,
+    "reviewed": true
+  },
+  {
+    "part": "⺨",
+    "vi": "mảnh ⺨",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⺨",
+    "kanjiCount": 13,
+    "reviewed": false
+  },
+  {
+    "part": "用",
+    "vi": "Dùng",
+    "hanViet": "bộ Dụng",
+    "variantOf": null,
+    "hint": "Cái xô xách nước dùng",
+    "kanjiCount": 12,
+    "reviewed": true
+  },
+  {
+    "part": "丁",
+    "vi": "đinh",
+    "hanViet": "chữ ĐINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丁",
+    "kanjiCount": 12,
+    "reviewed": false
+  },
+  {
+    "part": "皿",
+    "vi": "Đĩa bát",
+    "hanViet": "bộ Mãnh",
+    "variantOf": null,
+    "hint": "Chiếc đĩa lòng nông đựng",
+    "kanjiCount": 12,
+    "reviewed": true
+  },
+  {
+    "part": "少",
+    "vi": "thiểu",
+    "hanViet": "chữ THIỂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 少",
+    "kanjiCount": 12,
+    "reviewed": false
+  },
+  {
+    "part": "疒",
+    "vi": "Bệnh tật",
+    "hanViet": "bộ Nạch",
+    "variantOf": null,
+    "hint": "Người ốm tựa trên giường",
+    "kanjiCount": 12,
+    "reviewed": true
+  },
+  {
+    "part": "甘",
+    "vi": "Ngọt ngào",
+    "hanViet": "bộ Cam",
+    "variantOf": null,
+    "hint": "Ngậm miếng kẹo ngon miệng",
+    "kanjiCount": 12,
+    "reviewed": true
+  },
+  {
+    "part": "臣",
+    "vi": "Quan thần",
+    "hanViet": "bộ Thần",
+    "variantOf": null,
+    "hint": "Mắt quan cúi chào thiên tử",
+    "kanjiCount": 12,
+    "reviewed": true
+  },
+  {
+    "part": "凵",
+    "vi": "Hộp rỗng",
+    "hanViet": "bộ Khảm",
+    "variantOf": null,
+    "hint": "Hộp ngửa lên",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "七",
+    "vi": "thất",
+    "hanViet": "chữ THẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 七",
+    "kanjiCount": 11,
+    "reviewed": false
+  },
+  {
+    "part": "毋",
+    "vi": "Đừng mẹ",
+    "hanViet": "bộ Vô",
+    "variantOf": null,
+    "hint": "Hình người mẹ ôm con",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "彡",
+    "vi": "Lông tóc",
+    "hanViet": "bộ Sam",
+    "variantOf": null,
+    "hint": "Ba sợi lông tóc mượt",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "里",
+    "vi": "Làng xóm",
+    "hanViet": "bộ Lý",
+    "variantOf": null,
+    "hint": "Đất ruộng lập nên thôn xóm",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "匸",
+    "vi": "hệ",
+    "hanViet": "chữ HỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 匸",
+    "kanjiCount": 11,
+    "reviewed": false
+  },
+  {
+    "part": "覀",
+    "vi": "mảnh 覀",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 覀",
+    "kanjiCount": 11,
+    "reviewed": false
+  },
+  {
+    "part": "羽",
+    "vi": "Lông vũ",
+    "hanViet": "bộ Vũ",
+    "variantOf": null,
+    "hint": "Đôi cánh chim dang rộng",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "足",
+    "vi": "Bàn chân",
+    "hanViet": "bộ Túc",
+    "variantOf": null,
+    "hint": "Cẳng chân và bàn chân vững",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "音",
+    "vi": "Âm thanh",
+    "hanViet": "bộ Âm",
+    "variantOf": null,
+    "hint": "Tiếng nhạc phát ra từ miệng",
+    "kanjiCount": 11,
+    "reviewed": true
+  },
+  {
+    "part": "穴",
+    "vi": "Hang đá",
+    "hanViet": "bộ Huyệt",
+    "variantOf": null,
+    "hint": "Cái hang đào dưới mái",
+    "kanjiCount": 10,
+    "reviewed": true
+  },
+  {
+    "part": "歹",
+    "vi": "Xương tàn",
+    "hanViet": "bộ Đãi",
+    "variantOf": null,
+    "hint": "Mẩu xương gãy vụn",
+    "kanjiCount": 10,
+    "reviewed": true
+  },
+  {
+    "part": "𡗗",
+    "vi": "mảnh 𡗗",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𡗗",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "业",
+    "vi": "mảnh 业",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 业",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "者",
+    "vi": "giả",
+    "hanViet": "chữ GIẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 者",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "氺",
+    "vi": "thủy",
+    "hanViet": "chữ THỦY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 氺",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "共",
+    "vi": "cộng",
+    "hanViet": "chữ CỘNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 共",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "了",
+    "vi": "liễu",
+    "hanViet": "chữ LIỄU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 了",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "馬",
+    "vi": "Con ngựa",
+    "hanViet": "bộ Mã",
+    "variantOf": null,
+    "hint": "Ngựa bờm dài bốn vó chạy",
+    "kanjiCount": 10,
+    "reviewed": true
+  },
+  {
+    "part": "虍",
+    "vi": "Vằn hổ",
+    "hanViet": "bộ Hô",
+    "variantOf": null,
+    "hint": "Đầu hổ có vằn hung dữ",
+    "kanjiCount": 10,
+    "reviewed": true
+  },
+  {
+    "part": "⻏",
+    "vi": "mảnh ⻏",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⻏",
+    "kanjiCount": 10,
+    "reviewed": false
+  },
+  {
+    "part": "匚",
+    "vi": "Khung tủ",
+    "hanViet": "bộ Phương",
+    "variantOf": null,
+    "hint": "Tủ đồ mở sang phải",
+    "kanjiCount": 10,
+    "reviewed": true
+  },
+  {
+    "part": "九",
+    "vi": "cửu",
+    "hanViet": "chữ CỬU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 九",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "氏",
+    "vi": "Dòng họ",
+    "hanViet": "bộ Thị",
+    "variantOf": null,
+    "hint": "Gốc tích cội rễ dòng tộc",
+    "kanjiCount": 9,
+    "reviewed": true
+  },
+  {
+    "part": "且",
+    "vi": "thả",
+    "hanViet": "chữ THẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 且",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "舟",
+    "vi": "Thuyền buồm",
+    "hanViet": "bộ Chu",
+    "variantOf": null,
+    "hint": "Chiếc thuyền gỗ vượt sông",
+    "kanjiCount": 9,
+    "reviewed": true
+  },
+  {
+    "part": "疋",
+    "vi": "Cuộn vải",
+    "hanViet": "bộ Thất",
+    "variantOf": null,
+    "hint": "Bắp chân bước sải đều",
+    "kanjiCount": 9,
+    "reviewed": true
+  },
+  {
+    "part": "各",
+    "vi": "các",
+    "hanViet": "chữ CÁC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 各",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "衤",
+    "vi": "Áo đứng",
+    "hanViet": "bộ Y",
+    "variantOf": "衣",
+    "hint": "Tà áo nép bên trái",
+    "kanjiCount": 9,
+    "reviewed": true
+  },
+  {
+    "part": "兄",
+    "vi": "huynh",
+    "hanViet": "chữ HUYNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兄",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "非",
+    "vi": "Sai trái",
+    "hanViet": "bộ Phi",
+    "variantOf": null,
+    "hint": "Hai cánh chim dang đối nghịch",
+    "kanjiCount": 9,
+    "reviewed": true
+  },
+  {
+    "part": "予",
+    "vi": "dư",
+    "hanViet": "chữ DƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 予",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "令",
+    "vi": "lệnh",
+    "hanViet": "chữ LỆNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 令",
+    "kanjiCount": 9,
+    "reviewed": false
+  },
+  {
+    "part": "水",
+    "vi": "Nước",
+    "hanViet": "bộ Thủy",
+    "variantOf": null,
+    "hint": "Dòng suối nguồn tuôn trào",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "皮",
+    "vi": "Da thú",
+    "hanViet": "bộ Bì",
+    "variantOf": null,
+    "hint": "Bàn tay lột tấm da thú",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "云",
+    "vi": "vân",
+    "hanViet": "chữ VÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 云",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "可",
+    "vi": "khả",
+    "hanViet": "chữ KHẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 可",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "早",
+    "vi": "tảo",
+    "hanViet": "chữ TẢO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 早",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "未",
+    "vi": "vị",
+    "hanViet": "chữ VỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 未",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "生",
+    "vi": "Sinh sôi",
+    "hanViet": "bộ Sinh",
+    "variantOf": null,
+    "hint": "Mầm non trồi lên mặt đất",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "自",
+    "vi": "Tự mình",
+    "hanViet": "bộ Tự",
+    "variantOf": null,
+    "hint": "Ngón tay trỏ thẳng mũi mình",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "寺",
+    "vi": "tự",
+    "hanViet": "chữ TỰ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 寺",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "昜",
+    "vi": "dương",
+    "hanViet": "chữ DƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昜",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "飠",
+    "vi": "Ăn đứng",
+    "hanViet": "bộ Thực",
+    "variantOf": "食",
+    "hint": "Thìa cơm nép bên trái",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "曲",
+    "vi": "khúc",
+    "hanViet": "chữ KHÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 曲",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "豆",
+    "vi": "Hạt đậu",
+    "hanViet": "bộ Đậu",
+    "variantOf": null,
+    "hint": "Cái chén đựng hạt đậu",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "比",
+    "vi": "So sánh",
+    "hanViet": "bộ Tỷ",
+    "variantOf": null,
+    "hint": "Hai người đứng sánh vai",
+    "kanjiCount": 8,
+    "reviewed": true
+  },
+  {
+    "part": "正",
+    "vi": "chánh",
+    "hanViet": "chữ CHÁNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 正",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "允",
+    "vi": "duẫn",
+    "hanViet": "chữ DUẪN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 允",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "莫",
+    "vi": "mạc",
+    "hanViet": "chữ MẠC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 莫",
+    "kanjiCount": 8,
+    "reviewed": false
+  },
+  {
+    "part": "父",
+    "vi": "Người cha",
+    "hanViet": "bộ Phụ",
+    "variantOf": null,
+    "hint": "Tay cầm roi dạy dỗ",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "至",
+    "vi": "Đến nơi",
+    "hanViet": "bộ Chí",
+    "variantOf": null,
+    "hint": "Mũi tên cắm thẳng đích",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "文",
+    "vi": "Văn hoa",
+    "hanViet": "bộ Văn",
+    "variantOf": null,
+    "hint": "Hình vẽ xăm đan chéo",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "反",
+    "vi": "phản",
+    "hanViet": "chữ PHẢN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 反",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "走",
+    "vi": "Chạy trốn",
+    "hanViet": "bộ Tẩu",
+    "variantOf": null,
+    "hint": "Người vung tay chạy nhanh",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "束",
+    "vi": "thúc",
+    "hanViet": "chữ THÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 束",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "鳥",
+    "vi": "Con chim",
+    "hanViet": "bộ Điểu",
+    "variantOf": null,
+    "hint": "Chim có mỏ dài và đuôi",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "見",
+    "vi": "Nhìn thấy",
+    "hanViet": "bộ Kiến",
+    "variantOf": null,
+    "hint": "Mắt to trên đôi chân đi",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "尺",
+    "vi": "xích",
+    "hanViet": "chữ XÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尺",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "犬",
+    "vi": "Con chó",
+    "hanViet": "bộ Khuyển",
+    "variantOf": null,
+    "hint": "Con chó vẫy đuôi mừng",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "青",
+    "vi": "Màu xanh",
+    "hanViet": "bộ Thanh",
+    "variantOf": null,
+    "hint": "Mầm cây xanh tốt mọc lên",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "聿",
+    "vi": "Cây bút",
+    "hanViet": "bộ Duật",
+    "variantOf": null,
+    "hint": "Bàn tay cầm cán bút viết",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "卉",
+    "vi": "hủy",
+    "hanViet": "chữ HỦY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卉",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "玄",
+    "vi": "Huyền bí",
+    "hanViet": "bộ Huyền",
+    "variantOf": null,
+    "hint": "Sắc đen tuyền sâu thẳm",
+    "kanjiCount": 7,
+    "reviewed": true
+  },
+  {
+    "part": "⺦",
+    "vi": "mảnh ⺦",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⺦",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "甫",
+    "vi": "phủ",
+    "hanViet": "chữ PHỦ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 甫",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "圭",
+    "vi": "khuê",
+    "hanViet": "chữ KHUÊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 圭",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "召",
+    "vi": "triệu",
+    "hanViet": "chữ TRIỆU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 召",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "享",
+    "vi": "hưởng",
+    "hanViet": "chữ HƯỞNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 享",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "有",
+    "vi": "hữu",
+    "hanViet": "chữ HỮU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 有",
+    "kanjiCount": 7,
+    "reviewed": false
+  },
+  {
+    "part": "入",
+    "vi": "Vào",
+    "hanViet": "bộ Nhập",
+    "variantOf": null,
+    "hint": "Cửa mở đi vào",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "川",
+    "vi": "Dòng sông",
+    "hanViet": "bộ Xuyên",
+    "variantOf": null,
+    "hint": "Ba dòng nước chảy xiết",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "兀",
+    "vi": "ngột",
+    "hanViet": "chữ NGỘT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兀",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "舌",
+    "vi": "Cái lưỡi",
+    "hanViet": "bộ Thiệt",
+    "variantOf": null,
+    "hint": "Cái lưỡi thè ra nếm vị",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "毎",
+    "vi": "mỗi",
+    "hanViet": "chữ MỖI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 毎",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "句",
+    "vi": "cú",
+    "hanViet": "chữ CÚ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 句",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "咅",
+    "vi": "phẫu",
+    "hanViet": "chữ PHẪU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 咅",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "甲",
+    "vi": "giáp",
+    "hanViet": "chữ GIÁP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 甲",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "重",
+    "vi": "trọng",
+    "hanViet": "chữ TRỌNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 重",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "壬",
+    "vi": "nhâm",
+    "hanViet": "chữ NHÂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 壬",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "其",
+    "vi": "kỳ",
+    "hanViet": "chữ KỲ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 其",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "戍",
+    "vi": "thú",
+    "hanViet": "chữ THÚ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戍",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "東",
+    "vi": "đông",
+    "hanViet": "chữ ĐÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 東",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "尚",
+    "vi": "thượng",
+    "hanViet": "chữ THƯỢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尚",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "今",
+    "vi": "kim",
+    "hanViet": "chữ KIM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 今",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "亡",
+    "vi": "vong",
+    "hanViet": "chữ VONG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亡",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "公",
+    "vi": "công",
+    "hanViet": "chữ CÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 公",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "分",
+    "vi": "phân",
+    "hanViet": "chữ PHÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 分",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "卯",
+    "vi": "mão",
+    "hanViet": "chữ MÃO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卯",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "兌",
+    "vi": "đoái",
+    "hanViet": "chữ ĐOÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兌",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "辰",
+    "vi": "Can Thìn",
+    "hanViet": "bộ Thần",
+    "variantOf": null,
+    "hint": "Rồng bay lượn trên trời",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "加",
+    "vi": "gia",
+    "hanViet": "chữ GIA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 加",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "京",
+    "vi": "kinh",
+    "hanViet": "chữ KINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 京",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "魚",
+    "vi": "Con cá",
+    "hanViet": "bộ Ngư",
+    "variantOf": null,
+    "hint": "Cá có đầu vây và vảy bơi",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "余",
+    "vi": "dư",
+    "hanViet": "chữ DƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 余",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "屮",
+    "vi": "Mầm cây",
+    "hanViet": "bộ Triệt",
+    "variantOf": null,
+    "hint": "Chồi cây đâm lên đất",
+    "kanjiCount": 6,
+    "reviewed": true
+  },
+  {
+    "part": "尞",
+    "vi": "liêu",
+    "hanViet": "chữ LIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尞",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "同",
+    "vi": "đồng",
+    "hanViet": "chữ ĐỒNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 同",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "夋",
+    "vi": "xuân",
+    "hanViet": "chữ XUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夋",
+    "kanjiCount": 6,
+    "reviewed": false
+  },
+  {
+    "part": "手",
+    "vi": "Bàn tay",
+    "hanViet": "bộ Thủ",
+    "variantOf": null,
+    "hint": "Bàn tay năm ngón",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "巴",
+    "vi": "ba",
+    "hanViet": "chữ BA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巴",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "开",
+    "vi": "mảnh 开",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 开",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "長",
+    "vi": "Dài lớn",
+    "hanViet": "bộ Trường",
+    "variantOf": null,
+    "hint": "Mái tóc dài buông rủ xuống",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "交",
+    "vi": "giao",
+    "hanViet": "chữ GIAO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 交",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "主",
+    "vi": "chủ",
+    "hanViet": "chữ CHỦ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 主",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "合",
+    "vi": "hợp",
+    "hanViet": "chữ HỢP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 合",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "台",
+    "vi": "thai",
+    "hanViet": "chữ THAI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 台",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "癶",
+    "vi": "Hai chân gập",
+    "hanViet": "bộ Bát",
+    "variantOf": null,
+    "hint": "Hai bàn chân quay ngược",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "圣",
+    "vi": "khốt",
+    "hanViet": "chữ KHỐT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 圣",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "申",
+    "vi": "thân",
+    "hanViet": "chữ THÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 申",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "肖",
+    "vi": "tiếu",
+    "hanViet": "chữ TIẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 肖",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "戋",
+    "vi": "mảnh 戋",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戋",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "支",
+    "vi": "Cành cây",
+    "hanViet": "bộ Chi",
+    "variantOf": null,
+    "hint": "Bàn tay bẻ cành cây",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "行",
+    "vi": "Đi lại",
+    "hanViet": "bộ Hành",
+    "variantOf": null,
+    "hint": "Ngã tư đường phố tấp nập",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "亦",
+    "vi": "diệc",
+    "hanViet": "chữ DIỆC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亦",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "谷",
+    "vi": "Thung lũng",
+    "hanViet": "bộ Cốc",
+    "variantOf": null,
+    "hint": "Miệng suối tuôn giữa khe núi",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "㑒",
+    "vi": "mảnh 㑒",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㑒",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "曽",
+    "vi": "tằng",
+    "hanViet": "chữ TẰNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 曽",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "啇",
+    "vi": "đích",
+    "hanViet": "chữ ĐÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 啇",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "矛",
+    "vi": "Mũi mác",
+    "hanViet": "bộ Mâu",
+    "variantOf": null,
+    "hint": "Ngọn mác nhọn có móc",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "友",
+    "vi": "hữu",
+    "hanViet": "chữ HỮU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 友",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "良",
+    "vi": "lương",
+    "hanViet": "chữ LƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 良",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "鬼",
+    "vi": "Con quỷ",
+    "hanViet": "bộ Quỷ",
+    "variantOf": null,
+    "hint": "Quái nhân đầu to mắt trợn",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "曷",
+    "vi": "hạt",
+    "hanViet": "chữ HẠT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 曷",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "丰",
+    "vi": "phong",
+    "hanViet": "chữ PHONG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丰",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "兆",
+    "vi": "triệu",
+    "hanViet": "chữ TRIỆU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兆",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "包",
+    "vi": "bao",
+    "hanViet": "chữ BAO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 包",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "㐮",
+    "vi": "mảnh 㐮",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㐮",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "缶",
+    "vi": "Bình sành",
+    "hanViet": "bộ Phữu",
+    "variantOf": null,
+    "hint": "Cái bình gốm có nắp đậy",
+    "kanjiCount": 5,
+    "reviewed": true
+  },
+  {
+    "part": "光",
+    "vi": "quang",
+    "hanViet": "chữ QUANG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 光",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "夌",
+    "vi": "lăng",
+    "hanViet": "chữ LĂNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夌",
+    "kanjiCount": 5,
+    "reviewed": false
+  },
+  {
+    "part": "也",
+    "vi": "dã",
+    "hanViet": "chữ DÃ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 也",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "乍",
+    "vi": "sạ",
+    "hanViet": "chữ SẠ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乍",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "尹",
+    "vi": "duẫn",
+    "hanViet": "chữ DUẪN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尹",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "𠦝",
+    "vi": "mảnh 𠦝",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠦝",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "釆",
+    "vi": "Phân biệt",
+    "hanViet": "bộ Biện",
+    "variantOf": null,
+    "hint": "Dấu chân thú in rạch ròi",
+    "kanjiCount": 4,
+    "reviewed": true
+  },
+  {
+    "part": "关",
+    "vi": "mảnh 关",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 关",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "五",
+    "vi": "ngũ",
+    "hanViet": "chữ NGŨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 五",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "内",
+    "vi": "nạp",
+    "hanViet": "chữ NẠP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 内",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "直",
+    "vi": "trực",
+    "hanViet": "chữ TRỰC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 直",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "夭",
+    "vi": "yêu",
+    "hanViet": "chữ YÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夭",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "畐",
+    "vi": "phúc",
+    "hanViet": "chữ PHÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 畐",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "果",
+    "vi": "quả",
+    "hanViet": "chữ QUẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 果",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "侖",
+    "vi": "lôn",
+    "hanViet": "chữ LÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 侖",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "从",
+    "vi": "tòng",
+    "hanViet": "chữ TÒNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 从",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "䏍",
+    "vi": "mảnh 䏍",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 䏍",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "翟",
+    "vi": "địch",
+    "hanViet": "chữ ĐỊCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 翟",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "𢆉",
+    "vi": "mảnh 𢆉",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𢆉",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "具",
+    "vi": "cụ",
+    "hanViet": "chữ CỤ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 具",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "付",
+    "vi": "phó",
+    "hanViet": "chữ PHÓ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 付",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "昔",
+    "vi": "tích",
+    "hanViet": "chữ TÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昔",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "凶",
+    "vi": "hung",
+    "hanViet": "chữ HUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 凶",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "右",
+    "vi": "hữu",
+    "hanViet": "chữ HỮU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 右",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "兼",
+    "vi": "kiêm",
+    "hanViet": "chữ KIÊM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兼",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "次",
+    "vi": "thứ",
+    "hanViet": "chữ THỨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 次",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "爰",
+    "vi": "viên",
+    "hanViet": "chữ VIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 爰",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "甶",
+    "vi": "phất",
+    "hanViet": "chữ PHẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 甶",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "𢦏",
+    "vi": "mảnh 𢦏",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𢦏",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "奇",
+    "vi": "kì",
+    "hanViet": "chữ KÌ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奇",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "成",
+    "vi": "thành",
+    "hanViet": "chữ THÀNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 成",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "韋",
+    "vi": "Da mềm",
+    "hanViet": "bộ Vi",
+    "variantOf": null,
+    "hint": "Hai người đạp mềm miếng da",
+    "kanjiCount": 4,
+    "reviewed": true
+  },
+  {
+    "part": "俞",
+    "vi": "mảnh 俞",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 俞",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "冓",
+    "vi": "cấu",
+    "hanViet": "chữ CẤU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冓",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "告",
+    "vi": "cáo",
+    "hanViet": "chữ CÁO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 告",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "出",
+    "vi": "xuất",
+    "hanViet": "chữ XUẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 出",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "尃",
+    "vi": "mảnh 尃",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尃",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "区",
+    "vi": "âu",
+    "hanViet": "chữ ÂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 区",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "責",
+    "vi": "trách",
+    "hanViet": "chữ TRÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 責",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "尗",
+    "vi": "thúc",
+    "hanViet": "chữ THÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尗",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "上",
+    "vi": "thượng",
+    "hanViet": "chữ THƯỢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 上",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "匂",
+    "vi": "cái",
+    "hanViet": "chữ CÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 匂",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "冊",
+    "vi": "sách",
+    "hanViet": "chữ SÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冊",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "監",
+    "vi": "giam",
+    "hanViet": "chữ GIAM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 監",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "喿",
+    "vi": "táo",
+    "hanViet": "chữ TÁO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 喿",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "品",
+    "vi": "phẩm",
+    "hanViet": "chữ PHẨM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 品",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "卆",
+    "vi": "thốt",
+    "hanViet": "chữ THỐT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卆",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "亥",
+    "vi": "hợi",
+    "hanViet": "chữ HỢI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亥",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "舛",
+    "vi": "suyễn",
+    "hanViet": "chữ SUYỄN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 舛",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "而",
+    "vi": "Râu cằm",
+    "hanViet": "bộ Nhi",
+    "variantOf": null,
+    "hint": "Chùm râu cằm rủ xuống",
+    "kanjiCount": 4,
+    "reviewed": true
+  },
+  {
+    "part": "牙",
+    "vi": "Răng nanh",
+    "hanViet": "bộ Nha",
+    "variantOf": null,
+    "hint": "Răng nanh thú đan cài",
+    "kanjiCount": 4,
+    "reviewed": true
+  },
+  {
+    "part": "䍃",
+    "vi": "mảnh 䍃",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 䍃",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "麻",
+    "vi": "Cây gai",
+    "hanViet": "bộ Ma",
+    "variantOf": null,
+    "hint": "Bó sợi gai phơi dưới mái",
+    "kanjiCount": 4,
+    "reviewed": true
+  },
+  {
+    "part": "禺",
+    "vi": "ngu",
+    "hanViet": "chữ NGU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 禺",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "旬",
+    "vi": "tuần",
+    "hanViet": "chữ TUẦN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旬",
+    "kanjiCount": 4,
+    "reviewed": false
+  },
+  {
+    "part": "毛",
+    "vi": "Lông",
+    "hanViet": "bộ Mao",
+    "variantOf": null,
+    "hint": "Sợi lông đuôi cong vút",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "化",
+    "vi": "hóa",
+    "hanViet": "chữ HÓA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 化",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "丂",
+    "vi": "khảo",
+    "hanViet": "chữ KHẢO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丂",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "弔",
+    "vi": "điếu",
+    "hanViet": "chữ ĐIẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 弔",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "占",
+    "vi": "chiêm",
+    "hanViet": "chữ CHIÊM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 占",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "斗",
+    "vi": "Cái đấu",
+    "hanViet": "bộ Đẩu",
+    "variantOf": null,
+    "hint": "Cái gáo múc nước đong",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "甬",
+    "vi": "dũng",
+    "hanViet": "chữ DŨNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 甬",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "㕣",
+    "vi": "mảnh 㕣",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㕣",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "周",
+    "vi": "chu",
+    "hanViet": "chữ CHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 周",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "勿",
+    "vi": "vật",
+    "hanViet": "chữ VẬT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 勿",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "軍",
+    "vi": "quân",
+    "hanViet": "chữ QUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 軍",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "失",
+    "vi": "thất",
+    "hanViet": "chữ THẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 失",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "吾",
+    "vi": "ngô",
+    "hanViet": "chữ NGÔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 吾",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "取",
+    "vi": "thủ",
+    "hanViet": "chữ THỦ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 取",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "及",
+    "vi": "cập",
+    "hanViet": "chữ CẬP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 及",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "単",
+    "vi": "đan",
+    "hanViet": "chữ ĐAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 単",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "免",
+    "vi": "miễn",
+    "hanViet": "chữ MIỄN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 免",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "㐬",
+    "vi": "mảnh 㐬",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㐬",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "求",
+    "vi": "cầu",
+    "hanViet": "chữ CẦU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 求",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "相",
+    "vi": "tương",
+    "hanViet": "chữ TƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 相",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "咸",
+    "vi": "hàm",
+    "hanViet": "chữ HÀM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 咸",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "是",
+    "vi": "thị",
+    "hanViet": "chữ THỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 是",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "官",
+    "vi": "quan",
+    "hanViet": "chữ QUAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 官",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "CDP-8BC4",
+    "vi": "mảnh CDP-8BC4",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành CDP-8BC4",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "央",
+    "vi": "ương",
+    "hanViet": "chữ ƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 央",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "列",
+    "vi": "liệt",
+    "hanViet": "chữ LIỆT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 列",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "元",
+    "vi": "nguyên",
+    "hanViet": "chữ NGUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 元",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "才",
+    "vi": "tài",
+    "hanViet": "chữ TÀI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 才",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "勺",
+    "vi": "chước",
+    "hanViet": "chữ CHƯỚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 勺",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "帚",
+    "vi": "trửu",
+    "hanViet": "chữ TRỬU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 帚",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "男",
+    "vi": "nam",
+    "hanViet": "chữ NAM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 男",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "去",
+    "vi": "khứ",
+    "hanViet": "chữ KHỨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 去",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "凡",
+    "vi": "phàm",
+    "hanViet": "chữ PHÀM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 凡",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "袁",
+    "vi": "viên",
+    "hanViet": "chữ VIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 袁",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "辛",
+    "vi": "Cay đắng",
+    "hanViet": "bộ Tân",
+    "variantOf": null,
+    "hint": "Dao nhọn thích chữ tội nhân",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "丘",
+    "vi": "khâu",
+    "hanViet": "chữ KHÂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丘",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "戠",
+    "vi": "mảnh 戠",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戠",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "氐",
+    "vi": "chi",
+    "hanViet": "chữ CHI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 氐",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "苟",
+    "vi": "cẩu",
+    "hanViet": "chữ CẨU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 苟",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "幸",
+    "vi": "hạnh",
+    "hanViet": "chữ HẠNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 幸",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "午",
+    "vi": "ngọ",
+    "hanViet": "chữ NGỌ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 午",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "司",
+    "vi": "ti",
+    "hanViet": "chữ TI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 司",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "巛",
+    "vi": "Sông uốn",
+    "hanViet": "bộ Xuyên",
+    "variantOf": "川",
+    "hint": "Dòng sông uốn khúc",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "義",
+    "vi": "nghĩa",
+    "hanViet": "chữ NGHĨA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 義",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "斉",
+    "vi": "tế",
+    "hanViet": "chữ TẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 斉",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "半",
+    "vi": "bán",
+    "hanViet": "chữ BÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 半",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "番",
+    "vi": "phiên",
+    "hanViet": "chữ PHIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 番",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "咼",
+    "vi": "oa",
+    "hanViet": "chữ OA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 咼",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "能",
+    "vi": "năng",
+    "hanViet": "chữ NĂNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 能",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "蒦",
+    "vi": "hoạch",
+    "hanViet": "chữ HOẠCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 蒦",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "夹",
+    "vi": "mảnh 夹",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夹",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "朱",
+    "vi": "chu",
+    "hanViet": "chữ CHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朱",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "乡",
+    "vi": "mảnh 乡",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乡",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "隶",
+    "vi": "Bắt kịp",
+    "hanViet": "bộ Đãi",
+    "variantOf": null,
+    "hint": "Tay với chộp vạt áo sau",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "𠔉",
+    "vi": "mảnh 𠔉",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠔉",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "复",
+    "vi": "mảnh 复",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 复",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "垂",
+    "vi": "thùy",
+    "hanViet": "chữ THÙY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 垂",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "代",
+    "vi": "đại",
+    "hanViet": "chữ ĐẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 代",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "革",
+    "vi": "Da thuộc",
+    "hanViet": "bộ Cách",
+    "variantOf": null,
+    "hint": "Tấm da thú căng kéo thuộc",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "屰",
+    "vi": "kích",
+    "hanViet": "chữ KÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 屰",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "攸",
+    "vi": "du",
+    "hanViet": "chữ DU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 攸",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "叔",
+    "vi": "thúc",
+    "hanViet": "chữ THÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 叔",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "亢",
+    "vi": "kháng",
+    "hanViet": "chữ KHÁNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亢",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "扁",
+    "vi": "biển",
+    "hanViet": "chữ BIỂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 扁",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "旡",
+    "vi": "ký",
+    "hanViet": "chữ KÝ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旡",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "丗",
+    "vi": "tạp",
+    "hanViet": "chữ TẠP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丗",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "卅",
+    "vi": "tạp",
+    "hanViet": "chữ TẠP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卅",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "采",
+    "vi": "thải",
+    "hanViet": "chữ THẢI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 采",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "必",
+    "vi": "tất",
+    "hanViet": "chữ TẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 必",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "亘",
+    "vi": "tuyên",
+    "hanViet": "chữ TUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亘",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "酋",
+    "vi": "tù",
+    "hanViet": "chữ TÙ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 酋",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "呉",
+    "vi": "ngô",
+    "hanViet": "chữ NGÔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 呉",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "兹",
+    "vi": "mảnh 兹",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兹",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "朋",
+    "vi": "bằng",
+    "hanViet": "chữ BẰNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朋",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "辟",
+    "vi": "tích",
+    "hanViet": "chữ TÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 辟",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "𡰪",
+    "vi": "mảnh 𡰪",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𡰪",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "并",
+    "vi": "bạng",
+    "hanViet": "chữ BẠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 并",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "真",
+    "vi": "chân",
+    "hanViet": "chữ CHÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 真",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "六",
+    "vi": "lục",
+    "hanViet": "chữ LỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 六",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "岡",
+    "vi": "cương",
+    "hanViet": "chữ CƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 岡",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "壴",
+    "vi": "mảnh 壴",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 壴",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "折",
+    "vi": "chiết",
+    "hanViet": "chữ CHIẾT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 折",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "耒",
+    "vi": "Cái cày",
+    "hanViet": "bộ Lỗi",
+    "variantOf": null,
+    "hint": "Lưỡi cày đất bằng gỗ",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "利",
+    "vi": "lợi",
+    "hanViet": "chữ LỢI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 利",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "風",
+    "vi": "Ngọn gió",
+    "hanViet": "bộ Phong",
+    "variantOf": null,
+    "hint": "Gió cuốn sâu bọ bay lượn",
+    "kanjiCount": 3,
+    "reviewed": true
+  },
+  {
+    "part": "童",
+    "vi": "đồng",
+    "hanViet": "chữ ĐỒNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 童",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "㐭",
+    "vi": "mảnh 㐭",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㐭",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "賁",
+    "vi": "bí",
+    "hanViet": "chữ BÍ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 賁",
+    "kanjiCount": 3,
+    "reviewed": false
+  },
+  {
+    "part": "气",
+    "vi": "Khí trời",
+    "hanViet": "bộ Khí",
+    "variantOf": null,
+    "hint": "Làn sương khói bay lên",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "本",
+    "vi": "bổn",
+    "hanViet": "chữ BỔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 本",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "玉",
+    "vi": "Ngọc bích",
+    "hanViet": "bộ Ngọc",
+    "variantOf": null,
+    "hint": "Viên ngọc quý có chấm sáng",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "市",
+    "vi": "thị",
+    "hanViet": "chữ THỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 市",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "食",
+    "vi": "Thức ăn",
+    "hanViet": "bộ Thực",
+    "variantOf": null,
+    "hint": "Bát cơm đậy nắp bốc khói",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "冋",
+    "vi": "quynh",
+    "hanViet": "chữ QUYNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冋",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "孝",
+    "vi": "hiếu",
+    "hanViet": "chữ HIẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 孝",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "龷",
+    "vi": "mảnh 龷",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 龷",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "夬",
+    "vi": "quái",
+    "hanViet": "chữ QUÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "首",
+    "vi": "Cái đầu",
+    "hanViet": "bộ Thủ",
+    "variantOf": null,
+    "hint": "Đầu hươu có sừng nhọn",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "娄",
+    "vi": "lâu",
+    "hanViet": "chữ LÂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 娄",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "丈",
+    "vi": "trượng",
+    "hanViet": "chữ TRƯỢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丈",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "永",
+    "vi": "vĩnh",
+    "hanViet": "chữ VĨNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 永",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "炎",
+    "vi": "viêm",
+    "hanViet": "chữ VIÊM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 炎",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "劵",
+    "vi": "quyển",
+    "hanViet": "chữ QUYỂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 劵",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "完",
+    "vi": "hoàn",
+    "hanViet": "chữ HOÀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 完",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "冬",
+    "vi": "đông",
+    "hanViet": "chữ ĐÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "世",
+    "vi": "thế",
+    "hanViet": "chữ THẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 世",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "売",
+    "vi": "mại",
+    "hanViet": "chữ MẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 売",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "丙",
+    "vi": "bính",
+    "hanViet": "chữ BÍNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丙",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "奴",
+    "vi": "nô",
+    "hanViet": "chữ NÔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奴",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "旨",
+    "vi": "chỉ",
+    "hanViet": "chữ CHỈ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旨",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "更",
+    "vi": "canh",
+    "hanViet": "chữ CANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 更",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "動",
+    "vi": "động",
+    "hanViet": "chữ ĐỘNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 動",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "廷",
+    "vi": "đình",
+    "hanViet": "chữ ĐÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 廷",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "㓁",
+    "vi": "mảnh 㓁",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㓁",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "喬",
+    "vi": "kiều",
+    "hanViet": "chữ KIỀU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 喬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "呑",
+    "vi": "thôn",
+    "hanViet": "chữ THÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 呑",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "彔",
+    "vi": "lục",
+    "hanViet": "chữ LỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彔",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "意",
+    "vi": "ý",
+    "hanViet": "chữ Ý",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 意",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "票",
+    "vi": "phiếu",
+    "hanViet": "chữ PHIẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 票",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "埶",
+    "vi": "nghệ",
+    "hanViet": "chữ NGHỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 埶",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "竟",
+    "vi": "cánh",
+    "hanViet": "chữ CÁNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 竟",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "原",
+    "vi": "nguyên",
+    "hanViet": "chữ NGUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 原",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "身",
+    "vi": "Thân thể",
+    "hanViet": "bộ Thân",
+    "variantOf": null,
+    "hint": "Dáng người mang thai nghiêng",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "劦",
+    "vi": "động",
+    "hanViet": "chữ ĐỘNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 劦",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "布",
+    "vi": "bố",
+    "hanViet": "chữ BỐ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 布",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "朮",
+    "vi": "truật",
+    "hanViet": "chữ TRUẬT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朮",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "廴",
+    "vi": "Bước dài",
+    "hanViet": "bộ Dẫn",
+    "variantOf": null,
+    "hint": "Bước chân dài thong thả",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "苗",
+    "vi": "miêu",
+    "hanViet": "chữ MIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 苗",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "系",
+    "vi": "hệ",
+    "hanViet": "chữ HỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 系",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "則",
+    "vi": "tắc",
+    "hanViet": "chữ TẮC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 則",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "歩",
+    "vi": "bộ",
+    "hanViet": "chữ BỘ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 歩",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "祭",
+    "vi": "tế",
+    "hanViet": "chữ TẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 祭",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "敬",
+    "vi": "kính",
+    "hanViet": "chữ KÍNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "尭",
+    "vi": "nghiêu",
+    "hanViet": "chữ NGHIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尭",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "先",
+    "vi": "tiên",
+    "hanViet": "chữ TIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 先",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "争",
+    "vi": "tranh",
+    "hanViet": "chữ TRANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 争",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "于",
+    "vi": "vu",
+    "hanViet": "chữ VU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 于",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "復",
+    "vi": "phục",
+    "hanViet": "chữ PHỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 復",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "㳟",
+    "vi": "mảnh 㳟",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㳟",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "幾",
+    "vi": "ki",
+    "hanViet": "chữ KI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 幾",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "升",
+    "vi": "thăng",
+    "hanViet": "chữ THĂNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 升",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "寉",
+    "vi": "hạc",
+    "hanViet": "chữ HẠC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 寉",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "固",
+    "vi": "cố",
+    "hanViet": "chữ CỐ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 固",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "𠂢",
+    "vi": "mảnh 𠂢",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠂢",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "平",
+    "vi": "bình",
+    "hanViet": "chữ BÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 平",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "角",
+    "vi": "Sừng thú",
+    "hanViet": "bộ Giác",
+    "variantOf": null,
+    "hint": "Cái sừng nhọn gắn trên đầu",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "刃",
+    "vi": "nhận",
+    "hanViet": "chữ NHẬN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 刃",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "我",
+    "vi": "ngã",
+    "hanViet": "chữ NGÃ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 我",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "呂",
+    "vi": "lữ",
+    "hanViet": "chữ LỮ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 呂",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "安",
+    "vi": "an",
+    "hanViet": "chữ AN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 安",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "弗",
+    "vi": "phất",
+    "hanViet": "chữ PHẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 弗",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "充",
+    "vi": "sung",
+    "hanViet": "chữ SUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 充",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "朿",
+    "vi": "thích",
+    "hanViet": "chữ THÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朿",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "或",
+    "vi": "hoặc",
+    "hanViet": "chữ HOẶC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 或",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "害",
+    "vi": "hại",
+    "hanViet": "chữ HẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 害",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "百",
+    "vi": "bách",
+    "hanViet": "chữ BÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 百",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "乇",
+    "vi": "trách",
+    "hanViet": "chữ TRÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乇",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "孚",
+    "vi": "phu",
+    "hanViet": "chữ PHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 孚",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "睘",
+    "vi": "mảnh 睘",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 睘",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "禹",
+    "vi": "vũ",
+    "hanViet": "chữ VŨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 禹",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "倉",
+    "vi": "thương",
+    "hanViet": "chữ THƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 倉",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "章",
+    "vi": "chương",
+    "hanViet": "chữ CHƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 章",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "叚",
+    "vi": "giả",
+    "hanViet": "chữ GIẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 叚",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "秀",
+    "vi": "tú",
+    "hanViet": "chữ TÚ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 秀",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "耑",
+    "vi": "chuyên",
+    "hanViet": "chữ CHUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 耑",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "旧",
+    "vi": "cựu",
+    "hanViet": "chữ CỰU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旧",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "専",
+    "vi": "chuyên",
+    "hanViet": "chữ CHUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 専",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "鹿",
+    "vi": "Con hươu",
+    "hanViet": "bộ Lộc",
+    "variantOf": null,
+    "hint": "Chú hươu sao có gạc đẹp",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "不",
+    "vi": "bất",
+    "hanViet": "chữ BẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 不",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "片",
+    "vi": "Mẩu ván",
+    "hanViet": "bộ Phiến",
+    "variantOf": null,
+    "hint": "Thân gỗ xẻ đôi bên phải",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "之",
+    "vi": "chi",
+    "hanViet": "chữ CHI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 之",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "离",
+    "vi": "cầm",
+    "hanViet": "chữ CẦM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 离",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "鬲",
+    "vi": "Cái đỉnh",
+    "hanViet": "bộ Cách",
+    "variantOf": null,
+    "hint": "Nồi ba chân nấu thức ăn",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "並",
+    "vi": "tịnh",
+    "hanViet": "chữ TỊNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 並",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "奉",
+    "vi": "phụng",
+    "hanViet": "chữ PHỤNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奉",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "貞",
+    "vi": "trinh",
+    "hanViet": "chữ TRINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 貞",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "卬",
+    "vi": "ngang",
+    "hanViet": "chữ NGANG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "因",
+    "vi": "nhân",
+    "hanViet": "chữ NHÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 因",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "広",
+    "vi": "quảng",
+    "hanViet": "chữ QUẢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 広",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "孰",
+    "vi": "thục",
+    "hanViet": "chữ THỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 孰",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "壮",
+    "vi": "trang",
+    "hanViet": "chữ TRANG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 壮",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "屯",
+    "vi": "truân",
+    "hanViet": "chữ TRUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 屯",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "电",
+    "vi": "mảnh 电",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 电",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "彑",
+    "vi": "kế",
+    "hanViet": "chữ KẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彑",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "胡",
+    "vi": "hồ",
+    "hanViet": "chữ HỒ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 胡",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "明",
+    "vi": "minh",
+    "hanViet": "chữ MINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 明",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "奐",
+    "vi": "hoán",
+    "hanViet": "chữ HOÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奐",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "南",
+    "vi": "nam",
+    "hanViet": "chữ NAM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 南",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "若",
+    "vi": "nhược",
+    "hanViet": "chữ NHƯỢC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 若",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "思",
+    "vi": "tư",
+    "hanViet": "chữ TƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 思",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "般",
+    "vi": "bàn",
+    "hanViet": "chữ BÀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 般",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "尓",
+    "vi": "nhĩ",
+    "hanViet": "chữ NHĨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尓",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "君",
+    "vi": "quân",
+    "hanViet": "chữ QUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 君",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "奞",
+    "vi": "tuy",
+    "hanViet": "chữ TUY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奞",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "巨",
+    "vi": "cự",
+    "hanViet": "chữ CỰ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巨",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "昌",
+    "vi": "xương",
+    "hanViet": "chữ XƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昌",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "屈",
+    "vi": "khuất",
+    "hanViet": "chữ KHUẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 屈",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "溥",
+    "vi": "phổ",
+    "hanViet": "chữ PHỔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 溥",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "育",
+    "vi": "dục",
+    "hanViet": "chữ DỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 育",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "瓜",
+    "vi": "Quả dưa",
+    "hanViet": "bộ Qua",
+    "variantOf": null,
+    "hint": "Dây leo trĩu quả dưa",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "屋",
+    "vi": "ốc",
+    "hanViet": "chữ ỐC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 屋",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "斬",
+    "vi": "trảm",
+    "hanViet": "chữ TRẢM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 斬",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "骨",
+    "vi": "Khúc xương",
+    "hanViet": "bộ Cốt",
+    "variantOf": null,
+    "hint": "Đốt xương khớp nối với nhau",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "丩",
+    "vi": "mảnh 丩",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丩",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "路",
+    "vi": "lộ",
+    "hanViet": "chữ LỘ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 路",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "豸",
+    "vi": "trĩ",
+    "hanViet": "chữ TRĨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 豸",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "菐",
+    "vi": "mảnh 菐",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 菐",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "戌",
+    "vi": "tuất",
+    "hanViet": "chữ TUẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戌",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "荅",
+    "vi": "đáp",
+    "hanViet": "chữ ĐÁP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 荅",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "亚",
+    "vi": "mảnh 亚",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亚",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "家",
+    "vi": "gia",
+    "hanViet": "chữ GIA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 家",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "黒",
+    "vi": "Màu đen",
+    "hanViet": "bộ Hắc",
+    "variantOf": null,
+    "hint": "Muội than khói đen bám lò",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "匊",
+    "vi": "cúc",
+    "hanViet": "chữ CÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 匊",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "帛",
+    "vi": "bạch",
+    "hanViet": "chữ BẠCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 帛",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "左",
+    "vi": "tả",
+    "hanViet": "chữ TẢ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 左",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "敝",
+    "vi": "tệ",
+    "hanViet": "chữ TỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敝",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "爻",
+    "vi": "Đan chéo",
+    "hanViet": "bộ Hào",
+    "variantOf": null,
+    "hint": "Hai chữ x đan chéo nhau",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "容",
+    "vi": "dong",
+    "hanViet": "chữ DONG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 容",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "此",
+    "vi": "thử",
+    "hanViet": "chữ THỬ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 此",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "亶",
+    "vi": "đản",
+    "hanViet": "chữ ĐẢN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亶",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "既",
+    "vi": "kí",
+    "hanViet": "chữ KÍ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 既",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "某",
+    "vi": "mỗ",
+    "hanViet": "chữ MỖ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 某",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "甚",
+    "vi": "thậm",
+    "hanViet": "chữ THẬM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 甚",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "夆",
+    "vi": "phong",
+    "hanViet": "chữ PHONG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夆",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "太",
+    "vi": "thái",
+    "hanViet": "chữ THÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 太",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "曼",
+    "vi": "mạn",
+    "hanViet": "chữ MẠN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 曼",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "禸",
+    "vi": "nhữu",
+    "hanViet": "chữ NHỮU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 禸",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "曹",
+    "vi": "tào",
+    "hanViet": "chữ TÀO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 曹",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "陏",
+    "vi": "đọa",
+    "hanViet": "chữ ĐỌA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 陏",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "高",
+    "vi": "Cao vút",
+    "hanViet": "bộ Cao",
+    "variantOf": null,
+    "hint": "Tháp canh cao có cổng vòm",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "州",
+    "vi": "châu",
+    "hanViet": "chữ CHÂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 州",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "闌",
+    "vi": "lan",
+    "hanViet": "chữ LAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 闌",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "知",
+    "vi": "tri",
+    "hanViet": "chữ TRI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 知",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "疑",
+    "vi": "nghi",
+    "hanViet": "chữ NGHI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 疑",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "末",
+    "vi": "mạt",
+    "hanViet": "chữ MẠT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 末",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "赤",
+    "vi": "Màu đỏ",
+    "hanViet": "bộ Xích",
+    "variantOf": null,
+    "hint": "Lửa cháy rực đỏ đất",
+    "kanjiCount": 2,
+    "reviewed": true
+  },
+  {
+    "part": "奚",
+    "vi": "hề",
+    "hanViet": "chữ HỀ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奚",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "宗",
+    "vi": "tông",
+    "hanViet": "chữ TÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宗",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "焦",
+    "vi": "tiêu",
+    "hanViet": "chữ TIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 焦",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "久",
+    "vi": "cửu",
+    "hanViet": "chữ CỬU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 久",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "差",
+    "vi": "soa",
+    "hanViet": "chữ SOA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 差",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "秋",
+    "vi": "thu",
+    "hanViet": "chữ THU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 秋",
+    "kanjiCount": 2,
+    "reviewed": false
+  },
+  {
+    "part": "丆",
+    "vi": "mảnh 丆",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丆",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𠂇",
+    "vi": "mảnh 𠂇",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠂇",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "与",
+    "vi": "dữ",
+    "hanViet": "chữ DỮ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 与",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "习",
+    "vi": "mảnh 习",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 习",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "肉",
+    "vi": "Thịt",
+    "hanViet": "bộ Nhục",
+    "variantOf": null,
+    "hint": "Miếng thịt tươi có thớ nạc",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "会",
+    "vi": "cối",
+    "hanViet": "chữ CỐI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 会",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "吏",
+    "vi": "lại",
+    "hanViet": "chữ LẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 吏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "介",
+    "vi": "giới",
+    "hanViet": "chữ GIỚI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 介",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "⺷",
+    "vi": "mảnh ⺷",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ⺷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "洛",
+    "vi": "lạc",
+    "hanViet": "chữ LẠC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 洛",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "枼",
+    "vi": "diệp",
+    "hanViet": "chữ DIỆP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 枼",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "哥",
+    "vi": "ca",
+    "hanViet": "chữ CA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 哥",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "泉",
+    "vi": "tuyền",
+    "hanViet": "chữ TUYỀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 泉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "黄",
+    "vi": "Màu vàng",
+    "hanViet": "bộ Hoàng",
+    "variantOf": null,
+    "hint": "Màu đất phù sa màu mỡ",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "彦",
+    "vi": "ngạn",
+    "hanViet": "chữ NGẠN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𠂤",
+    "vi": "mảnh 𠂤",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𠂤",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "冏",
+    "vi": "quýnh",
+    "hanViet": "chữ QUÝNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "亜",
+    "vi": "a",
+    "hanViet": "chữ A",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "皆",
+    "vi": "giai",
+    "hanViet": "chữ GIAI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 皆",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "昷",
+    "vi": "ôn",
+    "hanViet": "chữ ÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "巷",
+    "vi": "hạng",
+    "hanViet": "chữ HẠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "佰",
+    "vi": "bách",
+    "hanViet": "chữ BÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 佰",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "敕",
+    "vi": "sắc",
+    "hanViet": "chữ SẮC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敕",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "巽",
+    "vi": "tốn",
+    "hanViet": "chữ TỐN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巽",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "象",
+    "vi": "tượng",
+    "hanViet": "chữ TƯỢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 象",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "射",
+    "vi": "xạ",
+    "hanViet": "chữ XẠ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 射",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "井",
+    "vi": "tỉnh",
+    "hanViet": "chữ TỈNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 井",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "筑",
+    "vi": "trúc",
+    "hanViet": "chữ TRÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 筑",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "何",
+    "vi": "hà",
+    "hanViet": "chữ HÀ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 何",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "面",
+    "vi": "Mặt mũi",
+    "hanViet": "bộ Diện",
+    "variantOf": null,
+    "hint": "Khuôn mặt người tròn trịa",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "呆",
+    "vi": "ngốc",
+    "hanViet": "chữ NGỐC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 呆",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "厄",
+    "vi": "ách",
+    "hanViet": "chữ ÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 厄",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "楽",
+    "vi": "lạc",
+    "hanViet": "chữ LẠC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 楽",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "畀",
+    "vi": "ti",
+    "hanViet": "chữ TI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 畀",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "吊",
+    "vi": "điếu",
+    "hanViet": "chữ ĐIẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 吊",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "式",
+    "vi": "thức",
+    "hanViet": "chữ THỨC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 式",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "坐",
+    "vi": "tọa",
+    "hanViet": "chữ TỌA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 坐",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "匈",
+    "vi": "hung",
+    "hanViet": "chữ HUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 匈",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "契",
+    "vi": "khế",
+    "hanViet": "chữ KHẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 契",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "垔",
+    "vi": "nhân",
+    "hanViet": "chữ NHÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 垔",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "即",
+    "vi": "tức",
+    "hanViet": "chữ TỨC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 即",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "伐",
+    "vi": "phạt",
+    "hanViet": "chữ PHẠT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 伐",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "昆",
+    "vi": "côn",
+    "hanViet": "chữ CÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昆",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "㝵",
+    "vi": "mảnh 㝵",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㝵",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "戒",
+    "vi": "giới",
+    "hanViet": "chữ GIỚI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戒",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "到",
+    "vi": "đáo",
+    "hanViet": "chữ ĐÁO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 到",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "㔾",
+    "vi": "mảnh 㔾",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㔾",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "忩",
+    "vi": "thông",
+    "hanViet": "chữ THÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 忩",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "忍",
+    "vi": "nhẫn",
+    "hanViet": "chữ NHẪN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 忍",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "䚯",
+    "vi": "mảnh 䚯",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 䚯",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "延",
+    "vi": "duyên",
+    "hanViet": "chữ DUYÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 延",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "滕",
+    "vi": "đằng",
+    "hanViet": "chữ ĐẰNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 滕",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "亭",
+    "vi": "đình",
+    "hanViet": "chữ ĐÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亭",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "寅",
+    "vi": "dần",
+    "hanViet": "chữ DẦN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 寅",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "隼",
+    "vi": "chuẩn",
+    "hanViet": "chữ CHUẨN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 隼",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "道",
+    "vi": "đạo",
+    "hanViet": "chữ ĐẠO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 道",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "憂",
+    "vi": "ưu",
+    "hanViet": "chữ ƯU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 憂",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "乎",
+    "vi": "hồ",
+    "hanViet": "chữ HỒ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乎",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "乃",
+    "vi": "nãi",
+    "hanViet": "chữ NÃI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乃",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "客",
+    "vi": "khách",
+    "hanViet": "chữ KHÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 客",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "制",
+    "vi": "chế",
+    "hanViet": "chữ CHẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 制",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "然",
+    "vi": "nhiên",
+    "hanViet": "chữ NHIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 然",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "宛",
+    "vi": "uyển",
+    "hanViet": "chữ UYỂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宛",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "要",
+    "vi": "yếu",
+    "hanViet": "chữ YẾU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 要",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "刑",
+    "vi": "hình",
+    "hanViet": "chữ HÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 刑",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "CDP-8CB8",
+    "vi": "mảnh CDP-8CB8",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành CDP-8CB8",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "景",
+    "vi": "cảnh",
+    "hanViet": "chữ CẢNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 景",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "度",
+    "vi": "độ",
+    "hanViet": "chữ ĐỘ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 度",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "郷",
+    "vi": "hương",
+    "hanViet": "chữ HƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 郷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "斥",
+    "vi": "xích",
+    "hanViet": "chữ XÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 斥",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "貫",
+    "vi": "quán",
+    "hanViet": "chữ QUÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 貫",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "両",
+    "vi": "lạng",
+    "hanViet": "chữ LẠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 両",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "叟",
+    "vi": "tẩu",
+    "hanViet": "chữ TẨU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 叟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卦",
+    "vi": "quái",
+    "hanViet": "chữ QUÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "受",
+    "vi": "thụ",
+    "hanViet": "chữ THỤ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 受",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "宁",
+    "vi": "ninh",
+    "hanViet": "chữ NINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宁",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "敫",
+    "vi": "kiểu",
+    "hanViet": "chữ KIỂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敫",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "万",
+    "vi": "vạn",
+    "hanViet": "chữ VẠN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 万",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "冉",
+    "vi": "nhiễm",
+    "hanViet": "chữ NHIỄM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "妾",
+    "vi": "thiếp",
+    "hanViet": "chữ THIẾP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 妾",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "民",
+    "vi": "dân",
+    "hanViet": "chữ DÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 民",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "帝",
+    "vi": "đế",
+    "hanViet": "chữ ĐẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 帝",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "農",
+    "vi": "nông",
+    "hanViet": "chữ NÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 農",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "亟",
+    "vi": "cức",
+    "hanViet": "chữ CỨC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "建",
+    "vi": "kiến",
+    "hanViet": "chữ KIẾN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 建",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "絜",
+    "vi": "hiệt",
+    "hanViet": "chữ HIỆT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 絜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "多",
+    "vi": "đa",
+    "hanViet": "chữ ĐA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 多",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "呈",
+    "vi": "trình",
+    "hanViet": "chữ TRÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 呈",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "色",
+    "vi": "Màu sắc",
+    "hanViet": "bộ Sắc",
+    "variantOf": null,
+    "hint": "Sắc mặt biểu cảm con người",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "血",
+    "vi": "Máu đỏ",
+    "hanViet": "bộ Huyết",
+    "variantOf": null,
+    "hint": "Giọt máu tươi nhỏ vào chén",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "兵",
+    "vi": "binh",
+    "hanViet": "chữ BINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 兵",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "崔",
+    "vi": "thôi",
+    "hanViet": "chữ THÔI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 崔",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "厷",
+    "vi": "cung",
+    "hanViet": "chữ CUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 厷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "忝",
+    "vi": "thiểm",
+    "hanViet": "chữ THIỂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 忝",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "孟",
+    "vi": "mạnh",
+    "hanViet": "chữ MẠNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 孟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "昏",
+    "vi": "hôn",
+    "hanViet": "chữ HÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "斿",
+    "vi": "du",
+    "hanViet": "chữ DU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 斿",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "昭",
+    "vi": "chiêu",
+    "hanViet": "chữ CHIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 昭",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "戉",
+    "vi": "mậu",
+    "hanViet": "chữ MẬU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "北",
+    "vi": "bắc",
+    "hanViet": "chữ BẮC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 北",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "最",
+    "vi": "tối",
+    "hanViet": "chữ TỐI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 最",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "郎",
+    "vi": "lang",
+    "hanViet": "chữ LANG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 郎",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "尼",
+    "vi": "ni",
+    "hanViet": "chữ NI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尼",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "坴",
+    "vi": "lục",
+    "hanViet": "chữ LỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 坴",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "以",
+    "vi": "dĩ",
+    "hanViet": "chữ DĨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 以",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "匀",
+    "vi": "quân",
+    "hanViet": "chữ QUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 匀",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "夜",
+    "vi": "dạ",
+    "hanViet": "chữ DẠ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𦥑",
+    "vi": "mảnh 𦥑",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𦥑",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𬀷",
+    "vi": "mảnh 𬀷",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𬀷",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "敢",
+    "vi": "cảm",
+    "hanViet": "chữ CẢM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敢",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "舎",
+    "vi": "xá",
+    "hanViet": "chữ XÁ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 舎",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "宓",
+    "vi": "mật",
+    "hanViet": "chữ MẬT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宓",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "間",
+    "vi": "gian",
+    "hanViet": "chữ GIAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 間",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "志",
+    "vi": "chí",
+    "hanViet": "chữ CHÍ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 志",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "肋",
+    "vi": "lặc",
+    "hanViet": "chữ LẶC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 肋",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "唐",
+    "vi": "đường",
+    "hanViet": "chữ ĐƯỜNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 唐",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "烝",
+    "vi": "chưng",
+    "hanViet": "chữ CHƯNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 烝",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "丞",
+    "vi": "thừa",
+    "hanViet": "chữ THỪA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 丞",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "任",
+    "vi": "nhâm",
+    "hanViet": "chữ NHÂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 任",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "蔵",
+    "vi": "tàng",
+    "hanViet": "chữ TÀNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 蔵",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "夅",
+    "vi": "giáng",
+    "hanViet": "chữ GIÁNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夅",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "㐄",
+    "vi": "mảnh 㐄",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 㐄",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "宿",
+    "vi": "túc",
+    "hanViet": "chữ TÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宿",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "従",
+    "vi": "tòng",
+    "hanViet": "chữ TÒNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 従",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "豦",
+    "vi": "cứ",
+    "hanViet": "chữ CỨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 豦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "菫",
+    "vi": "cận",
+    "hanViet": "chữ CẬN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 菫",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "員",
+    "vi": "viên",
+    "hanViet": "chữ VIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 員",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "府",
+    "vi": "phủ",
+    "hanViet": "chữ PHỦ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 府",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "帯",
+    "vi": "đái",
+    "hanViet": "chữ ĐÁI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 帯",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "貴",
+    "vi": "quý",
+    "hanViet": "chữ QUÝ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 貴",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "発",
+    "vi": "bát",
+    "hanViet": "chữ BÁT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 発",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "沓",
+    "vi": "đạp",
+    "hanViet": "chữ ĐẠP",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 沓",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "賞",
+    "vi": "thưởng",
+    "hanViet": "chữ THƯỞNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 賞",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "串",
+    "vi": "xuyến",
+    "hanViet": "chữ XUYẾN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 串",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "弯",
+    "vi": "loan",
+    "hanViet": "chữ LOAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 弯",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "暴",
+    "vi": "bạo",
+    "hanViet": "chữ BẠO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 暴",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "死",
+    "vi": "tử",
+    "hanViet": "chữ TỬ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 死",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "歯",
+    "vi": "Răng",
+    "hanViet": "bộ Xỉ",
+    "variantOf": null,
+    "hint": "Hàng răng cửa đều và trắng",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "頃",
+    "vi": "khoảnh",
+    "hanViet": "chữ KHOẢNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 頃",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "縣",
+    "vi": "huyền",
+    "hanViet": "chữ HUYỀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 縣",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "県",
+    "vi": "huyền",
+    "hanViet": "chữ HUYỀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 県",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𧘇",
+    "vi": "mảnh 𧘇",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𧘇",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "空",
+    "vi": "không",
+    "hanViet": "chữ KHÔNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 空",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "巻",
+    "vi": "quyển",
+    "hanViet": "chữ QUYỂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巻",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卸",
+    "vi": "tá",
+    "hanViet": "chữ TÁ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卸",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "雇",
+    "vi": "cố",
+    "hanViet": "chữ CỐ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 雇",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "隽",
+    "vi": "mảnh 隽",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 隽",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "旉",
+    "vi": "chu",
+    "hanViet": "chữ CHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "隻",
+    "vi": "chích",
+    "hanViet": "chữ CHÍCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 隻",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "戊",
+    "vi": "mậu",
+    "hanViet": "chữ MẬU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戊",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "敏",
+    "vi": "mẫn",
+    "hanViet": "chữ MẪN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 敏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "保",
+    "vi": "bảo",
+    "hanViet": "chữ BẢO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 保",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "粦",
+    "vi": "lân",
+    "hanViet": "chữ LÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 粦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "頼",
+    "vi": "lại",
+    "hanViet": "chữ LẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 頼",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "処",
+    "vi": "xứ",
+    "hanViet": "chữ XỨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 処",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "替",
+    "vi": "thế",
+    "hanViet": "chữ THẾ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 替",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "灰",
+    "vi": "hôi",
+    "hanViet": "chữ HÔI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 灰",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "為",
+    "vi": "vi",
+    "hanViet": "chữ VI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 為",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "舄",
+    "vi": "mảnh 舄",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 舄",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "臼",
+    "vi": "Cối giã",
+    "hanViet": "bộ Cữu",
+    "variantOf": null,
+    "hint": "Cối đá có vết giã gạo",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "罔",
+    "vi": "võng",
+    "hanViet": "chữ VÕNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 罔",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "龍",
+    "vi": "long",
+    "hanViet": "chữ LONG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 龍",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "朝",
+    "vi": "triêu",
+    "hanViet": "chữ TRIÊU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朝",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "尉",
+    "vi": "úy",
+    "hanViet": "chữ ÚY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "徴",
+    "vi": "chủy",
+    "hanViet": "chữ CHỦY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 徴",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "察",
+    "vi": "sát",
+    "hanViet": "chữ SÁT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 察",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "冘",
+    "vi": "dâm",
+    "hanViet": "chữ DÂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冘",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "彖",
+    "vi": "thoán",
+    "hanViet": "chữ THOÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彖",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "異",
+    "vi": "dị",
+    "hanViet": "chữ DỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 異",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "髟",
+    "vi": "Tóc dài",
+    "hanViet": "bộ Tiêu",
+    "variantOf": null,
+    "hint": "Mái tóc dài bay trong gió",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "戻",
+    "vi": "lệ",
+    "hanViet": "chữ LỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戻",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "登",
+    "vi": "đăng",
+    "hanViet": "chữ ĐĂNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 登",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "守",
+    "vi": "thủ",
+    "hanViet": "chữ THỦ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 守",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "却",
+    "vi": "khước",
+    "hanViet": "chữ KHƯỚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 却",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "雲",
+    "vi": "vân",
+    "hanViet": "chữ VÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 雲",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "竜",
+    "vi": "Con rồng",
+    "hanViet": "bộ Long",
+    "variantOf": null,
+    "hint": "Rồng thần uốn lượn mây xanh",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "寍",
+    "vi": "ninh",
+    "hanViet": "chữ NINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 寍",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "段",
+    "vi": "đoạn",
+    "hanViet": "chữ ĐOẠN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 段",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "恵",
+    "vi": "huệ",
+    "hanViet": "chữ HUỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 恵",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "舜",
+    "vi": "thuấn",
+    "hanViet": "chữ THUẤN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 舜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "夸",
+    "vi": "khoa",
+    "hanViet": "chữ KHOA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夸",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "表",
+    "vi": "biểu",
+    "hanViet": "chữ BIỂU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 表",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "務",
+    "vi": "vụ",
+    "hanViet": "chữ VỤ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 務",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "屏",
+    "vi": "bình",
+    "hanViet": "chữ BÌNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 屏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "隊",
+    "vi": "đội",
+    "hanViet": "chữ ĐỘI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 隊",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "波",
+    "vi": "ba",
+    "hanViet": "chữ BA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 波",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "冒",
+    "vi": "mạo",
+    "hanViet": "chữ MẠO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冒",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "息",
+    "vi": "tức",
+    "hanViet": "chữ TỨC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 息",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卂",
+    "vi": "tín",
+    "hanViet": "chữ TÍN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卂",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "畜",
+    "vi": "súc",
+    "hanViet": "chữ SÚC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 畜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "涂",
+    "vi": "đồ",
+    "hanViet": "chữ ĐỒ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 涂",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "楚",
+    "vi": "sở",
+    "hanViet": "chữ SỞ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 楚",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "閏",
+    "vi": "nhuận",
+    "hanViet": "chữ NHUẬN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 閏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "将",
+    "vi": "thương",
+    "hanViet": "chữ THƯƠNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 将",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "咨",
+    "vi": "tư",
+    "hanViet": "chữ TƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 咨",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "名",
+    "vi": "danh",
+    "hanViet": "chữ DANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 名",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "厓",
+    "vi": "nhai",
+    "hanViet": "chữ NHAI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 厓",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "瓦",
+    "vi": "Viên ngói",
+    "hanViet": "bộ Ngõa",
+    "variantOf": null,
+    "hint": "Mảnh ngói đất nung lợp",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "胃",
+    "vi": "vị",
+    "hanViet": "chữ VỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 胃",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "禁",
+    "vi": "cấm",
+    "hanViet": "chữ CẤM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 禁",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "連",
+    "vi": "liên",
+    "hanViet": "chữ LIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 連",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "冢",
+    "vi": "trủng",
+    "hanViet": "chữ TRỦNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 冢",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "䩗",
+    "vi": "mảnh 䩗",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 䩗",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "雍",
+    "vi": "ung",
+    "hanViet": "chữ UNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 雍",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "彭",
+    "vi": "bành",
+    "hanViet": "chữ BÀNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彭",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "量",
+    "vi": "lượng",
+    "hanViet": "chữ LƯỢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 量",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "鼡",
+    "vi": "thử",
+    "hanViet": "chữ THỬ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 鼡",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "莧",
+    "vi": "hiện",
+    "hanViet": "chữ HIỆN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 莧",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "駦",
+    "vi": "mảnh 駦",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 駦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "龹",
+    "vi": "mảnh 龹",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 龹",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "乗",
+    "vi": "thặng",
+    "hanViet": "chữ THẶNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乗",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "参",
+    "vi": "sâm",
+    "hanViet": "chữ SÂM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 参",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "居",
+    "vi": "cư",
+    "hanViet": "chữ CƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 居",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "署",
+    "vi": "thự",
+    "hanViet": "chữ THỰ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 署",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "癸",
+    "vi": "quý",
+    "hanViet": "chữ QUÝ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 癸",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "柬",
+    "vi": "giản",
+    "hanViet": "chữ GIẢN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 柬",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "显",
+    "vi": "mảnh 显",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 显",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "幵",
+    "vi": "kiên",
+    "hanViet": "chữ KIÊN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 幵",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卓",
+    "vi": "trác",
+    "hanViet": "chữ TRÁC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卓",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "旁",
+    "vi": "bàng",
+    "hanViet": "chữ BÀNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 旁",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "愈",
+    "vi": "dũ",
+    "hanViet": "chữ DŨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 愈",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "感",
+    "vi": "cảm",
+    "hanViet": "chữ CẢM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 感",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "盾",
+    "vi": "thuẫn",
+    "hanViet": "chữ THUẪN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 盾",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "全",
+    "vi": "toàn",
+    "hanViet": "chữ TOÀN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 全",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "英",
+    "vi": "anh",
+    "hanViet": "chữ ANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 英",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "逢",
+    "vi": "phùng",
+    "hanViet": "chữ PHÙNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 逢",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "⺗",
+    "vi": "Tim dưới",
+    "hanViet": "bộ Tâm đáy",
+    "variantOf": "心",
+    "hint": "Bốn chấm tim dưới đáy",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "窄",
+    "vi": "trách",
+    "hanViet": "chữ TRÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 窄",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卑",
+    "vi": "ti",
+    "hanViet": "chữ TI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卑",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "戎",
+    "vi": "nhung",
+    "hanViet": "chữ NHUNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 戎",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "維",
+    "vi": "duy",
+    "hanViet": "chữ DUY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 維",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𩵋",
+    "vi": "mảnh 𩵋",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𩵋",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "庶",
+    "vi": "thứ",
+    "hanViet": "chữ THỨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 庶",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "留",
+    "vi": "lưu",
+    "hanViet": "chữ LƯU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 留",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "虚",
+    "vi": "hư",
+    "hanViet": "chữ HƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 虚",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "蜀",
+    "vi": "thục",
+    "hanViet": "chữ THỤC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 蜀",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "壳",
+    "vi": "ê",
+    "hanViet": "chữ Ê",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 壳",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "潘",
+    "vi": "phan",
+    "hanViet": "chữ PHAN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 潘",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "属",
+    "vi": "chú",
+    "hanViet": "chữ CHÚ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 属",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "肙",
+    "vi": "mảnh 肙",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 肙",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "普",
+    "vi": "phổ",
+    "hanViet": "chữ PHỔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 普",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "桀",
+    "vi": "kiệt",
+    "hanViet": "chữ KIỆT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 桀",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "定",
+    "vi": "định",
+    "hanViet": "chữ ĐỊNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 定",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "桼",
+    "vi": "tất",
+    "hanViet": "chữ TẤT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 桼",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "寿",
+    "vi": "thọ",
+    "hanViet": "chữ THỌ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 寿",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "考",
+    "vi": "khảo",
+    "hanViet": "chữ KHẢO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 考",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "堇",
+    "vi": "mảnh 堇",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 堇",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "勇",
+    "vi": "dũng",
+    "hanViet": "chữ DŨNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 勇",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "胥",
+    "vi": "tư",
+    "hanViet": "chữ TƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 胥",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "澡",
+    "vi": "táo",
+    "hanViet": "chữ TÁO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 澡",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "睿",
+    "vi": "duệ",
+    "hanViet": "chữ DUỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 睿",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "豊",
+    "vi": "lễ",
+    "hanViet": "chữ LỄ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 豊",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "夗",
+    "vi": "mảnh 夗",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 夗",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "豈",
+    "vi": "khởi",
+    "hanViet": "chữ KHỞI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 豈",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "殸",
+    "vi": "thanh",
+    "hanViet": "chữ THANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 殸",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "声",
+    "vi": "thanh",
+    "hanViet": "chữ THANH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 声",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "赫",
+    "vi": "hách",
+    "hanViet": "chữ HÁCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 赫",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "華",
+    "vi": "hoa",
+    "hanViet": "chữ HOA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 華",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "厳",
+    "vi": "nghiêm",
+    "hanViet": "chữ NGHIÊM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 厳",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "喜",
+    "vi": "hỉ",
+    "hanViet": "chữ HỈ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 喜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "希",
+    "vi": "hy",
+    "hanViet": "chữ HY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 希",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "宜",
+    "vi": "nghi",
+    "hanViet": "chữ NGHI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 宜",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "矞",
+    "vi": "duật",
+    "hanViet": "chữ DUẬT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 矞",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "彗",
+    "vi": "tuệ",
+    "hanViet": "chữ TUỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 彗",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "江",
+    "vi": "giang",
+    "hanViet": "chữ GIANG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 江",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "沙",
+    "vi": "sa",
+    "hanViet": "chữ SA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 沙",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "粲",
+    "vi": "sán",
+    "hanViet": "chữ SÁN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 粲",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "易",
+    "vi": "dịch",
+    "hanViet": "chữ DỊCH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 易",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "時",
+    "vi": "thì",
+    "hanViet": "chữ THÌ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 時",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "需",
+    "vi": "nhu",
+    "hanViet": "chữ NHU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 需",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "尊",
+    "vi": "tôn",
+    "hanViet": "chữ TÔN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 尊",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "如",
+    "vi": "như",
+    "hanViet": "chữ NHƯ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 如",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "㇁",
+    "vi": "mảnh ㇁",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành ㇁",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "秦",
+    "vi": "tần",
+    "hanViet": "chữ TẦN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 秦",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "新",
+    "vi": "tân",
+    "hanViet": "chữ TÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 新",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "卒",
+    "vi": "tốt",
+    "hanViet": "chữ TỐT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 卒",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "芻",
+    "vi": "sô",
+    "hanViet": "chữ SÔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 芻",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "艸",
+    "vi": "thảo",
+    "hanViet": "chữ THẢO",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 艸",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "亩",
+    "vi": "mảnh 亩",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 亩",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "善",
+    "vi": "thiện",
+    "hanViet": "chữ THIỆN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 善",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "朔",
+    "vi": "sóc",
+    "hanViet": "chữ SÓC",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朔",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "物",
+    "vi": "vật",
+    "hanViet": "chữ VẬT",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 物",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "雁",
+    "vi": "nhạn",
+    "hanViet": "chữ NHẠN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 雁",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "規",
+    "vi": "quy",
+    "hanViet": "chữ QUY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 規",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "春",
+    "vi": "xuân",
+    "hanViet": "chữ XUÂN",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 春",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "弟",
+    "vi": "đệ",
+    "hanViet": "chữ ĐỆ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 弟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "乕",
+    "vi": "hổ",
+    "hanViet": "chữ HỔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 乕",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "朕",
+    "vi": "trẫm",
+    "hanViet": "chữ TRẪM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 朕",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "奈",
+    "vi": "nại",
+    "hanViet": "chữ NẠI",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 奈",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "虎",
+    "vi": "hổ",
+    "hanViet": "chữ HỔ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 虎",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "杉",
+    "vi": "sam",
+    "hanViet": "chữ SAM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 杉",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "武",
+    "vi": "vũ",
+    "hanViet": "chữ VŨ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 武",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "放",
+    "vi": "phóng",
+    "hanViet": "chữ PHÓNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 放",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𩾏",
+    "vi": "mảnh 𩾏",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𩾏",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "念",
+    "vi": "niệm",
+    "hanViet": "chữ NIỆM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 念",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "領",
+    "vi": "lĩnh",
+    "hanViet": "chữ LĨNH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 領",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "委",
+    "vi": "ủy",
+    "hanViet": "chữ ỦY",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 委",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "巠",
+    "vi": "kinh",
+    "hanViet": "chữ KINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巠",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "耶",
+    "vi": "da",
+    "hanViet": "chữ DA",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 耶",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "晃",
+    "vi": "hoảng",
+    "hanViet": "chữ HOẢNG",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 晃",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "零",
+    "vi": "linh",
+    "hanViet": "chữ LINH",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 零",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "牟",
+    "vi": "mưu",
+    "hanViet": "chữ MƯU",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 牟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "𥝢",
+    "vi": "mảnh 𥝢",
+    "hanViet": null,
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 𥝢",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "黍",
+    "vi": "Cây kê",
+    "hanViet": "bộ Thử",
+    "variantOf": null,
+    "hint": "Bông kê dẻo nấu xôi thơm",
+    "kanjiCount": 1,
+    "reviewed": true
+  },
+  {
+    "part": "稟",
+    "vi": "bẩm",
+    "hanViet": "chữ BẨM",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 稟",
+    "kanjiCount": 1,
+    "reviewed": false
+  },
+  {
+    "part": "巳",
+    "vi": "tị",
+    "hanViet": "chữ TỊ",
+    "variantOf": null,
+    "hint": "Mảnh cấu thành 巳",
+    "kanjiCount": 1,
+    "reviewed": false
+  }
+]
