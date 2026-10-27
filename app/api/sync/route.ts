@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const GITHUB_TOKEN = process.env.GITHUB_SYNC_TOKEN || "";
-const GIST_ID = process.env.GITHUB_SYNC_GIST_ID || "7dac7196ac30df120523d260f68ad324";
-
-// In-memory fallback relay cache in case GitHub API has transient rate limits
-const memoryRelayCache = new Map<string, { data: any; lastUpdated: string }>();
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirebaseFirestore } from "@/lib/firebase";
 
 function sanitizeKey(key: string): string {
-  return (key || "").trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
+  return (
+    (key || "studyjapan_master")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]/g, "") || "studyjapan_master"
+  );
 }
 
 export async function GET(req: NextRequest) {
@@ -15,56 +16,17 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const key = sanitizeKey(searchParams.get("key") || "");
 
-    if (!key) {
-      return NextResponse.json(
-        { error: "Thiếu mã đồng bộ (key)" },
-        { status: 400 }
-      );
-    }
+    const firestore = getFirebaseFirestore();
+    const docRef = doc(firestore, "sync_channels", key);
+    const snap = await getDoc(docRef);
 
-    const filename = `sync_${key}.json`;
-
-    // 1. Fetch from GitHub Gist if token configured
-    if (GITHUB_TOKEN) {
-      try {
-        const gistRes = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-          headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            "User-Agent": "StudyJapan-App",
-          },
-          cache: "no-store",
-        });
-
-        if (gistRes.ok) {
-          const gist = await gistRes.json();
-          const file = gist.files?.[filename];
-
-          if (file && file.content) {
-            const payload = JSON.parse(file.content);
-            return NextResponse.json({
-              success: true,
-              key,
-              data: payload.data || payload,
-              lastUpdated:
-                payload.lastUpdated ||
-                payload.exportedAt ||
-                new Date().toISOString(),
-            });
-          }
-        }
-      } catch (e) {
-        console.warn("Gist fetch warning, falling back to memory cache:", e);
-      }
-    }
-
-    // 2. Check memory relay cache
-    const cached = memoryRelayCache.get(key);
-    if (cached) {
+    if (snap.exists()) {
+      const payload = snap.data();
       return NextResponse.json({
         success: true,
         key,
-        data: cached.data,
-        lastUpdated: cached.lastUpdated,
+        data: payload.data || payload,
+        lastUpdated: payload.lastUpdated || new Date().toISOString(),
       });
     }
 
@@ -90,13 +52,6 @@ export async function POST(req: NextRequest) {
     const key = sanitizeKey(body.key || "");
     const data = body.data;
 
-    if (!key) {
-      return NextResponse.json(
-        { error: "Thiếu mã đồng bộ (key)" },
-        { status: 400 }
-      );
-    }
-
     if (!data) {
       return NextResponse.json(
         { error: "Thiếu dữ liệu đồng bộ" },
@@ -105,50 +60,22 @@ export async function POST(req: NextRequest) {
     }
 
     const lastUpdated = body.lastUpdated || new Date().toISOString();
-    const payload = {
+    const deviceId = body.deviceId || "api_client";
+
+    const firestore = getFirebaseFirestore();
+    const docRef = doc(firestore, "sync_channels", key);
+    await setDoc(docRef, {
       version: 2,
       key,
+      deviceId,
       lastUpdated,
       data,
-    };
-
-    // Save to memory relay cache
-    memoryRelayCache.set(key, { data, lastUpdated });
-
-    // Save to GitHub Secret Gist if configured
-    if (GITHUB_TOKEN) {
-      const filename = `sync_${key}.json`;
-      try {
-        const gistRes = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            "User-Agent": "StudyJapan-App",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            description: "StudyJapan Cloud Sync Data Vault",
-            files: {
-              [filename]: {
-                content: JSON.stringify(payload),
-              },
-            },
-          }),
-        });
-
-        if (!gistRes.ok) {
-          const errText = await gistRes.text();
-          console.warn("Gist update warning:", errText);
-        }
-      } catch (e) {
-        console.warn("Gist patch error, saved to relay cache:", e);
-      }
-    }
+    });
 
     return NextResponse.json({
       success: true,
       lastUpdated,
-      message: "Đã đồng bộ lên đám mây thành công.",
+      message: "Đã đồng bộ lên Firebase thành công.",
     });
   } catch (err: any) {
     return NextResponse.json(

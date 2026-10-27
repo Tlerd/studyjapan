@@ -114,8 +114,13 @@ export function SyncModal({ isOpen, onClose, onSyncCompleted }: SyncModalProps) 
           <div className="flex items-center gap-2">
             <span className="text-2xl">☁️</span>
             <div>
-              <h2 className="font-bold text-base text-text">Đồng bộ Máy tính & Điện thoại</h2>
-              <p className="text-xs text-muted">Dữ liệu từ vựng, ngữ pháp, bài tập và tiến độ ôn tập</p>
+              <div className="flex items-center gap-2">
+                <h2 className="font-bold text-base text-text">Đồng bộ Máy tính & Điện thoại</h2>
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-orange-500/10 text-orange-500 border border-orange-500/20">
+                  🔥 Firebase Realtime
+                </span>
+              </div>
+              <p className="text-xs text-muted">Tự động đồng bộ thời gian thực hai chiều</p>
             </div>
           </div>
           <button

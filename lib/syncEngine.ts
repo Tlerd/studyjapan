@@ -1,14 +1,37 @@
 import { useState, useEffect } from "react";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { getFirebaseFirestore } from "./firebase";
 import {
   exportDatabaseToJson,
   mergeDatabaseFromJson,
   registerAutoSyncCallback,
+  isAutoSyncSuppressed,
 } from "./db";
 
 export const DEFAULT_SHARED_KEY = "studyjapan_master";
 const SYNC_KEY_STORAGE = "cloud_sync_key";
 const AUTO_SYNC_STORAGE = "cloud_auto_sync";
 const LAST_SYNC_STORAGE = "cloud_last_sync_time";
+const DEVICE_ID_STORAGE = "cloud_device_id";
+
+export function sanitizeKey(key: string): string {
+  return (
+    (key || DEFAULT_SHARED_KEY)
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]/g, "") || DEFAULT_SHARED_KEY
+  );
+}
+
+export function getOrCreateDeviceId(): string {
+  if (typeof window === "undefined") return "server";
+  let id = localStorage.getItem(DEVICE_ID_STORAGE);
+  if (!id) {
+    id = "dev_" + Math.random().toString(36).substring(2, 10);
+    localStorage.setItem(DEVICE_ID_STORAGE, id);
+  }
+  return id;
+}
 
 export function generateRandomSyncKey(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -69,78 +92,111 @@ export function updateLastSyncTime(timeStr?: string): void {
 }
 
 /**
- * Đẩy toàn bộ dữ liệu máy hiện tại lên Đám mây
+ * Đẩy toàn bộ dữ liệu máy hiện tại lên Firebase Firestore
  */
 export async function uploadCurrentDataToCloud(
   targetKey?: string
 ): Promise<{ success: boolean; message: string; lastUpdated?: string }> {
-  const key = targetKey || getOrCreateSyncKey();
-  if (!key) {
-    throw new Error("Chưa có mã đồng bộ (Sync Key).");
-  }
+  const rawKey = targetKey || getOrCreateSyncKey();
+  const key = sanitizeKey(rawKey);
 
   const jsonString = await exportDatabaseToJson();
   const parsed = JSON.parse(jsonString);
   const lastUpdated = new Date().toISOString();
+  const deviceId = getOrCreateDeviceId();
 
-  const res = await fetch("/api/sync", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
+  try {
+    const firestore = getFirebaseFirestore();
+    const docRef = doc(firestore, "sync_channels", key);
+    await setDoc(docRef, {
       key,
-      data: parsed.data,
       lastUpdated,
-    }),
-  });
+      deviceId,
+      data: parsed.data,
+      version: 2,
+    });
 
-  const resData = await res.json();
-  if (!res.ok || !resData.success) {
-    throw new Error(
-      resData.error || resData.message || "Lỗi khi tải dữ liệu lên đám mây."
-    );
+    updateLastSyncTime();
+    return {
+      success: true,
+      message: "Đã đồng bộ lên Firebase thành công.",
+      lastUpdated,
+    };
+  } catch (err: any) {
+    // Fallback: try Next.js /api/sync endpoint
+    try {
+      const res = await fetch("/api/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key,
+          data: parsed.data,
+          lastUpdated,
+          deviceId,
+        }),
+      });
+      if (res.ok) {
+        updateLastSyncTime();
+        return {
+          success: true,
+          message: "Đã đồng bộ lên đám mây thành công.",
+          lastUpdated,
+        };
+      }
+    } catch {}
+    throw new Error(err.message || "Lỗi khi tải dữ liệu lên Firebase.");
   }
-
-  updateLastSyncTime();
-  return {
-    success: true,
-    message: resData.message || "Đã đồng bộ lên đám mây thành công.",
-    lastUpdated,
-  };
 }
 
 /**
- * Tải dữ liệu từ đám mây về và hợp nhất (merge) vào cơ sở dữ liệu trên máy
+ * Tải dữ liệu từ Firebase Firestore về và hợp nhất (merge) vào IndexedDB
  */
 export async function downloadAndMergeFromCloud(
   targetKey?: string
 ): Promise<{ success: boolean; message: string; mergedCount: number }> {
-  const key = targetKey || getOrCreateSyncKey();
-  if (!key) {
-    throw new Error("Chưa có mã đồng bộ (Sync Key).");
-  }
+  const rawKey = targetKey || getOrCreateSyncKey();
+  const key = sanitizeKey(rawKey);
 
-  const res = await fetch(`/api/sync?key=${encodeURIComponent(key)}`);
-  const resData = await res.json();
+  try {
+    const firestore = getFirebaseFirestore();
+    const docRef = doc(firestore, "sync_channels", key);
+    const snap = await getDoc(docRef);
 
-  if (!res.ok || !resData.success) {
-    if (resData.notFound) {
+    if (!snap.exists()) {
       throw new Error(
         "Chưa có bản lưu nào trên đám mây. Đang khởi tạo bản lưu đầu tiên từ thiết bị..."
       );
     }
-    throw new Error(
-      resData.error || resData.message || "Lỗi khi tải dữ liệu từ đám mây."
-    );
+
+    const payload = snap.data();
+    const mergeRes = await mergeDatabaseFromJson(payload as any);
+    updateLastSyncTime();
+
+    return {
+      success: true,
+      message: `Đã tự động đồng bộ thành công! (${mergeRes.mergedCount} mục)`,
+      mergedCount: mergeRes.mergedCount,
+    };
+  } catch (err: any) {
+    if (err.message?.includes("Chưa có bản lưu")) {
+      throw err;
+    }
+    // Fallback: try Next.js /api/sync endpoint
+    try {
+      const res = await fetch(`/api/sync?key=${encodeURIComponent(key)}`);
+      const resData = await res.json();
+      if (res.ok && resData.success) {
+        const mergeRes = await mergeDatabaseFromJson(resData);
+        updateLastSyncTime();
+        return {
+          success: true,
+          message: `Đã tự động đồng bộ thành công! (${mergeRes.mergedCount} mục)`,
+          mergedCount: mergeRes.mergedCount,
+        };
+      }
+    } catch {}
+    throw new Error(err.message || "Lỗi khi tải dữ liệu từ đám mây.");
   }
-
-  const mergeRes = await mergeDatabaseFromJson(resData);
-  updateLastSyncTime();
-
-  return {
-    success: true,
-    message: `Đã tự động đồng bộ thành công! (${mergeRes.mergedCount} mục)`,
-    mergedCount: mergeRes.mergedCount,
-  };
 }
 
 // Debounced background auto-sync trigger
@@ -167,10 +223,10 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * Hook tự động đồng bộ thời gian thực:
- * 1. Tự động kéo dữ liệu khi mở app
- * 2. Tự động kéo dữ liệu khi mở khóa điện thoại hoặc quay lại tab (focus / visibilitychange)
- * 3. Tự động thăm dò định kỳ
+ * Hook tự động đồng bộ thời gian thực qua Firebase:
+ * 1. Tự động lắng nghe thay đổi thời gian thực qua Firestore onSnapshot (dưới 0.5s)
+ * 2. Tự động kéo dữ liệu khi mở app
+ * 3. Tự động kéo dữ liệu khi mở khóa điện thoại hoặc quay lại tab (focus / visibilitychange)
  */
 export function useAutoSync(onSyncUpdate?: () => void) {
   const [syncStatus, setSyncStatus] = useState<
@@ -181,12 +237,14 @@ export function useAutoSync(onSyncUpdate?: () => void) {
   useEffect(() => {
     let isMounted = true;
     setLastSyncTime(getLastSyncTime());
+    const myDeviceId = getOrCreateDeviceId();
+    const key = sanitizeKey(getOrCreateSyncKey());
 
     const performAutoPull = async () => {
       if (!isAutoSyncEnabled()) return;
       try {
         setSyncStatus("syncing");
-        const res = await downloadAndMergeFromCloud();
+        const res = await downloadAndMergeFromCloud(key);
         if (isMounted) {
           setSyncStatus("synced");
           setLastSyncTime(getLastSyncTime());
@@ -201,7 +259,7 @@ export function useAutoSync(onSyncUpdate?: () => void) {
             err.message?.includes("Chưa có bản lưu") ||
             err.message?.includes("khởi tạo")
           ) {
-            uploadCurrentDataToCloud().catch(() => {});
+            uploadCurrentDataToCloud(key).catch(() => {});
           }
           setSyncStatus("idle");
         }
@@ -211,31 +269,73 @@ export function useAutoSync(onSyncUpdate?: () => void) {
     // 1. Initial sync on app load
     performAutoPull();
 
-    // 2. Sync on window focus
+    // 2. Real-time WebSocket sync via Firebase Firestore onSnapshot!
+    let unsubscribeFirestore: (() => void) | null = null;
+    try {
+      const firestore = getFirebaseFirestore();
+      const docRef = doc(firestore, "sync_channels", key);
+
+      unsubscribeFirestore = onSnapshot(
+        docRef,
+        { includeMetadataChanges: false },
+        async (docSnap) => {
+          if (!docSnap.exists() || !isAutoSyncEnabled()) return;
+          const remoteData = docSnap.data();
+
+          // Ignore own changes from this device to prevent echo
+          if (remoteData?.deviceId && remoteData.deviceId === myDeviceId) {
+            return;
+          }
+          if (isAutoSyncSuppressed()) return;
+
+          try {
+            if (isMounted) setSyncStatus("syncing");
+            const mergeRes = await mergeDatabaseFromJson(remoteData as any);
+            updateLastSyncTime();
+            if (isMounted) {
+              setSyncStatus("synced");
+              setLastSyncTime(getLastSyncTime());
+              if (onSyncUpdate) {
+                onSyncUpdate();
+              }
+            }
+          } catch (e) {
+            console.warn("Realtime sync merge error:", e);
+            if (isMounted) setSyncStatus("idle");
+          }
+        },
+        (error) => {
+          console.warn("Firestore onSnapshot error:", error);
+        }
+      );
+    } catch (e) {
+      console.warn("Could not attach firestore listener:", e);
+    }
+
+    // 3. Sync on window focus
     const handleFocus = () => {
       performAutoPull();
     };
 
-    // 3. Sync on mobile phone screen unlock / tab switch
+    // 4. Sync on mobile phone screen unlock / tab switch
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         performAutoPull();
       }
     };
 
-    // 4. Periodic sync every 40 seconds
-    const interval = setInterval(performAutoPull, 40000);
-
     window.addEventListener("focus", handleFocus);
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       isMounted = false;
-      clearInterval(interval);
+      if (unsubscribeFirestore) {
+        unsubscribeFirestore();
+      }
       window.removeEventListener("focus", handleFocus);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [onSyncUpdate]);
 
   return { syncStatus, lastSyncTime };
 }
