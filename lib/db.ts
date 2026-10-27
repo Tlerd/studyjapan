@@ -519,5 +519,11 @@ export async function mergeDatabaseFromJson(
     setSuppressAutoSync(false);
   }
 
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("studyjapan:data-updated", { detail: { mergedCount } })
+    );
+  }
+
   return { mergedCount };
 }

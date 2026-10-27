@@ -221,6 +221,15 @@ export default function ScanAndReviewPage() {
 
   useEffect(() => {
     loadDatabaseData();
+
+    const handleDataUpdate = () => {
+      loadDatabaseData();
+    };
+
+    window.addEventListener("studyjapan:data-updated", handleDataUpdate);
+    return () => {
+      window.removeEventListener("studyjapan:data-updated", handleDataUpdate);
+    };
   }, [loadDatabaseData]);
 
   // Save Settings Changes to DB

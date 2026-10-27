@@ -59,8 +59,9 @@ export function getOrCreateSyncKey(): string {
 
 export function saveSyncKey(newKey: string): void {
   if (typeof window === "undefined") return;
-  const clean = newKey.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, "");
-  localStorage.setItem(SYNC_KEY_STORAGE, clean || DEFAULT_SHARED_KEY);
+  const clean = newKey.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, "") || DEFAULT_SHARED_KEY;
+  localStorage.setItem(SYNC_KEY_STORAGE, clean);
+  window.dispatchEvent(new CustomEvent("studyjapan:key-changed", { detail: clean }));
 }
 
 export function isAutoSyncEnabled(): boolean {
@@ -233,12 +234,25 @@ export function useAutoSync(onSyncUpdate?: () => void) {
     "idle" | "syncing" | "synced" | "error"
   >("idle");
   const [lastSyncTime, setLastSyncTime] = useState<string | null>(null);
+  const [activeSyncKey, setActiveSyncKey] = useState<string>(() =>
+    sanitizeKey(getOrCreateSyncKey())
+  );
+
+  useEffect(() => {
+    const handleKeyChange = (e: any) => {
+      setActiveSyncKey(sanitizeKey(e.detail || getOrCreateSyncKey()));
+    };
+    window.addEventListener("studyjapan:key-changed", handleKeyChange);
+    return () => {
+      window.removeEventListener("studyjapan:key-changed", handleKeyChange);
+    };
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
     setLastSyncTime(getLastSyncTime());
     const myDeviceId = getOrCreateDeviceId();
-    const key = sanitizeKey(getOrCreateSyncKey());
+    const key = activeSyncKey;
 
     const performAutoPull = async () => {
       if (!isAutoSyncEnabled()) return;
@@ -266,7 +280,7 @@ export function useAutoSync(onSyncUpdate?: () => void) {
       }
     };
 
-    // 1. Initial sync on app load
+    // 1. Initial sync on app load or key change
     performAutoPull();
 
     // 2. Real-time WebSocket sync via Firebase Firestore onSnapshot!
@@ -335,7 +349,7 @@ export function useAutoSync(onSyncUpdate?: () => void) {
       window.removeEventListener("focus", handleFocus);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [onSyncUpdate]);
+  }, [activeSyncKey, onSyncUpdate]);
 
   return { syncStatus, lastSyncTime };
 }
