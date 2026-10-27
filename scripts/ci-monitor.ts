@@ -8,13 +8,13 @@ interface WorkflowRun {
   createdAt: string;
   headSha: string;
   event: string;
-  title: string;
+  displayTitle: string;
 }
 
 function getLatestRun(): WorkflowRun | null {
   try {
     const raw = execSync(
-      'gh run list --limit 1 --json databaseId,status,conclusion,url,createdAt,headSha,event,title',
+      'gh run list --limit 1 --json databaseId,status,conclusion,url,createdAt,headSha,event,displayTitle',
       { encoding: "utf-8", stdio: ["ignore", "pipe", "pipe"] }
     );
     const runs: WorkflowRun[] = JSON.parse(raw);
@@ -38,7 +38,7 @@ async function monitorCI() {
     process.exit(1);
   }
 
-  console.log(`📌 Lượt chạy: #${run.databaseId} - "${run.title}"`);
+  console.log(`📌 Lượt chạy: #${run.databaseId} - "${run.displayTitle}"`);
   console.log(`🔗 Chi tiết: ${run.url}`);
 
   // Chờ nếu workflow đang trong hàng đợi hoặc đang chạy
