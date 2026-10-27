@@ -361,13 +361,25 @@ export default function ScanAndReviewPage() {
       const trigger = match[1] as "@" | "/";
       const query = match[2] || "";
       const startIndex = cursorPos - query.length - 1;
-      setMentionState({
-        active: true,
-        trigger,
-        query,
-        startIndex,
-        selectedIndex: 0,
-        targetField: field,
+      setMentionState((prev) => {
+        // If trigger, query, and startIndex are unchanged, keep the existing selectedIndex!
+        if (
+          prev.active &&
+          prev.trigger === trigger &&
+          prev.query === query &&
+          prev.startIndex === startIndex &&
+          prev.targetField === field
+        ) {
+          return prev;
+        }
+        return {
+          active: true,
+          trigger,
+          query,
+          startIndex,
+          selectedIndex: 0,
+          targetField: field,
+        };
       });
     } else {
       setMentionState((prev) => (prev.active ? { ...prev, active: false } : prev));
@@ -386,7 +398,7 @@ export default function ScanAndReviewPage() {
   };
 
   const insertSkillMention = (skill: SkillItem) => {
-    if (!mentionState.targetField) return;
+    if (!mentionState.targetField || !skill) return;
 
     const tag = mentionState.trigger === "/" ? `/${skill.slug} ` : `@${skill.title} `;
 
@@ -434,20 +446,28 @@ export default function ScanAndReviewPage() {
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
+      e.stopPropagation();
       setMentionState((prev) => ({
         ...prev,
         selectedIndex: (prev.selectedIndex + 1) % filtered.length,
       }));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
+      e.stopPropagation();
       setMentionState((prev) => ({
         ...prev,
         selectedIndex: (prev.selectedIndex - 1 + filtered.length) % filtered.length,
       }));
     } else if (e.key === "Enter" || e.key === "Tab") {
       e.preventDefault();
-      insertSkillMention(filtered[mentionState.selectedIndex]);
+      e.stopPropagation();
+      const targetSkill = filtered[mentionState.selectedIndex] || filtered[0];
+      if (targetSkill) {
+        insertSkillMention(targetSkill);
+      }
     } else if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
       setMentionState((prev) => ({ ...prev, active: false }));
     }
   };
@@ -1191,6 +1211,9 @@ export default function ScanAndReviewPage() {
                           checkMentionTrigger(e.target.value, e.target.selectionStart || 0, "scanText");
                         }}
                         onKeyUp={(e) => {
+                          if (["ArrowDown", "ArrowUp", "Enter", "Tab", "Escape"].includes(e.key)) {
+                            return;
+                          }
                           checkMentionTrigger(textInput, (e.target as HTMLTextAreaElement).selectionStart || 0, "scanText");
                         }}
                         onKeyDown={(e) => handleMentionKeyDown(e, filteredMentionSkills)}
@@ -1208,7 +1231,16 @@ export default function ScanAndReviewPage() {
                           {filteredMentionSkills.map((skill, idx) => (
                             <button
                               key={skill.id}
+                              ref={(el) => {
+                                if (idx === mentionState.selectedIndex && el) {
+                                  el.scrollIntoView({ block: "nearest" });
+                                }
+                              }}
                               type="button"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                insertSkillMention(skill);
+                              }}
                               onClick={() => insertSkillMention(skill)}
                               className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
                                 idx === mentionState.selectedIndex
@@ -1630,7 +1662,16 @@ export default function ScanAndReviewPage() {
                           {filteredMentionSkills.map((skill, idx) => (
                             <button
                               key={skill.id}
+                              ref={(el) => {
+                                if (idx === mentionState.selectedIndex && el) {
+                                  el.scrollIntoView({ block: "nearest" });
+                                }
+                              }}
                               type="button"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                insertSkillMention(skill);
+                              }}
                               onClick={() => insertSkillMention(skill)}
                               className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
                                 idx === mentionState.selectedIndex
@@ -1660,6 +1701,9 @@ export default function ScanAndReviewPage() {
                           checkMentionTrigger(e.target.value, e.target.selectionStart || 0, "chatText");
                         }}
                         onKeyUp={(e) => {
+                          if (["ArrowDown", "ArrowUp", "Enter", "Tab", "Escape"].includes(e.key)) {
+                            return;
+                          }
                           checkMentionTrigger(chatInput, (e.target as HTMLInputElement).selectionStart || 0, "chatText");
                         }}
                         onKeyDown={(e) => handleMentionKeyDown(e, filteredMentionSkills)}
