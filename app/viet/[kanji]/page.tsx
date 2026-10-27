@@ -28,7 +28,7 @@ export default function KanjiWritingPracticePage({ params }: PageProps) {
 
   const kanjiDb = kanjiData as Record<string, any>;
   const kMeta = kanjiDb[rawKanji] || {
-    hanViet: "HỌC",
+    hanViet: rawKanji,
     meaning: "Học tập",
     strokes: 8,
     jlpt: 5,
@@ -166,7 +166,7 @@ export default function KanjiWritingPracticePage({ params }: PageProps) {
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 space-y-6">
         {/* Breadcrumb */}
         <nav className="text-xs text-muted flex items-center gap-1.5">
-          <Link href="/" className="hover:text-accent">
+          <Link href={`/?q=${encodeURIComponent(rawKanji)}`} className="hover:text-accent">
             🕸️ Mạng nhện
           </Link>
           <span>›</span>

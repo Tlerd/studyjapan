@@ -177,7 +177,7 @@ export default function LevelOverviewPage({ params }: PageProps) {
                 key={k.char}
                 className="card p-3 flex flex-col items-center justify-between text-center hover:border-accent hover:shadow-md transition-all group"
               >
-                <Link href={`/?q=${encodeURIComponent(k.char)}`} className="w-full">
+                <Link href={`/?q=${encodeURIComponent(k.char)}&level=${levelNum}`} className="w-full">
                   <span className="font-ja text-3xl font-bold text-accent group-hover:scale-110 transition-transform block">
                     {k.char}
                   </span>
@@ -209,7 +209,7 @@ export default function LevelOverviewPage({ params }: PageProps) {
             {wordsList.map((w) => (
               <Link
                 key={w.word}
-                href={`/?q=${encodeURIComponent(w.word)}`}
+                href={`/?q=${encodeURIComponent(w.word)}&level=${levelNum}`}
                 className="card p-3 flex flex-col justify-between hover:border-accent hover:shadow-sm transition-all group"
               >
                 <div>

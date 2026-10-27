@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useTransition } from "react";
+import React, { useState, useEffect, useMemo, useTransition, useRef, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import * as wanakana from "wanakana";
 import { Navbar } from "../components/Navbar";
 import { LevelPicker } from "../components/LevelPicker";
@@ -8,15 +9,72 @@ import { SpiderGraph } from "../components/graph/SpiderGraph";
 import { DetailPanel } from "../components/graph/DetailPanel";
 import { buildGraph, type GraphResult, type NodeData } from "../lib/graphBuilder";
 import { type Level } from "../lib/level";
+import kanjiData from "../public/kanji.json";
+import wordsData from "../data/words.json";
 
-export default function SpiderGraphPage() {
-  const [query, setQuery] = useState<string>("学");
-  const [debouncedQuery, setDebouncedQuery] = useState<string>("学");
-  const [currentLevel, setCurrentLevel] = useState<Level>(5);
+function SpiderGraphContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const qParam = searchParams.get("q");
+  const levelParam = searchParams.get("level");
+
+  const initialWord = qParam?.trim() || "学";
+  const [query, setQuery] = useState<string>(initialWord);
+  const [debouncedQuery, setDebouncedQuery] = useState<string>(initialWord);
+  const [currentLevel, setCurrentLevel] = useState<Level>(() => {
+    if (levelParam) {
+      const parsed = parseInt(levelParam, 10);
+      if (parsed >= 1 && parsed <= 5) return parsed as Level;
+    }
+    const kanjiDb = kanjiData as Record<string, any>;
+    const wordsDb = wordsData as Record<string, any>;
+    const itemLevel = kanjiDb[initialWord]?.jlpt || wordsDb[initialWord]?.jlpt;
+    if (itemLevel && itemLevel >= 1 && itemLevel <= 5) {
+      return itemLevel as Level;
+    }
+    return 5;
+  });
   const [showHigherLevel, setShowHigherLevel] = useState<boolean>(false);
   const [selectedNode, setSelectedNode] = useState<NodeData | null>(null);
-  const [breadcrumbs, setBreadcrumbs] = useState<string[]>(["学"]);
+  const [breadcrumbs, setBreadcrumbs] = useState<string[]>([initialWord]);
   const [, startTransition] = useTransition();
+
+  const lastSearchParamQ = useRef<string | null>(qParam);
+
+  // Sync state whenever URL query params change (e.g. user clicked a Kanji link /?q=... or back/forward)
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q !== lastSearchParamQ.current) {
+      lastSearchParamQ.current = q;
+      const target = q ? q.trim() : "学";
+      setQuery(target);
+      setDebouncedQuery(target);
+      setBreadcrumbs((prev) => {
+        if (prev.includes(target)) {
+          return prev.slice(0, prev.indexOf(target) + 1);
+        }
+        return [...prev, target];
+      });
+
+      const kanjiDb = kanjiData as Record<string, any>;
+      const wordsDb = wordsData as Record<string, any>;
+      const itemLevel = kanjiDb[target]?.jlpt || wordsDb[target]?.jlpt;
+      if (itemLevel && itemLevel >= 1 && itemLevel <= 5) {
+        if (itemLevel < currentLevel) {
+          setCurrentLevel(itemLevel as Level);
+        }
+      }
+    }
+
+    const lvl = searchParams.get("level");
+    if (lvl) {
+      const parsed = parseInt(lvl, 10);
+      if (parsed >= 1 && parsed <= 5) {
+        setCurrentLevel(parsed as Level);
+      }
+    }
+  }, [searchParams, currentLevel]);
 
   // Debounce query 150ms
   useEffect(() => {
@@ -24,6 +82,22 @@ export default function SpiderGraphPage() {
       startTransition(() => {
         setDebouncedQuery(query);
       });
+      // Synchronize URL search params when user types without adding history push entries
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        const trimmed = query.trim();
+        if (trimmed) {
+          if (url.searchParams.get("q") !== trimmed) {
+            url.searchParams.set("q", trimmed);
+            window.history.replaceState(null, "", url.pathname + url.search);
+          }
+        } else {
+          if (url.searchParams.has("q")) {
+            url.searchParams.delete("q");
+            window.history.replaceState(null, "", url.pathname + url.search);
+          }
+        }
+      }
     }, 150);
     return () => clearTimeout(timer);
   }, [query]);
@@ -57,6 +131,7 @@ export default function SpiderGraphPage() {
 
   // Navigate to new center node
   const handleCenterChange = (newCenter: string) => {
+    lastSearchParamQ.current = newCenter;
     setQuery(newCenter);
     setDebouncedQuery(newCenter);
     setBreadcrumbs((prev) => {
@@ -65,6 +140,17 @@ export default function SpiderGraphPage() {
       }
       return [...prev, newCenter];
     });
+
+    const kanjiDb = kanjiData as Record<string, any>;
+    const wordsDb = wordsData as Record<string, any>;
+    const itemLevel = kanjiDb[newCenter]?.jlpt || wordsDb[newCenter]?.jlpt;
+    if (itemLevel && itemLevel >= 1 && itemLevel <= 5) {
+      if (itemLevel < currentLevel) {
+        setCurrentLevel(itemLevel as Level);
+      }
+    }
+
+    router.push(`/?q=${encodeURIComponent(newCenter)}`, { scroll: false });
   };
 
   return (
@@ -93,6 +179,8 @@ export default function SpiderGraphPage() {
                 onClick={() => {
                   setQuery("");
                   setDebouncedQuery("");
+                  lastSearchParamQ.current = "";
+                  router.push("/", { scroll: false });
                 }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-text"
               >
@@ -156,5 +244,22 @@ export default function SpiderGraphPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function SpiderGraphPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-bg text-text">
+          <div className="text-center space-y-2">
+            <span className="text-4xl animate-spin inline-block">🕸️</span>
+            <p className="text-sm text-muted">Đang tải Mạng nhện...</p>
+          </div>
+        </div>
+      }
+    >
+      <SpiderGraphContent />
+    </Suspense>
   );
 }

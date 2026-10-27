@@ -7,7 +7,7 @@ import {
 } from "ts-fsrs";
 import categoriesData from "../data/categories.json";
 
-export { Rating, type Card };
+export { Rating, createEmptyCard, type Card };
 
 export interface StudyItem {
   id: string; // e.g. "k-学", "w-学生", "c-eki-1"

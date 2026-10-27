@@ -44,6 +44,7 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
   const navLinks = [
     { href: "/", label: "🕸️ Mạng nhện" },
     { href: "/cum", label: "💬 Cụm & Tình huống" },
+    { href: "/quet", label: "📸 Quét & Ôn ảnh" },
     { href: "/on", label: "🔔 Bộ đề hôm nay", badge: dueCount },
     { href: "/luyen", label: "🎯 Luyện tập" },
     { href: "/bo", label: "🧱 Mảnh LEGO" },
