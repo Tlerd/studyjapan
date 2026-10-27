@@ -16,7 +16,7 @@ export default function SpiderGraphPage() {
   const [showHigherLevel, setShowHigherLevel] = useState<boolean>(false);
   const [selectedNode, setSelectedNode] = useState<NodeData | null>(null);
   const [breadcrumbs, setBreadcrumbs] = useState<string[]>(["学"]);
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   // Debounce query 150ms
   useEffect(() => {
@@ -142,7 +142,7 @@ export default function SpiderGraphPage() {
               onCenterChange={handleCenterChange}
             />
             <p className="text-[11px] text-muted text-center mt-2">
-              💡 Bấm đúp vào bất kỳ nút nào để đưa nút đó làm tâm điểm mạng nhện mới.
+              💡 Bạn có thể kéo thả di chuyển các khối tự do trên màn hình. Bấm đúp vào bất kỳ nút nào để chọn làm tâm điểm mới.
             </p>
           </div>
 
