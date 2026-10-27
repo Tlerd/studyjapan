@@ -347,3 +347,126 @@ export async function importDatabaseFromJson(jsonString: string): Promise<void> 
     }
   );
 }
+
+
+/**
+ * Hợp nhất (merge) dữ liệu từ đám mây vào cơ sở dữ liệu hiện tại mà không làm mất dữ liệu cục bộ
+ */
+export async function mergeDatabaseFromJson(
+  jsonStringOrObj: string | { data: any }
+): Promise<{ mergedCount: number }> {
+  const parsed =
+    typeof jsonStringOrObj === "string"
+      ? JSON.parse(jsonStringOrObj)
+      : jsonStringOrObj;
+
+  if (!parsed || !parsed.data) {
+    throw new Error("Dữ liệu đám mây không đúng định dạng.");
+  }
+
+  let mergedCount = 0;
+
+  await db.transaction(
+    "rw",
+    [
+      db.items,
+      db.cards,
+      db.reviewLogs,
+      db.viMeaningCache,
+      db.scanSources,
+      db.scannedItems,
+      db.scannedCards,
+      db.customSkills,
+      db.aiSettings,
+    ],
+    async () => {
+      // 1. Items
+      if (parsed.data.items?.length) {
+        await db.items.bulkPut(parsed.data.items);
+        mergedCount += parsed.data.items.length;
+      }
+
+      // 2. Cards (SRS)
+      if (parsed.data.cards?.length) {
+        for (const cloudCard of parsed.data.cards) {
+          const localCard = await db.cards.get(cloudCard.id);
+          if (!localCard) {
+            await db.cards.put(cloudCard);
+          } else {
+            const localLastReview = localCard.fsrsCard?.last_review
+              ? new Date(localCard.fsrsCard.last_review).getTime()
+              : 0;
+            const cloudLastReview = cloudCard.fsrsCard?.last_review
+              ? new Date(cloudCard.fsrsCard.last_review).getTime()
+              : 0;
+            if (cloudLastReview >= localLastReview) {
+              await db.cards.put(cloudCard);
+            }
+          }
+        }
+      }
+
+      // 3. ReviewLogs
+      if (parsed.data.reviewLogs?.length) {
+        const existingLogs = await db.reviewLogs.toArray();
+        const existingSet = new Set(
+          existingLogs.map((l) => `${l.cardId}_${l.reviewTime}`)
+        );
+        const newLogs = parsed.data.reviewLogs.filter(
+          (l: any) => !existingSet.has(`${l.cardId}_${l.reviewTime}`)
+        );
+        if (newLogs.length) {
+          await db.reviewLogs.bulkAdd(newLogs);
+        }
+      }
+
+      // 4. viMeanings
+      if (parsed.data.viMeanings?.length) {
+        await db.viMeaningCache.bulkPut(parsed.data.viMeanings);
+      }
+
+      // 5. scanSources
+      if (parsed.data.scanSources?.length) {
+        await db.scanSources.bulkPut(parsed.data.scanSources);
+        mergedCount += parsed.data.scanSources.length;
+      }
+
+      // 6. scannedItems
+      if (parsed.data.scannedItems?.length) {
+        await db.scannedItems.bulkPut(parsed.data.scannedItems);
+      }
+
+      // 7. scannedCards
+      if (parsed.data.scannedCards?.length) {
+        for (const cloudCard of parsed.data.scannedCards) {
+          const localCard = await db.scannedCards.get(cloudCard.id);
+          if (!localCard) {
+            await db.scannedCards.put(cloudCard);
+          } else {
+            const localReview = localCard.fsrsCard?.last_review
+              ? new Date(localCard.fsrsCard.last_review).getTime()
+              : 0;
+            const cloudReview = cloudCard.fsrsCard?.last_review
+              ? new Date(cloudCard.fsrsCard.last_review).getTime()
+              : 0;
+            if (cloudReview >= localReview) {
+              await db.scannedCards.put(cloudCard);
+            }
+          }
+        }
+      }
+
+      // 8. customSkills
+      if (parsed.data.customSkills?.length) {
+        await db.customSkills.bulkPut(parsed.data.customSkills);
+      }
+
+      // 9. aiSettings
+      if (parsed.data.aiSettings?.length) {
+        await db.aiSettings.bulkPut(parsed.data.aiSettings);
+      }
+    }
+  );
+
+  return { mergedCount };
+}

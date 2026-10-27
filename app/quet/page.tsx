@@ -27,6 +27,7 @@ import {
   type ScanQuizQuestion,
 } from "../../lib/scanQuiz";
 import { reviewCard, Rating, type ReviewRating } from "../../lib/srs";
+import { triggerBackgroundAutoSync } from "../../lib/syncEngine";
 
 type SidebarTab = "scan" | "exercises" | "words" | "grammar" | "review";
 
@@ -711,6 +712,7 @@ export default function ScanAndReviewPage() {
       setImageHashCurrent("");
       setSaveSuccessMsg(`✓ Đã gom văn bản, từ vựng và ngữ pháp vào Kho Ôn tập riêng!`);
       loadDatabaseData();
+      triggerBackgroundAutoSync();
     } catch (err: any) {
       alert("Lỗi khi lưu dữ liệu: " + err?.message);
     }
@@ -781,6 +783,7 @@ export default function ScanAndReviewPage() {
       const { notice } = await pushScannedItemToMainDeck(item);
       setActionNotice(notice || `✓ Đã đẩy "${item.surface}" sang Bộ đề hôm nay!`);
       loadDatabaseData();
+      triggerBackgroundAutoSync();
       setTimeout(() => setActionNotice(""), 4000);
     } catch {
       alert("Lỗi khi đẩy sang Bộ đề hôm nay.");
@@ -801,6 +804,7 @@ export default function ScanAndReviewPage() {
       }
       setActionNotice(`✓ Đã đẩy ${unpushed.length} mục sang Bộ đề hôm nay!`);
       loadDatabaseData();
+      triggerBackgroundAutoSync();
       setTimeout(() => setActionNotice(""), 4000);
     } catch {
       alert("Lỗi khi đẩy hàng loạt sang Bộ đề hôm nay.");

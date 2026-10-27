@@ -7,6 +7,7 @@ import { db } from "../lib/db";
 import { getDueCards } from "../lib/srs";
 import { type Level } from "../lib/level";
 import { ThemeToggle } from "./ThemeToggle";
+import { SyncModal } from "./SyncModal";
 
 interface NavbarProps {
   currentLevel?: Level;
@@ -16,6 +17,7 @@ interface NavbarProps {
 export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
   const pathname = usePathname();
   const [dueCount, setDueCount] = useState<number>(0);
+  const [isSyncModalOpen, setIsSyncModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadDueCount() {
@@ -87,9 +89,26 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
           })}
         </nav>
 
-        {/* Theme Toggle Button */}
-        <ThemeToggle />
+        {/* Actions: Cloud Sync & Theme Toggle */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            type="button"
+            onClick={() => setIsSyncModalOpen(true)}
+            title="Đồng bộ Máy tính & Điện thoại (Mã / QR Code)"
+            aria-label="Đồng bộ Máy tính & Điện thoại"
+            className="w-8 h-8 rounded-lg border border-line bg-card hover:bg-unk-bg flex items-center justify-center text-sm shadow-xs transition-colors shrink-0"
+          >
+            ☁️
+          </button>
+          <ThemeToggle />
+        </div>
       </div>
+
+      {/* Cloud Sync Modal */}
+      <SyncModal
+        isOpen={isSyncModalOpen}
+        onClose={() => setIsSyncModalOpen(false)}
+      />
     </header>
   );
 }
