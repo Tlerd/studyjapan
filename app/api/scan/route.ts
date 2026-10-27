@@ -14,6 +14,7 @@ interface RequestPayload {
   model?: string;
   effort?: "low" | "medium" | "high";
   skills?: Array<{ id: string; title: string; prompt: string }>;
+  invokedSkills?: Array<{ id: string; title: string; prompt: string }>;
   instructions?: string;
   // For chat
   messages?: Array<{ role: "user" | "assistant"; content: string }>;
@@ -103,10 +104,26 @@ export async function POST(req: NextRequest) {
     if (body.instructions && body.instructions.trim()) {
       fullSystemInstructions += `\n\n[Chỉ dẫn bổ sung từ người học]:\n${body.instructions.trim()}`;
     }
-    if (body.skills && body.skills.length > 0) {
-      fullSystemInstructions += "\n\n[Các kỹ năng chuyên biệt đang kích hoạt]:";
-      body.skills.forEach((s, idx) => {
+
+    if (body.invokedSkills && body.invokedSkills.length > 0) {
+      fullSystemInstructions += "\n\n[NGƯỜI DÙNG CHỈ ĐỊNH RÕ CÁC KỸ NĂNG SAU QUA @ HOẶC /]:";
+      body.invokedSkills.forEach((s, idx) => {
         fullSystemInstructions += `\n${idx + 1}. Kỹ năng ${s.title}: ${s.prompt}`;
+      });
+      fullSystemInstructions += "\nHãy ưu tiên hàng đầu và tập trung toàn lực áp dụng các kỹ năng được chỉ định này.";
+    } else {
+      fullSystemInstructions +=
+        "\n\n[CHẾ ĐỘ TỰ ĐỘNG GỌI SKILL PHÙ HỢP]:\n" +
+        "Tự động nhận diện ngữ cảnh và áp dụng các kỹ năng phù hợp:\n" +
+        "- Nếu phát hiện câu hỏi bài tập (trắc nghiệm, điền từ, sắp xếp dấu sao ★, đọc hiểu): Tự động giải chi tiết từng câu, dịch câu hỏi, chỉ rõ đáp án đúng và phân tích lý do các đáp án còn lại sai.\n" +
+        "- Tự động bóc tách các từ vựng quan trọng kèm âm Hán Việt, cách đọc Hiragana và nghĩa theo ngữ cảnh.\n" +
+        "- Tự động bóc tách các cấu trúc ngữ pháp kèm công thức chia/kết nối (formation) và trích câu ví dụ thực tế.";
+    }
+
+    if (body.skills && body.skills.length > 0) {
+      fullSystemInstructions += "\n\n[Danh sách toàn bộ các kỹ năng có sẵn trong hệ thống]:";
+      body.skills.forEach((s, idx) => {
+        fullSystemInstructions += `\n- ${s.title}: ${s.prompt}`;
       });
     }
 

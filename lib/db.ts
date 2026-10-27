@@ -97,6 +97,7 @@ export interface ScannedCard {
 
 export interface CustomSkill {
   id: string;
+  slug?: string;
   icon: string;
   title: string;
   prompt: string;

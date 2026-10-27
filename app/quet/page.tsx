@@ -19,7 +19,8 @@ import {
 import {
   DEFAULT_SYSTEM_INSTRUCTIONS,
   BUILTIN_SKILLS,
-  type DefaultSkill,
+  extractInvokedSkills,
+  type SkillItem,
 } from "../../lib/scanDefaults";
 import {
   generateScanQuizBatch,
@@ -46,6 +47,15 @@ interface ScannedGrammarMeta {
   exampleSentence?: string;
   exampleTranslation?: string;
   level?: number;
+}
+
+interface MentionState {
+  active: boolean;
+  trigger: "@" | "/" | null;
+  query: string;
+  startIndex: number;
+  selectedIndex: number;
+  targetField: "scanText" | "chatText" | null;
 }
 
 /**
@@ -86,14 +96,25 @@ export default function ScanAndReviewPage() {
   const [selectedEffort, setSelectedEffort] = useState<"low" | "medium" | "high">("medium");
   const [systemInstructions, setSystemInstructions] = useState<string>(DEFAULT_SYSTEM_INSTRUCTIONS);
   const [showInstructionModal, setShowInstructionModal] = useState<boolean>(false);
-  const [activeSkillIds, setActiveSkillIds] = useState<Set<string>>(
-    new Set(["jlpt-solver", "vocab-extractor", "grammar-analyzer"])
-  );
-  const [customSkills, setCustomSkills] = useState<CustomSkill[]>([]);
-  const [showAddSkillModal, setShowAddSkillModal] = useState<boolean>(false);
+
+  // Unified Skills Management State
+  const [allSkills, setAllSkills] = useState<SkillItem[]>([]);
+  const [showSkillsModal, setShowSkillsModal] = useState<boolean>(false);
+  const [isAddingNewSkill, setIsAddingNewSkill] = useState<boolean>(false);
   const [newSkillTitle, setNewSkillTitle] = useState<string>("");
+  const [newSkillSlug, setNewSkillSlug] = useState<string>("");
   const [newSkillIcon, setNewSkillIcon] = useState<string>("✨");
   const [newSkillPrompt, setNewSkillPrompt] = useState<string>("");
+
+  // Mention State for @ and /
+  const [mentionState, setMentionState] = useState<MentionState>({
+    active: false,
+    trigger: null,
+    query: "",
+    startIndex: 0,
+    selectedIndex: 0,
+    targetField: null,
+  });
 
   // Scan & Input State
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -143,6 +164,8 @@ export default function ScanAndReviewPage() {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const chatInputRef = useRef<HTMLInputElement | null>(null);
 
   // Load Initial Data from Dexie
   const loadDatabaseData = useCallback(async () => {
@@ -150,19 +173,45 @@ export default function ScanAndReviewPage() {
       const sources = await db.scanSources.reverse().toArray();
       const items = await db.scannedItems.reverse().toArray();
       const cards = await db.scannedCards.toArray();
-      const skills = await db.customSkills.toArray();
       const settings = await db.aiSettings.get("gemini-config");
+
+      // Load skills from DB, seed if empty
+      let skills = await db.customSkills.toArray();
+      const initialized = localStorage.getItem("skills_initialized_v2");
+      if (skills.length === 0 && !initialized) {
+        await db.customSkills.bulkAdd(
+          BUILTIN_SKILLS.map((s) => ({
+            id: s.id,
+            slug: s.slug,
+            icon: s.icon,
+            title: s.title,
+            prompt: s.prompt,
+            isDefault: true,
+          }))
+        );
+        localStorage.setItem("skills_initialized_v2", "true");
+        skills = await db.customSkills.toArray();
+      }
+
+      setAllSkills(
+        skills.map((s) => ({
+          id: s.id,
+          slug: s.slug || s.id,
+          icon: s.icon || "✨",
+          title: s.title,
+          prompt: s.prompt,
+          isDefault: s.isDefault,
+        }))
+      );
 
       setAllScanSources(sources);
       setAllScannedItems(items);
       setAllScannedCards(cards);
-      setCustomSkills(skills);
 
       if (settings) {
         if (settings.instructions) setSystemInstructions(settings.instructions);
         if (settings.defaultModel) setSelectedModel(settings.defaultModel);
         if (settings.defaultEffort) setSelectedEffort(settings.defaultEffort);
-        if (settings.activeSkills?.length) setActiveSkillIds(new Set(settings.activeSkills));
       }
     } catch (err) {
       console.warn("Lỗi đọc dữ liệu từ IndexedDB:", err);
@@ -177,15 +226,14 @@ export default function ScanAndReviewPage() {
   const saveAiSettings = async (
     inst = systemInstructions,
     model = selectedModel,
-    effort = selectedEffort,
-    skills = Array.from(activeSkillIds)
+    effort = selectedEffort
   ) => {
     await db.aiSettings.put({
       key: "gemini-config",
       instructions: inst,
       defaultModel: model,
       defaultEffort: effort,
-      activeSkills: skills,
+      activeSkills: allSkills.map((s) => s.id),
     });
   };
 
@@ -204,13 +252,12 @@ export default function ScanAndReviewPage() {
       const hash = await computeImageHash(buffer);
       const existing = await db.scanSources.where("imageHash").equals(hash).first();
       if (existing) {
-        // Do NOT keep duplicate image in the slot; proactively alert user
         setImagePreview(null);
         setImageHashCurrent("");
         if (fileInputRef.current) fileInputRef.current.value = "";
         setDuplicateWarning(
-          `⚠️ Ảnh trùng lặp! Ảnh này đã được quét trong "${existing.title}" (${new Date(existing.createdAt).toLocaleDateString("vi-VN")}). ` +
-          `Hệ thống đã tự động bỏ giữ lại ảnh này để không lưu trùng.`
+          `⚠️ Ảnh trùng lặp! Ảnh này đã từng quét trong "${existing.title}" (${new Date(existing.createdAt).toLocaleDateString("vi-VN")}). ` +
+          `Hệ thống tự động loại bỏ để không lưu trùng.`
         );
         setExistingScanMatch(existing);
         return;
@@ -220,7 +267,6 @@ export default function ScanAndReviewPage() {
       setImageHashCurrent("");
     }
 
-    // Read Data URL for preview if not a duplicate
     const reader = new FileReader();
     reader.onload = (e) => {
       setImagePreview(e.target?.result as string);
@@ -300,41 +346,158 @@ export default function ScanAndReviewPage() {
     setActiveTab("scan");
   };
 
-  // Toggle Skill
-  const toggleSkill = (id: string) => {
-    setActiveSkillIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      saveAiSettings(systemInstructions, selectedModel, selectedEffort, Array.from(next));
-      return next;
+  // Mention Detection Logic for @ and /
+  const checkMentionTrigger = (
+    value: string,
+    cursorPos: number,
+    field: "scanText" | "chatText"
+  ) => {
+    const textBeforeCursor = value.slice(0, cursorPos);
+    const match = /(?:^|\s)([@/])([a-zA-Z0-9_\u00C0-\u024F\u1EA0-\u1EF9\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF-]*)$/.exec(
+      textBeforeCursor
+    );
+
+    if (match) {
+      const trigger = match[1] as "@" | "/";
+      const query = match[2] || "";
+      const startIndex = cursorPos - query.length - 1;
+      setMentionState({
+        active: true,
+        trigger,
+        query,
+        startIndex,
+        selectedIndex: 0,
+        targetField: field,
+      });
+    } else {
+      setMentionState((prev) => (prev.active ? { ...prev, active: false } : prev));
+    }
+  };
+
+  const getFilteredMentionSkills = () => {
+    if (!mentionState.active) return [];
+    const q = mentionState.query.toLowerCase();
+    return allSkills.filter(
+      (s) =>
+        s.title.toLowerCase().includes(q) ||
+        s.slug.toLowerCase().includes(q) ||
+        s.id.toLowerCase().includes(q)
+    );
+  };
+
+  const insertSkillMention = (skill: SkillItem) => {
+    if (!mentionState.targetField) return;
+
+    const tag = mentionState.trigger === "/" ? `/${skill.slug} ` : `@${skill.title} `;
+
+    if (mentionState.targetField === "scanText") {
+      const before = textInput.slice(0, mentionState.startIndex);
+      const after = textInput.slice(mentionState.startIndex + mentionState.query.length + 1);
+      const nextVal = before + tag + after;
+      setTextInput(nextVal);
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          const newPos = before.length + tag.length;
+          textareaRef.current.setSelectionRange(newPos, newPos);
+        }
+      }, 50);
+    } else {
+      const before = chatInput.slice(0, mentionState.startIndex);
+      const after = chatInput.slice(mentionState.startIndex + mentionState.query.length + 1);
+      const nextVal = before + tag + after;
+      setChatInput(nextVal);
+      setTimeout(() => {
+        if (chatInputRef.current) {
+          chatInputRef.current.focus();
+          const newPos = before.length + tag.length;
+          chatInputRef.current.setSelectionRange(newPos, newPos);
+        }
+      }, 50);
+    }
+
+    setMentionState({
+      active: false,
+      trigger: null,
+      query: "",
+      startIndex: 0,
+      selectedIndex: 0,
+      targetField: null,
     });
   };
 
-  // Add Custom Skill
+  const handleMentionKeyDown = (
+    e: React.KeyboardEvent,
+    filtered: SkillItem[]
+  ) => {
+    if (!mentionState.active || filtered.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setMentionState((prev) => ({
+        ...prev,
+        selectedIndex: (prev.selectedIndex + 1) % filtered.length,
+      }));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setMentionState((prev) => ({
+        ...prev,
+        selectedIndex: (prev.selectedIndex - 1 + filtered.length) % filtered.length,
+      }));
+    } else if (e.key === "Enter" || e.key === "Tab") {
+      e.preventDefault();
+      insertSkillMention(filtered[mentionState.selectedIndex]);
+    } else if (e.key === "Escape") {
+      setMentionState((prev) => ({ ...prev, active: false }));
+    }
+  };
+
+  // Skills Management (Add, Delete, Restore)
+  const handleDeleteSkill = async (id: string) => {
+    if (!confirm("Bạn có chắc chắn muốn xóa kỹ năng này?")) return;
+    await db.customSkills.delete(id);
+    setAllSkills((prev) => prev.filter((s) => s.id !== id));
+  };
+
   const handleCreateSkill = async () => {
     if (!newSkillTitle.trim() || !newSkillPrompt.trim()) return;
+    const slug = (newSkillSlug.trim() || newSkillTitle.trim().toLowerCase().replace(/\s+/g, "-")).replace(/[^a-z0-9-]/gi, "");
     const newSkill: CustomSkill = {
-      id: `custom-skill-${Date.now()}`,
+      id: `skill-${Date.now()}`,
+      slug,
       icon: newSkillIcon || "✨",
       title: newSkillTitle.trim(),
       prompt: newSkillPrompt.trim(),
+      isDefault: false,
     };
     await db.customSkills.put(newSkill);
-    setCustomSkills((prev) => [...prev, newSkill]);
-    setActiveSkillIds((prev) => new Set([...prev, newSkill.id]));
+    setAllSkills((prev) => [...prev, { ...newSkill, slug }]);
     setNewSkillTitle("");
+    setNewSkillSlug("");
     setNewSkillPrompt("");
-    setShowAddSkillModal(false);
+    setIsAddingNewSkill(false);
+  };
+
+  const handleRestoreDefaultSkills = async () => {
+    if (!confirm("Khôi phục lại danh sách 5 kỹ năng mặc định?")) return;
+    await db.customSkills.clear();
+    await db.customSkills.bulkAdd(
+      BUILTIN_SKILLS.map((s) => ({
+        id: s.id,
+        slug: s.slug,
+        icon: s.icon,
+        title: s.title,
+        prompt: s.prompt,
+        isDefault: true,
+      }))
+    );
+    loadDatabaseData();
   };
 
   // Execute Scan
   const handleStartScan = async () => {
     if (!imagePreview && !textInput.trim()) {
-      alert("Vui lòng tải ảnh lên hoặc nhập đoạn văn tiếng Nhật.");
+      alert("Vui lòng tải ảnh lên hoặc nhập đề bài tiếng Nhật.");
       return;
     }
 
@@ -353,11 +516,8 @@ export default function ScanAndReviewPage() {
         mimeType = compressed.mimeType;
       }
 
-      // Collect active skills prompts
-      const allSkillsList: DefaultSkill[] = [...BUILTIN_SKILLS, ...customSkills];
-      const activeSkillsPayload = allSkillsList
-        .filter((s) => activeSkillIds.has(s.id))
-        .map((s) => ({ id: s.id, title: s.title, prompt: s.prompt }));
+      // Check if user explicitly called any skills via @ or / in textInput
+      const invokedSkills = extractInvokedSkills(textInput, allSkills);
 
       const res = await fetch("/api/scan", {
         method: "POST",
@@ -369,7 +529,8 @@ export default function ScanAndReviewPage() {
           textInput: textInput.trim() || undefined,
           model: selectedModel,
           effort: selectedEffort,
-          skills: activeSkillsPayload,
+          skills: allSkills.map((s) => ({ id: s.id, title: s.title, prompt: s.prompt })),
+          invokedSkills: invokedSkills.map((s) => ({ id: s.id, title: s.title, prompt: s.prompt })),
           instructions: systemInstructions,
         }),
       });
@@ -385,8 +546,8 @@ export default function ScanAndReviewPage() {
         const duplicateTextScan = await db.scanSources.where("textHash").equals(textHash).first();
         if (duplicateTextScan) {
           setDuplicateWarning(
-            `⚠️ Nội dung văn bản trong ảnh này trùng với bản quét "${duplicateTextScan.title}" (${new Date(duplicateTextScan.createdAt).toLocaleDateString("vi-VN")}). ` +
-            `Hệ thống đã khóa nút lưu tự động để tránh lưu trùng lặp.`
+            `⚠️ Nội dung văn bản này trùng với bản quét "${duplicateTextScan.title}" (${new Date(duplicateTextScan.createdAt).toLocaleDateString("vi-VN")}). ` +
+            `Hệ thống khóa nút lưu để tránh lưu trùng lặp.`
           );
           setExistingScanMatch(duplicateTextScan);
           setIsDuplicateSaveBlocked(true);
@@ -405,17 +566,14 @@ export default function ScanAndReviewPage() {
       };
 
       setCurrentScanResult(resultObj);
-
-      // Default select all words & grammar for easy saving
       setSelectedWordsToSave(new Set(resultObj.words.map((w: ScannedWordMeta) => w.surface)));
       setSelectedGrammarToSave(new Set(resultObj.grammar.map((g: ScannedGrammarMeta) => g.pattern)));
 
-      // Initialize chat with greeting
       setChatMessages([
         {
           id: `msg-${Date.now()}`,
           role: "assistant",
-          content: `Xin chào! Tôi đã đọc xong bài và giải thích chi tiết bên dưới. Bạn có câu hỏi nào thêm về ngữ pháp, trợ từ hay bài tập trong ảnh này không?`,
+          content: `Xin chào! Tôi đã đọc bài và tự động áp dụng các kỹ năng phân tích phù hợp. Bạn có thể hỏi thêm bên dưới hoặc gõ @/ để gọi kỹ năng cụ thể.`,
           timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
         },
       ]);
@@ -439,7 +597,6 @@ export default function ScanAndReviewPage() {
       const textHash = computeTextHash(currentScanResult.rawText);
       const title = scanTitle.trim() || `Bản quét ${new Date().toLocaleDateString("vi-VN")}`;
 
-      // 1. Save Scan Source (NO image binary stored, purely text)
       const sourceRecord: ScanSource = {
         id: currentScanResult.id,
         title,
@@ -455,7 +612,6 @@ export default function ScanAndReviewPage() {
       };
       await db.scanSources.put(sourceRecord);
 
-      // 2. Save selected Words
       for (const w of currentScanResult.words) {
         if (!selectedWordsToSave.has(w.surface)) continue;
         const itemId = `sw-${w.surface}`;
@@ -493,7 +649,6 @@ export default function ScanAndReviewPage() {
         }
       }
 
-      // 3. Save selected Grammar
       for (const g of currentScanResult.grammar) {
         if (!selectedGrammarToSave.has(g.pattern)) continue;
         const itemId = `sg-${g.pattern.replace(/^[〜~]/, "").trim()}`;
@@ -532,7 +687,6 @@ export default function ScanAndReviewPage() {
       }
 
       setCurrentScanResult((prev) => (prev ? { ...prev, isAlreadySaved: true } : prev));
-      // Clear preview after saving so user doesn't re-save same image
       setImagePreview(null);
       setImageHashCurrent("");
       setSaveSuccessMsg(`✓ Đã gom văn bản, từ vựng và ngữ pháp vào Kho Ôn tập riêng!`);
@@ -560,10 +714,7 @@ export default function ScanAndReviewPage() {
     setIsChatSending(true);
 
     try {
-      const allSkillsList: DefaultSkill[] = [...BUILTIN_SKILLS, ...customSkills];
-      const activeSkillsPayload = allSkillsList
-        .filter((s) => activeSkillIds.has(s.id))
-        .map((s) => ({ id: s.id, title: s.title, prompt: s.prompt }));
+      const invokedSkills = extractInvokedSkills(text, allSkills);
 
       const res = await fetch("/api/scan", {
         method: "POST",
@@ -574,7 +725,8 @@ export default function ScanAndReviewPage() {
           context: currentScanResult ? `Văn bản gốc: ${currentScanResult.rawText}\nDịch: ${currentScanResult.translatedText}` : undefined,
           model: selectedModel,
           effort: selectedEffort,
-          skills: activeSkillsPayload,
+          skills: allSkills.map((s) => ({ id: s.id, title: s.title, prompt: s.prompt })),
+          invokedSkills: invokedSkills.map((s) => ({ id: s.id, title: s.title, prompt: s.prompt })),
           instructions: systemInstructions,
         }),
       });
@@ -592,7 +744,6 @@ export default function ScanAndReviewPage() {
       const updatedMsgs = [...newMessages, aiMsg];
       setChatMessages(updatedMsgs);
 
-      // Persist chat messages if scan source is already saved in DB
       if (currentScanResult?.isAlreadySaved) {
         await db.scanSources.update(currentScanResult.id, { chatMessages: updatedMsgs });
       }
@@ -720,6 +871,8 @@ export default function ScanAndReviewPage() {
   const allExercises = allScanSources.flatMap((s) =>
     (s.exercises || []).map((ex) => ({ ...ex, sourceTitle: s.title, sourceDate: s.createdAt, sourceId: s.id }))
   );
+
+  const filteredMentionSkills = getFilteredMentionSkills();
 
   return (
     <div className="min-h-screen flex flex-col bg-bg text-text">
@@ -868,10 +1021,27 @@ export default function ScanAndReviewPage() {
                         : "border border-line hover:bg-unk-bg text-muted"
                     }`}
                   >
-                    {eff === "low" ? "Low" : eff === "medium" ? "Medium" : "High"}
+                    {eff === "low" ? "Low" : eff === "medium" ? "Med" : "High"}
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Quick Button to open Skills Management */}
+            <div className="pt-1.5 border-t border-line/60">
+              <button
+                type="button"
+                onClick={() => setShowSkillsModal(true)}
+                className="w-full py-1.5 px-2 rounded-lg bg-unk-bg hover:bg-accent-soft/20 text-text hover:text-accent font-semibold transition-colors flex items-center justify-between"
+              >
+                <span className="flex items-center gap-1.5">
+                  <span>🎯</span>
+                  <span>Kho Kỹ năng (Skills)</span>
+                </span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-accent text-accent-ink font-bold">
+                  {allSkills.length}
+                </span>
+              </button>
             </div>
           </div>
 
@@ -913,62 +1083,37 @@ export default function ScanAndReviewPage() {
           {/* TAB 1: SCAN & SOLVE */}
           {activeTab === "scan" && (
             <div className="space-y-4">
-              {/* Top Banner & Skills */}
-              <div className="card p-4 space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-line pb-2.5">
+              {/* Top Banner (Cleaned up, no chip clutter) */}
+              <div className="card p-4 space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
                     <h1 className="text-xl font-bold flex items-center gap-2">
                       <span>📸</span>
                       <span>Quét ảnh, Giải bài tập & Gom Từ vựng + Ngữ pháp</span>
                     </h1>
                     <p className="text-xs text-muted mt-0.5">
-                      Chụp camera, tải ảnh đề thi, hoặc nhấn <kbd className="px-1.5 py-0.5 rounded bg-unk-bg border border-line font-mono text-[10px]">Ctrl+V</kbd> để dán ảnh. Chỉ lưu văn bản, tự động chặn ảnh trùng.
+                      Chụp camera, tải ảnh đề thi, hoặc nhấn <kbd className="px-1.5 py-0.5 rounded bg-unk-bg border border-line font-mono text-[10px]">Ctrl+V</kbd> để dán ảnh. AI tự động gọi các skill phù hợp.
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setShowInstructionModal(true)}
-                    className="self-start sm:self-auto px-3 py-1.5 text-xs font-semibold rounded-lg border border-accent text-accent hover:bg-accent-soft/20 transition-all flex items-center gap-1.5"
-                  >
-                    <span>⚙️</span>
-                    <span>Chỉ dẫn cho Gemini</span>
-                  </button>
-                </div>
-
-                {/* Skill Chips */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-muted">Kỹ năng kích hoạt (Skills):</span>
+                  <div className="flex items-center gap-2 self-start sm:self-auto">
                     <button
                       type="button"
-                      onClick={() => setShowAddSkillModal(true)}
-                      className="text-accent hover:underline font-semibold text-[11px]"
+                      onClick={() => setShowSkillsModal(true)}
+                      className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-accent text-accent hover:bg-accent-soft/20 transition-all flex items-center gap-1.5"
                     >
-                      + Tạo Skill mới
+                      <span>🎯</span>
+                      <span>Quản lý Skills ({allSkills.length})</span>
                     </button>
-                  </div>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {[...BUILTIN_SKILLS, ...customSkills].map((skill) => {
-                      const isActive = activeSkillIds.has(skill.id);
-                      return (
-                        <button
-                          key={skill.id}
-                          type="button"
-                          onClick={() => toggleSkill(skill.id)}
-                          className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 ${
-                            isActive
-                              ? "bg-accent text-accent-ink shadow-xs"
-                              : "bg-unk-bg border border-line text-muted hover:text-text hover:border-accent"
-                          }`}
-                        >
-                          <span>{skill.icon}</span>
-                          <span>{skill.title}</span>
-                          {isActive && <span className="text-[10px]">✓</span>}
-                        </button>
-                      );
-                    })}
+                    <button
+                      type="button"
+                      onClick={() => setShowInstructionModal(true)}
+                      className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-line hover:border-accent text-text transition-all flex items-center gap-1.5"
+                    >
+                      <span>⚙️</span>
+                      <span>Chỉ dẫn</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1026,18 +1171,63 @@ export default function ScanAndReviewPage() {
                     )}
                   </div>
 
-                  {/* Text Input / Note */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-muted">
-                      Đoạn văn hoặc câu hỏi cần giải thêm (tùy chọn):
-                    </label>
-                    <textarea
-                      value={textInput}
-                      onChange={(e) => setTextInput(e.target.value)}
-                      placeholder="Nếu không chụp ảnh, bạn có thể gõ hoặc dán đề bài tiếng Nhật vào đây để giải bài và bóc tách từ vựng, ngữ pháp..."
-                      rows={5}
-                      className="w-full flex-1 p-3 rounded-xl border border-line bg-card text-xs focus:ring-2 focus:ring-accent font-ja"
-                    />
+                  {/* Text Input / Note with @ and / mention support */}
+                  <div className="flex flex-col gap-1.5 relative">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-muted">
+                        Đoạn văn hoặc câu hỏi cần giải thêm:
+                      </label>
+                      <span className="text-[11px] text-accent font-medium">
+                        💡 Gõ <kbd className="font-mono bg-unk-bg px-1 py-0.2 rounded border border-line">@</kbd> hoặc <kbd className="font-mono bg-unk-bg px-1 py-0.2 rounded border border-line">/</kbd> để gọi skill
+                      </span>
+                    </div>
+
+                    <div className="relative flex-1">
+                      <textarea
+                        ref={textareaRef}
+                        value={textInput}
+                        onChange={(e) => {
+                          setTextInput(e.target.value);
+                          checkMentionTrigger(e.target.value, e.target.selectionStart || 0, "scanText");
+                        }}
+                        onKeyUp={(e) => {
+                          checkMentionTrigger(textInput, (e.target as HTMLTextAreaElement).selectionStart || 0, "scanText");
+                        }}
+                        onKeyDown={(e) => handleMentionKeyDown(e, filteredMentionSkills)}
+                        placeholder="Gõ đề bài hoặc câu tiếng Nhật... (Gõ @ hoặc / để gọi kỹ năng cụ thể, ví dụ: @Giải bài tập JLPT hoặc /giai-de)..."
+                        rows={5}
+                        className="w-full h-full p-3 rounded-xl border border-line bg-card text-xs focus:ring-2 focus:ring-accent font-ja"
+                      />
+
+                      {/* Mention Autocomplete Dropdown for Textarea */}
+                      {mentionState.active && mentionState.targetField === "scanText" && filteredMentionSkills.length > 0 && (
+                        <div className="absolute left-2 bottom-full mb-1 z-30 w-72 max-h-60 overflow-y-auto rounded-xl border border-line bg-card shadow-xl p-1 space-y-0.5">
+                          <div className="px-2 py-1 text-[10px] font-bold text-muted uppercase tracking-wider border-b border-line/60">
+                            Gọi Kỹ năng ({mentionState.trigger}):
+                          </div>
+                          {filteredMentionSkills.map((skill, idx) => (
+                            <button
+                              key={skill.id}
+                              type="button"
+                              onClick={() => insertSkillMention(skill)}
+                              className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
+                                idx === mentionState.selectedIndex
+                                  ? "bg-accent text-accent-ink font-bold"
+                                  : "hover:bg-unk-bg text-text"
+                              }`}
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span>{skill.icon}</span>
+                                <span>{skill.title}</span>
+                              </span>
+                              <span className={`text-[10px] font-mono ${idx === mentionState.selectedIndex ? "opacity-90" : "text-muted"}`}>
+                                /{skill.slug}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -1370,8 +1560,8 @@ export default function ScanAndReviewPage() {
                     </div>
                   </div>
 
-                  {/* 3. Follow-up Interactive Chat Box */}
-                  <div className="card p-4 space-y-3">
+                  {/* 3. Follow-up Interactive Chat Box with @ and / mention support */}
+                  <div className="card p-4 space-y-3 relative">
                     <div className="flex items-center justify-between border-b border-line pb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">💬</span>
@@ -1423,19 +1613,56 @@ export default function ScanAndReviewPage() {
                       ))}
                     </div>
 
-                    {/* Chat Input */}
+                    {/* Chat Input with Autocomplete */}
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
                         handleSendChatMessage();
                       }}
-                      className="flex gap-2"
+                      className="relative flex gap-2"
                     >
+                      {/* Mention Autocomplete Dropdown for Chat Input */}
+                      {mentionState.active && mentionState.targetField === "chatText" && filteredMentionSkills.length > 0 && (
+                        <div className="absolute left-0 bottom-full mb-2 z-30 w-72 max-h-56 overflow-y-auto rounded-xl border border-line bg-card shadow-xl p-1 space-y-0.5">
+                          <div className="px-2 py-1 text-[10px] font-bold text-muted uppercase tracking-wider border-b border-line/60">
+                            Gọi Kỹ năng ({mentionState.trigger}):
+                          </div>
+                          {filteredMentionSkills.map((skill, idx) => (
+                            <button
+                              key={skill.id}
+                              type="button"
+                              onClick={() => insertSkillMention(skill)}
+                              className={`w-full text-left p-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
+                                idx === mentionState.selectedIndex
+                                  ? "bg-accent text-accent-ink font-bold"
+                                  : "hover:bg-unk-bg text-text"
+                              }`}
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span>{skill.icon}</span>
+                                <span>{skill.title}</span>
+                              </span>
+                              <span className={`text-[10px] font-mono ${idx === mentionState.selectedIndex ? "opacity-90" : "text-muted"}`}>
+                                /{skill.slug}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
                       <input
+                        ref={chatInputRef}
                         type="text"
-                        placeholder="Hỏi bất kỳ điều gì về bài học này (vd: Tại sao dùng に mà không dùng で?)..."
+                        placeholder="Hỏi bất kỳ điều gì (gõ @ hoặc / để gọi skill, vd: /tro-tu hoặc @Giải bài tập JLPT)..."
                         value={chatInput}
-                        onChange={(e) => setChatInput(e.target.value)}
+                        onChange={(e) => {
+                          setChatInput(e.target.value);
+                          checkMentionTrigger(e.target.value, e.target.selectionStart || 0, "chatText");
+                        }}
+                        onKeyUp={(e) => {
+                          checkMentionTrigger(chatInput, (e.target as HTMLInputElement).selectionStart || 0, "chatText");
+                        }}
+                        onKeyDown={(e) => handleMentionKeyDown(e, filteredMentionSkills)}
                         disabled={isChatSending}
                         className="flex-1 px-3.5 py-2 rounded-xl border border-line bg-card text-xs focus:ring-2 focus:ring-accent"
                       />
@@ -1535,7 +1762,6 @@ export default function ScanAndReviewPage() {
                   </p>
                 </div>
 
-                {/* Filter, Search & Batch Push */}
                 <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                   <input
                     type="text"
@@ -1814,7 +2040,6 @@ export default function ScanAndReviewPage() {
               {/* Quiz Workspace */}
               {quizQuestions.length > 0 && !quizCompleted && (
                 <div className="card p-5 sm:p-6 space-y-5">
-                  {/* Progress Header */}
                   <div className="flex items-center justify-between text-xs text-muted border-b border-line pb-3">
                     <span className="font-semibold">
                       Câu {quizIndex + 1} / {quizQuestions.length}
@@ -1824,7 +2049,6 @@ export default function ScanAndReviewPage() {
                     </span>
                   </div>
 
-                  {/* Question Box */}
                   <div className="space-y-2 text-center py-4">
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-unk-bg text-muted">
                       {quizQuestions[quizIndex].kind === "word" ? "Từ vựng" : "Ngữ pháp (Đục lỗ / Ý nghĩa)"}
@@ -1847,7 +2071,6 @@ export default function ScanAndReviewPage() {
                     )}
                   </div>
 
-                  {/* Multiple Choice Options */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {quizQuestions[quizIndex].options.map((opt, idx) => {
                       const isSelected = quizSelectedOption === opt;
@@ -1879,7 +2102,6 @@ export default function ScanAndReviewPage() {
                     })}
                   </div>
 
-                  {/* Explanation & Next */}
                   {quizIsAnswered && (
                     <div className="pt-3 border-t border-line space-y-3">
                       {quizQuestions[quizIndex].explanation && (
@@ -1903,7 +2125,6 @@ export default function ScanAndReviewPage() {
                 </div>
               )}
 
-              {/* Quiz Completed Card */}
               {quizCompleted && (
                 <div className="card p-8 text-center space-y-4">
                   <span className="text-5xl">🎉</span>
@@ -1940,6 +2161,176 @@ export default function ScanAndReviewPage() {
         </main>
       </div>
 
+      {/* ===================== MODAL: UNIFIED SKILLS MANAGEMENT (GOM CHUNG VÀO 1 MỤC, CÓ THỂ XÓA ĐƯỢC) ===================== */}
+      {showSkillsModal && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="card max-w-xl w-full p-5 space-y-4 shadow-2xl max-h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between border-b border-line pb-2.5">
+              <h3 className="font-bold text-base flex items-center gap-2">
+                <span>🎯</span>
+                <span>Quản lý Kỹ năng (Skills) của Gemini</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowSkillsModal(false);
+                  setIsAddingNewSkill(false);
+                }}
+                className="text-muted hover:text-text font-bold text-sm"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="text-xs text-muted space-y-1 bg-unk-bg/60 p-3 rounded-xl border border-line/50">
+              <p className="font-semibold text-text">🤖 Cơ chế hoạt động của Skills:</p>
+              <p>• Khi quét ảnh hoặc giải bài, AI sẽ <strong>tự động nhận diện và gọi skill phù hợp</strong>.</p>
+              <p>• Khi gõ prompt hoặc chat, bạn có thể gõ <kbd className="font-mono bg-card px-1.5 py-0.5 rounded border border-line text-accent font-bold">@TênSkill</kbd> hoặc <kbd className="font-mono bg-card px-1.5 py-0.5 rounded border border-line text-accent font-bold">/slug</kbd> để kích hoạt đích danh skill đó.</p>
+              <p>• Bạn có thể <strong>xóa bất kỳ skill nào</strong> không cần thiết hoặc thêm skill mới tùy ý.</p>
+            </div>
+
+            {/* Skills List */}
+            <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
+              {allSkills.map((skill) => (
+                <div
+                  key={skill.id}
+                  className="rounded-xl border border-line p-3 bg-card/60 flex items-start justify-between gap-3 hover:border-accent transition-all"
+                >
+                  <div className="space-y-1 flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-lg">{skill.icon}</span>
+                      <span className="font-bold text-sm text-text">{skill.title}</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-soft text-accent font-bold">
+                        @{skill.title}
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-unk-bg text-muted">
+                        /{skill.slug}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted leading-relaxed line-clamp-2">
+                      {skill.prompt}
+                    </p>
+                  </div>
+
+                  {/* Delete Button for each skill */}
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteSkill(skill.id)}
+                    className="p-1.5 text-muted hover:text-red-500 rounded-lg hover:bg-red-500/10 transition-colors shrink-0"
+                    title="Xóa kỹ năng này"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              ))}
+
+              {allSkills.length === 0 && (
+                <div className="p-6 text-center text-xs text-muted">
+                  Bạn đã xóa hết skills. Hãy tạo skill mới hoặc bấm khôi phục mặc định bên dưới.
+                </div>
+              )}
+            </div>
+
+            {/* Create Skill Form (Collapsible) */}
+            {isAddingNewSkill ? (
+              <div className="p-3.5 rounded-xl border border-accent/40 bg-accent-soft/10 space-y-3 text-xs">
+                <span className="font-bold text-accent block text-sm">✨ Thêm Kỹ năng mới:</span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div className="sm:col-span-2">
+                    <label className="text-[11px] font-semibold text-muted block mb-0.5">Tên Skill:</label>
+                    <input
+                      type="text"
+                      placeholder="Vd: Soi kính ngữ (Keigo)..."
+                      value={newSkillTitle}
+                      onChange={(e) => setNewSkillTitle(e.target.value)}
+                      className="w-full px-2.5 py-1.5 rounded-lg border border-line bg-card"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[11px] font-semibold text-muted block mb-0.5">Lệnh tắt (/slug):</label>
+                    <input
+                      type="text"
+                      placeholder="Vd: keigo"
+                      value={newSkillSlug}
+                      onChange={(e) => setNewSkillSlug(e.target.value)}
+                      className="w-full px-2.5 py-1.5 rounded-lg border border-line bg-card font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <div>
+                    <label className="text-[11px] font-semibold text-muted block mb-0.5">Icon:</label>
+                    <input
+                      type="text"
+                      placeholder="✨"
+                      value={newSkillIcon}
+                      onChange={(e) => setNewSkillIcon(e.target.value)}
+                      className="w-16 px-2.5 py-1.5 rounded-lg border border-line bg-card text-center"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-[11px] font-semibold text-muted block mb-0.5">Nội dung hướng dẫn cho Skill:</label>
+                    <textarea
+                      rows={2}
+                      placeholder="AI cần làm gì khi skill này được gọi..."
+                      value={newSkillPrompt}
+                      onChange={(e) => setNewSkillPrompt(e.target.value)}
+                      className="w-full p-2 rounded-lg border border-line bg-card leading-relaxed"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex justify-end gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingNewSkill(false)}
+                    className="px-3 py-1 rounded-lg border border-line text-xs font-semibold"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCreateSkill}
+                    disabled={!newSkillTitle.trim() || !newSkillPrompt.trim()}
+                    className="px-4 py-1 rounded-lg bg-accent text-accent-ink font-bold text-xs disabled:opacity-50"
+                  >
+                    Lưu Skill mới
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between pt-2 border-t border-line">
+                <button
+                  type="button"
+                  onClick={handleRestoreDefaultSkills}
+                  className="text-xs text-muted hover:text-text underline"
+                >
+                  🔄 Khôi phục 5 Skills mặc định
+                </button>
+
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingNewSkill(true)}
+                    className="px-3.5 py-1.5 rounded-lg bg-accent text-accent-ink font-bold text-xs hover:opacity-90"
+                  >
+                    + Tạo Skill mới
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowSkillsModal(false)}
+                    className="px-3.5 py-1.5 rounded-lg border border-line text-xs font-semibold"
+                  >
+                    Đóng
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* ===================== MODAL: SYSTEM INSTRUCTIONS ===================== */}
       {showInstructionModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
@@ -1969,7 +2360,6 @@ export default function ScanAndReviewPage() {
               className="w-full p-3 rounded-xl border border-line bg-card text-xs focus:ring-2 focus:ring-accent leading-relaxed"
             />
 
-            {/* Quick Presets */}
             <div className="space-y-1">
               <span className="text-[11px] font-semibold text-muted">Gợi ý nhanh:</span>
               <div className="flex flex-wrap gap-1">
@@ -2018,80 +2408,6 @@ export default function ScanAndReviewPage() {
                   Lưu chỉ dẫn
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ===================== MODAL: CREATE CUSTOM SKILL ===================== */}
-      {showAddSkillModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="card max-w-md w-full p-5 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-line pb-2.5">
-              <h3 className="font-bold text-base flex items-center gap-2">
-                <span>✨</span>
-                <span>Tạo Kỹ năng (Skill) mới cho Gemini</span>
-              </h3>
-              <button
-                type="button"
-                onClick={() => setShowAddSkillModal(false)}
-                className="text-muted hover:text-text font-bold text-sm"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="space-y-3 text-xs">
-              <div>
-                <label className="font-semibold text-muted block mb-1">Tên Skill:</label>
-                <input
-                  type="text"
-                  placeholder="Vd: Soi kính ngữ (Keigo), Luyện đọc bảng biểu..."
-                  value={newSkillTitle}
-                  onChange={(e) => setNewSkillTitle(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-line bg-card"
-                />
-              </div>
-
-              <div>
-                <label className="font-semibold text-muted block mb-1">Biểu tượng (Icon):</label>
-                <input
-                  type="text"
-                  placeholder="Vd: 🎯, 👑, 📊, 🇯🇵..."
-                  value={newSkillIcon}
-                  onChange={(e) => setNewSkillIcon(e.target.value)}
-                  className="w-20 px-3 py-1.5 rounded-xl border border-line bg-card text-center"
-                />
-              </div>
-
-              <div>
-                <label className="font-semibold text-muted block mb-1">Hướng dẫn cho Skill (Prompt):</label>
-                <textarea
-                  rows={4}
-                  placeholder="Mô tả AI cần làm gì khi bật skill này (vd: Luôn chỉ ra thể tôn kính ngữ Sonkeigo và khiêm nhường ngữ Kenjougo trong văn bản)..."
-                  value={newSkillPrompt}
-                  onChange={(e) => setNewSkillPrompt(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-line bg-card"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-2 pt-2 border-t border-line">
-              <button
-                type="button"
-                onClick={() => setShowAddSkillModal(false)}
-                className="px-3 py-1.5 rounded-lg border border-line text-xs font-semibold"
-              >
-                Hủy
-              </button>
-              <button
-                type="button"
-                onClick={handleCreateSkill}
-                disabled={!newSkillTitle.trim() || !newSkillPrompt.trim()}
-                className="px-4 py-1.5 rounded-lg bg-accent text-accent-ink font-bold text-xs disabled:opacity-50"
-              >
-                Tạo Skill
-              </button>
             </div>
           </div>
         </div>

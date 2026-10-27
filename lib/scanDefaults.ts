@@ -1,10 +1,13 @@
-export interface DefaultSkill {
+export interface SkillItem {
   id: string;
+  slug: string;
   icon: string;
   title: string;
   prompt: string;
   isDefault?: boolean;
 }
+
+export type DefaultSkill = SkillItem;
 
 export const DEFAULT_SYSTEM_INSTRUCTIONS =
   "Bạn là trợ lý AI chuyên gia tiếng Nhật (JLPT N5-N1). " +
@@ -14,9 +17,10 @@ export const DEFAULT_SYSTEM_INSTRUCTIONS =
   "đồng thời trích xuất các cấu trúc ngữ pháp kèm công thức kết nối, giải thích ngắn gọn và câu ví dụ từ bài. " +
   "Hãy giải thích bằng tiếng Việt tự nhiên, ngắn gọn, súc tích và dễ hiểu cho người tự học.";
 
-export const BUILTIN_SKILLS: DefaultSkill[] = [
+export const BUILTIN_SKILLS: SkillItem[] = [
   {
     id: "jlpt-solver",
+    slug: "giai-de",
     icon: "🎯",
     title: "Giải bài tập JLPT",
     prompt:
@@ -27,6 +31,7 @@ export const BUILTIN_SKILLS: DefaultSkill[] = [
   },
   {
     id: "vocab-extractor",
+    slug: "tu-vung",
     icon: "📖",
     title: "Bóc tách Từ vựng & Hán tự",
     prompt:
@@ -37,6 +42,7 @@ export const BUILTIN_SKILLS: DefaultSkill[] = [
   },
   {
     id: "grammar-analyzer",
+    slug: "ngu-phap",
     icon: "📐",
     title: "Phân tích Ngữ pháp",
     prompt:
@@ -47,20 +53,51 @@ export const BUILTIN_SKILLS: DefaultSkill[] = [
   },
   {
     id: "particle-focus",
+    slug: "tro-tu",
     icon: "🔍",
     title: "Soi kỹ Trợ từ & Cấu trúc",
     prompt:
       "Phân tích cặn kẽ vai trò của từng trợ từ (は, が, を, に, で, と, へ, より, から, まで, も, ね, よ) " +
       "trong câu. Chỉ rõ tại sao dùng trợ từ này mà không phải trợ từ khác.",
-    isDefault: false,
+    isDefault: true,
   },
   {
     id: "mnemonic-alert",
+    slug: "meo-nho",
     icon: "💡",
     title: "Mẹo nhớ & Từ dễ nhầm",
     prompt:
       "Chỉ ra những từ vựng, chữ Hán hoặc mẫu ngữ pháp có cách viết hoặc phát âm tương tự " +
       "dễ gây nhầm lẫn trong bài thi JLPT, kèm mẹo ghi nhớ nhanh.",
-    isDefault: false,
+    isDefault: true,
   },
 ];
+
+/**
+ * Phân tích chuỗi văn bản người dùng nhập để tìm các skill được gọi qua @ hoặc /
+ */
+export function extractInvokedSkills(text: string, skills: SkillItem[]): SkillItem[] {
+  if (!text || !skills.length) return [];
+  const invoked: SkillItem[] = [];
+  const textLower = text.toLowerCase();
+
+  for (const skill of skills) {
+    const atTitle = `@${skill.title.toLowerCase()}`;
+    const slashSlug = `/${skill.slug.toLowerCase()}`;
+    const slashTitle = `/${skill.title.toLowerCase()}`;
+    const atSlug = `@${skill.slug.toLowerCase()}`;
+
+    if (
+      textLower.includes(atTitle) ||
+      textLower.includes(slashSlug) ||
+      textLower.includes(slashTitle) ||
+      textLower.includes(atSlug)
+    ) {
+      if (!invoked.some((s) => s.id === skill.id)) {
+        invoked.push(skill);
+      }
+    }
+  }
+
+  return invoked;
+}
