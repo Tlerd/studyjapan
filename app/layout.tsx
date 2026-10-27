@@ -3,7 +3,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Học tiếng Nhật Kanji Mạng Nhện",
-  description: "Học tiếng Nhật theo Kanji và Mạng Nhện liên kết ngữ cảnh",
+  description: "Học tiếng Nhật theo Kanji, mảnh LEGO và Mạng Nhện liên kết ngữ cảnh",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

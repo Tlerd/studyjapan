@@ -669,3 +669,49 @@ Tài liệu này ghi lại cấu trúc thực tế của các file nguồn dữ 
 - **Cấu trúc**: XML SVG biểu diễn từng kanji qua thẻ `<kanji id="kvg:kanji_{hex}">`
   - Nhóm cấu thành nét `<g kvg:element="..." kvg:position="left|right|top|bottom|surround...">`
   - Các đường nét `<path id="..." kvg:type="..." d="M...">`
+
+
+---
+
+## 6. JitenReader Parse API (jiten.moe)
+- **Nguồn**: Dự án JitenReader (\`Sirush/JitenReader\`)
+- **Endpoint**: \`https://api.jiten.moe/api/v1/parse\`
+- **Phương thức**: \`POST\`
+- **Headers**:
+  - \`Content-Type: application/json\`
+  - \`Authorization: Bearer <JITEN_API_KEY>\`
+- **Request Body**:
+  \`\`\`json
+  {
+    "text": "電車に乗る"
+  }
+  \`\`\`
+- **Response Schema**:
+  \`\`\`json
+  {
+    "tokens": [
+      {
+        "surface": "電車",
+        "reading": "でんしゃ",
+        "base": "電車",
+        "pos": "noun",
+        "isParticle": false
+      },
+      {
+        "surface": "に",
+        "reading": "に",
+        "base": "に",
+        "pos": "particle",
+        "isParticle": true
+      },
+      {
+        "surface": "乗る",
+        "reading": "のる",
+        "base": "乗る",
+        "pos": "verb",
+        "isParticle": false
+      }
+    ]
+  }
+  \`\`\`
+- **Quy tắc bảo mật**: Key \`JITEN_API_KEY\` chỉ lưu trong biến môi trường server / Vercel, không đưa lên client bundle.
