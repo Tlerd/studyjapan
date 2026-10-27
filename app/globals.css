@@ -4,7 +4,7 @@
 
 :root,
 :root[data-theme="light"] {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #f8fafc;
   --card: #ffffff;
   --text: #0f172a;
@@ -30,36 +30,6 @@
   --chip-bg: #ffffff;
   --chip-line: #cbd5e1;
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b0f17;
-    --card: #151b26;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --line: #242f42;
-    --accent: #3b82f6;
-    --accent-ink: #ffffff;
-    --accent-soft: rgba(59, 130, 246, 0.2);
-    --green: #10b981;
-    --yellow: #f59e0b;
-    --gray: #64748b;
-    --bar-track: #1e293b;
-    --bar-fill: #3b82f6;
-    --bar-log: #a855f7;
-    --ok-bg: #064e3b;
-    --ok-ink: #a7f3d0;
-    --no-bg: #450a0a;
-    --no-ink: #fecaca;
-    --unk-bg: #1e293b;
-    --unk-ink: #cbd5e1;
-    --note-bg: #451a03;
-    --note-ink: #fde68a;
-    --chip-bg: #1e293b;
-    --chip-line: #334155;
-    --shadow: none;
-  }
 }
 
 :root[data-theme="dark"] {

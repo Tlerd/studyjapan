@@ -26,10 +26,12 @@ export default function RootLayout({
                 const saved = localStorage.getItem("theme");
                 if (saved === "dark") {
                   document.documentElement.setAttribute("data-theme", "dark");
-                } else if (saved === "light") {
+                } else {
                   document.documentElement.setAttribute("data-theme", "light");
                 }
-              } catch (e) {}
+              } catch (e) {
+                document.documentElement.setAttribute("data-theme", "light");
+              }
             `,
           }}
         />
