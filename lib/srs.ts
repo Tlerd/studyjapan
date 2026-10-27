@@ -14,6 +14,7 @@ export interface StudyItem {
   text: string;
   type: "kanji" | "word" | "chunk" | "component";
   level: number; // 1..5
+  meaning?: string;
   category?: string | null;
   addedAt: string;
 }
@@ -51,7 +52,8 @@ export function scheduleNewItem(
   text: string,
   type: StudyItem["type"],
   level: number,
-  existingItems: Array<{ text: string; due: Date }> = []
+  existingItems: Array<{ text: string; due: Date }> = [],
+  meaning?: string
 ): {
   item: StudyItem;
   initialCard: Card;
@@ -89,6 +91,7 @@ export function scheduleNewItem(
     text,
     type,
     level,
+    meaning,
     category,
     addedAt: now.toISOString()
   };

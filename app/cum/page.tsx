@@ -30,7 +30,8 @@ export default function ChunksAndSituationsPage() {
           item.text,
           "chunk",
           5,
-          existingForConfusion
+          existingForConfusion,
+          item.vi
         );
         await db.items.put(studyItem);
 

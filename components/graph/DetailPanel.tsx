@@ -64,7 +64,8 @@ export function DetailPanel({ node, onClose, onSelectNode }: DetailPanelProps) {
         node.label,
         typeKey,
         node.level || 5,
-        existingForConfusion
+        existingForConfusion,
+        node.type === "kanji" ? node.hanViet : node.meaning
       );
 
       await db.items.put(item);

@@ -6,7 +6,12 @@ import * as wanakana from "wanakana";
 import { Navbar } from "../../components/Navbar";
 import { db } from "../../lib/db";
 import { reviewCard, Rating, type ReviewRating, type StudyCard, type StudyItem } from "../../lib/srs";
-import kanjiData from "../../public/kanji.json";
+import {
+  getItemAnswer,
+  getDistractors,
+  getExpectedReading,
+  getItemTypeLabel,
+} from "../../lib/quiz";
 import wordsData from "../../public/words.json";
 
 type Mode = "quiz" | "reflex" | "typing";
@@ -29,14 +34,6 @@ export default function PracticePage() {
   const [typedInput, setTypedInput] = useState<string>("");
   const [typingResult, setTypingResult] = useState<"correct" | "wrong" | null>(null);
 
-  // Reflex state
-  const [reflexPairs, setReflexPairs] = useState<Array<{ id: string; left: string; right: string }>>([]);
-  const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
-  const [selectedRight, setSelectedRight] = useState<string | null>(null);
-  const [matchedIds, setMatchedIds] = useState<Set<string>>(new Set());
-  const [reflexTimer, setReflexTimer] = useState<number>(0);
-
-  const kanjiDb = kanjiData as Record<string, any>;
   const wordsDb = wordsData as Record<string, any>;
 
   // Load cards from DB or generate practice batch
@@ -78,6 +75,7 @@ export default function PracticePage() {
               text: w,
               type: "word",
               level: 5,
+              meaning: wordsDb[w]?.meaning || "học sinh",
               addedAt: new Date().toISOString(),
             });
           });
@@ -89,7 +87,7 @@ export default function PracticePage() {
       }
     }
     loadPracticeCards();
-  }, []);
+  }, [wordsDb]);
 
   const currentCard = cards[currentIndex];
   const currentItem = currentCard ? itemsMap.get(currentCard.itemId) : null;
@@ -103,21 +101,8 @@ export default function PracticePage() {
     setTypedInput("");
     setTypingResult(null);
 
-    const isKanji = currentItem.type === "kanji";
-    let correctAnswer = "";
-
-    if (isKanji) {
-      correctAnswer = kanjiDb[currentItem.text]?.hanViet || "HỌC";
-    } else {
-      correctAnswer = wordsDb[currentItem.text]?.meaning || "học sinh";
-    }
-
-    // Distractors
-    const pool = isKanji
-      ? ["HỌC", "NHẬT", "BẠC", "BẠCH", "THỦY", "SINH", "ĐẠI", "HIỆU", "XUYÊN", "SƠN"]
-      : ["học sinh", "trường học", "đại học", "du học", "mỗi ngày", "nước Nhật", "hôm nay", "ngày mai"];
-
-    const distractors = pool.filter((d) => d !== correctAnswer).sort(() => Math.random() - 0.5).slice(0, 3);
+    const correctAnswer = getItemAnswer(currentItem);
+    const distractors = getDistractors(currentItem, correctAnswer);
     const opts = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
     setQuizOptions(opts);
   }, [currentIndex, currentItem]);
@@ -128,11 +113,7 @@ export default function PracticePage() {
     setIsAnswered(true);
     setSelectedOption(opt);
 
-    const isKanji = currentItem.type === "kanji";
-    const correctAnswer = isKanji
-      ? kanjiDb[currentItem.text]?.hanViet
-      : wordsDb[currentItem.text]?.meaning;
-
+    const correctAnswer = getItemAnswer(currentItem);
     const isCorrect = opt === correctAnswer;
     const elapsedSec = (Date.now() - startTime) / 1000;
 
@@ -167,7 +148,7 @@ export default function PracticePage() {
     e.preventDefault();
     if (!currentCard || !currentItem || isAnswered) return;
 
-    const expectedReading = wordsDb[currentItem.text]?.reading || wanakana.toHiragana(currentItem.text);
+    const expectedReading = getExpectedReading(currentItem);
     const userKana = wanakana.toHiragana(typedInput.trim());
 
     const isCorrect = userKana === expectedReading || userKana === currentItem.text;
@@ -257,7 +238,7 @@ export default function PracticePage() {
             {/* Prompt Question */}
             <div className="py-6 space-y-2">
               <span className="text-xs font-semibold uppercase text-muted tracking-wider">
-                {currentItem.type === "kanji" ? "Nhận diện Kanji" : "Nhớ nghĩa từ vựng"}
+                {getItemTypeLabel(currentItem)}
               </span>
               <div className="font-ja text-5xl sm:text-6xl font-extrabold text-accent">
                 {currentItem.text}
@@ -270,10 +251,7 @@ export default function PracticePage() {
                 {quizOptions.map((opt) => {
                   let btnStyle = "border-line bg-card text-text hover:border-accent";
                   if (isAnswered) {
-                    const isKanji = currentItem.type === "kanji";
-                    const correct = isKanji
-                      ? kanjiDb[currentItem.text]?.hanViet
-                      : wordsDb[currentItem.text]?.meaning;
+                    const correct = getItemAnswer(currentItem);
                     if (opt === correct) {
                       btnStyle = "border-green-brand bg-green-brand/20 text-ok-ink font-bold";
                     } else if (opt === selectedOption) {
@@ -331,7 +309,9 @@ export default function PracticePage() {
                   >
                     {typingResult === "correct"
                       ? "✓ Chính xác!"
-                      : `❌ Chưa đúng! Đáp án: ${wordsDb[currentItem.text]?.reading || currentItem.text}`}
+                      : `❌ Chưa đúng! Đáp án: ${getExpectedReading(currentItem)} (${getItemAnswer(
+                          currentItem
+                        )})`}
                   </p>
                 )}
               </form>

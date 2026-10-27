@@ -71,7 +71,7 @@ export default function SingleLegoPartPage({ params }: PageProps) {
       setIsStudying(false);
       setNotice("Đã bỏ khỏi danh sách ôn tập");
     } else {
-      const { item, initialCard } = scheduleNewItem(rawPart, "component", 5);
+      const { item, initialCard } = scheduleNewItem(rawPart, "component", 5, [], partMeta.vi);
       await db.items.put(item);
       const cards: StudyCard[] = [
         {
