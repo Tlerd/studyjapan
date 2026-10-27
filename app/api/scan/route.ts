@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import kanjiData from "../../../public/kanji.json";
-import wordsData from "../../../data/words.json";
+import wordsData from "../../../public/words.json";
 import { DEFAULT_SYSTEM_INSTRUCTIONS } from "../../../lib/scanDefaults";
 
 const kanjiDb = kanjiData as Record<string, any>;

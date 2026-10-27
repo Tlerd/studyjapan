@@ -10,7 +10,7 @@ import { DetailPanel } from "../components/graph/DetailPanel";
 import { buildGraph, type GraphResult, type NodeData } from "../lib/graphBuilder";
 import { type Level } from "../lib/level";
 import kanjiData from "../public/kanji.json";
-import wordsData from "../data/words.json";
+import wordsData from "../public/words.json";
 
 function SpiderGraphContent() {
   const searchParams = useSearchParams();

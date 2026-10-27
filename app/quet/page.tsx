@@ -29,6 +29,25 @@ import { reviewCard, Rating, type ReviewRating } from "../../lib/srs";
 
 type SidebarTab = "scan" | "exercises" | "words" | "grammar" | "review";
 
+interface ScannedWordMeta {
+  surface: string;
+  reading?: string;
+  hanViet?: string;
+  meaning?: string;
+  level?: number;
+  contextSentence?: string;
+}
+
+interface ScannedGrammarMeta {
+  pattern: string;
+  formation?: string;
+  meaning?: string;
+  explanation?: string;
+  exampleSentence?: string;
+  exampleTranslation?: string;
+  level?: number;
+}
+
 /**
  * Thu nhỏ ảnh trên trình duyệt (tối đa 1600px, JPEG 0.85) để gửi API nhanh và nhẹ
  */
@@ -92,8 +111,8 @@ export default function ScanAndReviewPage() {
     rawText: string;
     translatedText: string;
     exercises: ExerciseItem[];
-    words: any[];
-    grammar: any[];
+    words: ScannedWordMeta[];
+    grammar: ScannedGrammarMeta[];
     isAlreadySaved?: boolean;
   } | null>(null);
   const [selectedWordsToSave, setSelectedWordsToSave] = useState<Set<string>>(new Set());
@@ -388,8 +407,8 @@ export default function ScanAndReviewPage() {
       setCurrentScanResult(resultObj);
 
       // Default select all words & grammar for easy saving
-      setSelectedWordsToSave(new Set(resultObj.words.map((w) => w.surface)));
-      setSelectedGrammarToSave(new Set(resultObj.grammar.map((g) => g.pattern)));
+      setSelectedWordsToSave(new Set(resultObj.words.map((w: ScannedWordMeta) => w.surface)));
+      setSelectedGrammarToSave(new Set(resultObj.grammar.map((g: ScannedGrammarMeta) => g.pattern)));
 
       // Initialize chat with greeting
       setChatMessages([
@@ -1219,7 +1238,7 @@ export default function ScanAndReviewPage() {
                               if (selectedWordsToSave.size === currentScanResult.words.length) {
                                 setSelectedWordsToSave(new Set());
                               } else {
-                                setSelectedWordsToSave(new Set(currentScanResult.words.map((w) => w.surface)));
+                                setSelectedWordsToSave(new Set(currentScanResult.words.map((w: ScannedWordMeta) => w.surface)));
                               }
                             }}
                             className="text-[11px] text-accent hover:underline font-semibold"
@@ -1293,7 +1312,7 @@ export default function ScanAndReviewPage() {
                               if (selectedGrammarToSave.size === currentScanResult.grammar.length) {
                                 setSelectedGrammarToSave(new Set());
                               } else {
-                                setSelectedGrammarToSave(new Set(currentScanResult.grammar.map((g) => g.pattern)));
+                                setSelectedGrammarToSave(new Set(currentScanResult.grammar.map((g: ScannedGrammarMeta) => g.pattern)));
                               }
                             }}
                             className="text-[11px] text-accent hover:underline font-semibold"
