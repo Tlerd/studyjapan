@@ -148,6 +148,52 @@ export class JapaneseStudyDB extends Dexie {
       customSkills: "id, title",
       aiSettings: "key"
     });
+
+    // Auto-sync change hooks on tables
+    const tables = [
+      this.items,
+      this.cards,
+      this.reviewLogs,
+      this.scanSources,
+      this.scannedItems,
+      this.scannedCards,
+      this.customSkills,
+      this.aiSettings,
+      this.viMeaningCache,
+    ];
+
+    tables.forEach((table) => {
+      table.hook("creating", () => {
+        notifyDatabaseChanged();
+      });
+      table.hook("updating", () => {
+        notifyDatabaseChanged();
+      });
+      table.hook("deleting", () => {
+        notifyDatabaseChanged();
+      });
+    });
+  }
+}
+
+let isSuppressAutoSync = false;
+
+export function setSuppressAutoSync(suppress: boolean) {
+  isSuppressAutoSync = suppress;
+}
+
+export function isAutoSyncSuppressed(): boolean {
+  return isSuppressAutoSync;
+}
+
+let autoSyncCallback: (() => void) | null = null;
+export function registerAutoSyncCallback(cb: () => void) {
+  autoSyncCallback = cb;
+}
+
+export function notifyDatabaseChanged() {
+  if (!isSuppressAutoSync && autoSyncCallback) {
+    autoSyncCallback();
   }
 }
 
@@ -365,8 +411,10 @@ export async function mergeDatabaseFromJson(
   }
 
   let mergedCount = 0;
+  setSuppressAutoSync(true);
 
-  await db.transaction(
+  try {
+    await db.transaction(
     "rw",
     [
       db.items,
@@ -467,6 +515,9 @@ export async function mergeDatabaseFromJson(
       }
     }
   );
+  } finally {
+    setSuppressAutoSync(false);
+  }
 
   return { mergedCount };
 }

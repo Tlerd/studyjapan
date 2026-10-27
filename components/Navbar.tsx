@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { db } from "../lib/db";
@@ -8,6 +8,7 @@ import { getDueCards } from "../lib/srs";
 import { type Level } from "../lib/level";
 import { ThemeToggle } from "./ThemeToggle";
 import { SyncModal } from "./SyncModal";
+import { useAutoSync } from "../lib/syncEngine";
 
 interface NavbarProps {
   currentLevel?: Level;
@@ -19,29 +20,32 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
   const [dueCount, setDueCount] = useState<number>(0);
   const [isSyncModalOpen, setIsSyncModalOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    async function loadDueCount() {
-      try {
-        const allCards = await db.cards.toArray();
-        const allItems = await db.items.toArray();
-        const itemMap = new Map(allItems.map((i) => [i.id, i.level]));
+  const loadDueCount = useCallback(async () => {
+    try {
+      const allCards = await db.cards.toArray();
+      const allItems = await db.items.toArray();
+      const itemMap = new Map(allItems.map((i) => [i.id, i.level]));
 
-        const cardsWithLevel = allCards.map((c) => ({
-          ...c,
-          level: itemMap.get(c.itemId) || 5,
-        }));
+      const cardsWithLevel = allCards.map((c) => ({
+        ...c,
+        level: itemMap.get(c.itemId) || 5,
+      }));
 
-        const due = getDueCards(cardsWithLevel);
-        setDueCount(due.length);
-      } catch {
-        // Fallback for SSR or empty db
-        setDueCount(0);
-      }
+      const due = getDueCards(cardsWithLevel);
+      setDueCount(due.length);
+    } catch {
+      // Fallback for SSR or empty db
+      setDueCount(0);
     }
+  }, []);
+
+  const { syncStatus, lastSyncTime } = useAutoSync(loadDueCount);
+
+  useEffect(() => {
     loadDueCount();
     const interval = setInterval(loadDueCount, 15000);
     return () => clearInterval(interval);
-  }, []);
+  }, [loadDueCount]);
 
   const navLinks = [
     { href: "/", label: "🕸️ Mạng nhện" },
@@ -94,11 +98,22 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
           <button
             type="button"
             onClick={() => setIsSyncModalOpen(true)}
-            title="Đồng bộ Máy tính & Điện thoại (Mã / QR Code)"
+            title={
+              syncStatus === "syncing"
+                ? "Đang tự động đồng bộ..."
+                : lastSyncTime
+                ? `Đồng bộ tự động (Lần cuối: ${new Date(lastSyncTime).toLocaleTimeString("vi-VN")})`
+                : "Đồng bộ Máy tính & Điện thoại (Mã / QR Code)"
+            }
             aria-label="Đồng bộ Máy tính & Điện thoại"
-            className="w-8 h-8 rounded-lg border border-line bg-card hover:bg-unk-bg flex items-center justify-center text-sm shadow-xs transition-colors shrink-0"
+            className="relative w-8 h-8 rounded-lg border border-line bg-card hover:bg-unk-bg flex items-center justify-center text-sm shadow-xs transition-colors shrink-0"
           >
-            ☁️
+            <span className={syncStatus === "syncing" ? "animate-spin inline-block text-xs" : ""}>
+              {syncStatus === "syncing" ? "🔄" : "☁️"}
+            </span>
+            {syncStatus === "syncing" && (
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-blue-500 animate-ping" />
+            )}
           </button>
           <ThemeToggle />
         </div>
@@ -108,6 +123,7 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
       <SyncModal
         isOpen={isSyncModalOpen}
         onClose={() => setIsSyncModalOpen(false)}
+        onSyncCompleted={loadDueCount}
       />
     </header>
   );
