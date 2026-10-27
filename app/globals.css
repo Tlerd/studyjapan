@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+:root[data-theme="light"] {
   color-scheme: light dark;
   --bg: #f8fafc;
   --card: #ffffff;

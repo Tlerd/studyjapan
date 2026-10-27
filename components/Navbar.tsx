@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { db } from "../lib/db";
-import { getDueCards, type StudyCard } from "../lib/srs";
+import { getDueCards } from "../lib/srs";
 import { type Level } from "../lib/level";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface NavbarProps {
   currentLevel?: Level;
@@ -51,7 +52,7 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-line bg-card/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 font-bold text-base tracking-tight shrink-0">
           <span className="text-xl">🕸️</span>
@@ -84,6 +85,9 @@ export function Navbar({ currentLevel = 5, onLevelChange }: NavbarProps) {
             );
           })}
         </nav>
+
+        {/* Theme Toggle Button */}
+        <ThemeToggle />
       </div>
     </header>
   );
