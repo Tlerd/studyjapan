@@ -4,6 +4,7 @@ import React, { useEffect, useCallback } from "react";
 import {
   ReactFlow,
   Background,
+  BackgroundVariant,
   Controls,
   useNodesState,
   useEdgesState,
@@ -11,11 +12,13 @@ import {
   type Edge,
   type NodeProps,
   Handle,
-  Position
+  Position,
+  MarkerType
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { type NodeData, type GraphResult } from "../../lib/graphBuilder";
 import { Furigana } from "../Furigana";
+import { FloatingEdge } from "./FloatingEdge";
 
 interface SpiderGraphProps {
   graphData: GraphResult | null;
@@ -24,7 +27,7 @@ interface SpiderGraphProps {
   onCenterChange?: (label: string) => void;
 }
 
-// Custom Kanji Node Component (Hỗ trợ kéo thả và đổi trỏ chuột)
+// Custom Kanji Node Component (Hỗ trợ kéo thả và điểm neo 4 hướng)
 function KanjiNodeComponent({ data, selected }: NodeProps) {
   const nodeData = data as unknown as NodeData;
   const isCenter = nodeData.circle === 0;
@@ -37,7 +40,17 @@ function KanjiNodeComponent({ data, selected }: NodeProps) {
           : "w-16 h-16 bg-card text-text border-line hover:border-accent hover:shadow-md"
       } ${selected ? "ring-4 ring-amber-400" : ""}`}
     >
-      <Handle type="target" position={Position.Top} className="opacity-0" />
+      {/* 4 Handles cho các hướng neo tự động */}
+      <Handle type="target" position={Position.Top} id="t-top" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Bottom} id="t-bottom" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Left} id="t-left" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Right} id="t-right" className="opacity-0 pointer-events-none" />
+
+      <Handle type="source" position={Position.Top} id="s-top" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Bottom} id="s-bottom" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Left} id="s-left" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Right} id="s-right" className="opacity-0 pointer-events-none" />
+
       <span
         className={`font-ja font-bold leading-none ${
           isCenter ? "text-4xl text-white" : "text-2xl text-accent"
@@ -54,12 +67,11 @@ function KanjiNodeComponent({ data, selected }: NodeProps) {
           {nodeData.hanViet}
         </span>
       )}
-      <Handle type="source" position={Position.Bottom} className="opacity-0" />
     </div>
   );
 }
 
-// Custom Word Node Component (Hỗ trợ kéo thả và đổi trỏ chuột)
+// Custom Word Node Component (Hỗ trợ kéo thả và điểm neo 4 hướng)
 function WordNodeComponent({ data, selected }: NodeProps) {
   const nodeData = data as unknown as NodeData;
   const isCenter = nodeData.circle === 0;
@@ -72,7 +84,17 @@ function WordNodeComponent({ data, selected }: NodeProps) {
           : "bg-card text-text border-line hover:border-accent hover:shadow-md"
       } ${selected ? "ring-2 ring-amber-400" : ""}`}
     >
-      <Handle type="target" position={Position.Top} className="opacity-0" />
+      {/* 4 Handles cho các hướng neo tự động */}
+      <Handle type="target" position={Position.Top} id="t-top" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Bottom} id="t-bottom" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Left} id="t-left" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Right} id="t-right" className="opacity-0 pointer-events-none" />
+
+      <Handle type="source" position={Position.Top} id="s-top" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Bottom} id="s-bottom" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Left} id="s-left" className="opacity-0 pointer-events-none" />
+      <Handle type="source" position={Position.Right} id="s-right" className="opacity-0 pointer-events-none" />
+
       <div className="font-ja text-base font-bold">
         <Furigana
           surface={nodeData.label}
@@ -100,7 +122,6 @@ function WordNodeComponent({ data, selected }: NodeProps) {
           #{nodeData.rank}
         </span>
       )}
-      <Handle type="source" position={Position.Bottom} className="opacity-0" />
     </div>
   );
 }
@@ -108,6 +129,11 @@ function WordNodeComponent({ data, selected }: NodeProps) {
 const nodeTypes = {
   kanji: KanjiNodeComponent,
   word: WordNodeComponent
+};
+
+const edgeTypes = {
+  floating: FloatingEdge,
+  default: FloatingEdge
 };
 
 export function SpiderGraph({
@@ -185,23 +211,42 @@ export function SpiderGraph({
       });
     });
 
-    // Edges
+    // Edges with smooth curves, dynamic handles, and arrows
     graphData.edges.forEach((edge) => {
+      const strokeColor =
+        edge.type === "same-situation"
+          ? "#10b981"
+          : edge.type === "interference"
+          ? "#ef4444"
+          : edge.type === "same-component"
+          ? "#f59e0b"
+          : "#64748b";
+
       flowEdges.push({
         id: edge.id,
         source: edge.source,
         target: edge.target,
+        type: "floating",
         animated: edge.type === "same-situation",
-        style: {
-          stroke:
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          width: 14,
+          height: 14,
+          color: strokeColor
+        },
+        data: {
+          label:
             edge.type === "same-situation"
-              ? "#10b981"
+              ? "cùng ngữ cảnh"
               : edge.type === "interference"
-              ? "#ef4444"
+              ? "dễ nhầm"
               : edge.type === "same-component"
-              ? "#f59e0b"
-              : "#94a3b8",
-          strokeWidth: 2,
+              ? "cùng bộ"
+              : undefined
+        },
+        style: {
+          stroke: strokeColor,
+          strokeWidth: 1.75,
           strokeDasharray:
             edge.type === "same-situation"
               ? "5,5"
@@ -266,6 +311,7 @@ export function SpiderGraph({
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
         nodesDraggable={true}
         nodesConnectable={false}
@@ -282,7 +328,7 @@ export function SpiderGraph({
           }
         }}
       >
-        <Background gap={18} size={1} />
+        <Background variant={BackgroundVariant.Dots} gap={22} size={1.2} />
         <Controls showInteractive={false} position="bottom-right" />
       </ReactFlow>
     </div>
