@@ -166,7 +166,7 @@ export async function POST(req: NextRequest) {
       const promptText = `Hãy nhận diện hình ảnh/văn bản tiếng Nhật này (bao gồm tất cả các trang ảnh được tải lên nếu có nhiều ảnh) và trả về kết quả dưới định dạng JSON duy nhất tuân thủ đúng cấu trúc sau:
 {
   "rawText": "Toàn bộ văn bản tiếng Nhật đọc được từ ảnh hoặc đề bài",
-  "translatedText": "Bản dịch đối chiếu dòng-theo-dòng gắn liền với từng dòng/mục tiếng Nhật. Ví dụ:\n• 会議（かいぎ）: Cuộc họp, hội nghị\n• 課長（かちょう）: Trưởng nhóm, trưởng phòng (nhỏ/bộ phận)\nNếu là đoạn văn thì từng câu Nhật kèm dịch Việt ngay dưới: [Câu Nhật] -> ↳ Dịch: [Câu Việt]. TUYỆT ĐỐI không dồn thành một đoạn văn tiếng Việt tách rời.",
+  "translatedText": "Bản dịch đối chiếu dòng-theo-dòng gắn liền với từng dòng/mục tiếng Nhật. Ví dụ:\n• 会議（かいぎ）: Cuộc họp, hội nghị\n• 課長（かちょう）: Trưởng nhóm, trưởng phòng (nhỏ/bộ phận)\n• シフト: Ca làm việc\n• しまう 1: Cất đi, dọn đi (động từ nhóm 1)\nNếu là đoạn văn thì từng câu Nhật kèm dịch Việt ngay dưới: [Câu Nhật] -> ↳ Dịch: [Câu Việt]. TUYỆT ĐỐI không dồn thành một đoạn văn tiếng Việt tách rời.",
   "exercises": [
     {
       "id": "ex-1",
@@ -179,12 +179,12 @@ export async function POST(req: NextRequest) {
   ],
   "words": [
     {
-      "surface": "Từ vựng (dạng viết chuẩn)",
-      "reading": "Cách đọc viết bằng chữ Hiragana",
-      "hanViet": "Âm Hán Việt",
+      "surface": "Từ vựng (dạng viết chuẩn như trong bài, ví dụ: 一度, シフト, しまう 1, タイムカード)",
+      "reading": "Cách đọc viết bằng chữ Hiragana (ví dụ: いちど, しふと, しまう)",
+      "hanViet": "Âm Hán Việt nếu từ có chữ Hán (ví dụ: NHẤT ĐỘ). Nếu là từ Katakana hoặc thuần Hiragana không có chữ Hán thì để chuỗi rỗng \"\"",
       "meaning": "Nghĩa tiếng Việt phù hợp nhất với ngữ cảnh",
       "level": 5,
-      "contextSentence": "Câu gốc chứa từ này trích từ ảnh"
+      "contextSentence": "Câu gốc chứa từ này trích từ ảnh hoặc từ đó kèm ví dụ đi kèm"
     }
   ],
   "grammar": [
@@ -200,10 +200,17 @@ export async function POST(req: NextRequest) {
   ]
 }
 
-Lưu ý:
-- QUY TẮC DỊCH VÀ TRÌNH BÀY BẮT BUỘC: translatedText PHẢI là bản dịch song ngữ đối chiếu dòng-theo-dòng (hoặc mục-theo-mục) gắn liền tiếng Nhật và tiếng Việt: 'Tiếng Nhật (Cách đọc Hiragana) : Nghĩa tiếng Việt'. TUYỆT ĐỐI không viết một khối toàn tiếng Nhật rồi dồn một khối tiếng Việt tách rời ở dưới.
+LƯU Ý ĐẶC BIỆT BẮT BUỘC:
+- QUY TẮC BÓC TÁCH TỪ VỰNG TOÀN DIỆN (KHÔNG ĐƯỢC BỎ SÓT):
+  + Nếu ảnh là danh sách từ vựng, bảng từ hoặc trang từ vựng sách giáo khoa (có nhiều cột, nhiều dòng): Bạn PHẢI quét và bóc tách TOÀN BỘ TẤT CẢ các mục từ vựng có trong ảnh, lần lượt theo từng cột từ trên xuống dưới, từ trái sang phải. TUYỆT ĐỐI không chỉ chọn lọc 5-10 từ tiêu biểu. Nếu ảnh có 50 hay 80 từ vựng, hãy trả về đầy đủ tất cả 50-80 từ trong mảng "words".
+  + KHÔNG CHỈ BÓC TÁCH TỪ CÓ KANJI. Phải nhận diện ĐẦY ĐỦ cả 3 nhóm từ:
+    1) Từ Katakana mượn tiếng nước ngoài (như シフト, シール, スタッフ, スニーカー, タイムカード, ホール, マニュアル, ルール, ガス, ガソリン, バター, モップ...). Với từ Katakana, để hanViet là "".
+    2) Từ thuần Hiragana, động từ, tính từ, phó từ và cụm từ giao tiếp (như しまう, つける, かける, しっかり, はっきり, そのまま, ひも, 少々, お先にどうぞ, ご自由に, 申し訳ないんですが...). Với từ không có chữ Hán, để hanViet là "".
+    3) Từ có chữ Hán (Kanji): trích xuất chữ Hán, âm Hán Việt và cách đọc Hiragana đầy đủ.
+  + Nếu sách có ghi kèm số nhóm động từ (như '押す 1', '着替える 2', 'あいさつ・する 3'), hãy giữ nguyên trong trường surface để người học ghi nhớ nhóm chia động từ.
+- QUY TẮC DỊCH VÀ TRÌNH BÀY: translatedText PHẢI là bản dịch song ngữ đối chiếu dòng-theo-dòng gắn liền tiếng Nhật và tiếng Việt: '• Tiếng Nhật (Cách đọc Hiragana) : Nghĩa tiếng Việt'. TUYỆT ĐỐI không viết một khối toàn tiếng Nhật rồi dồn một khối tiếng Việt tách rời ở dưới.
 - Nếu ảnh có câu hỏi bài tập (trắc nghiệm, điền từ, sắp xếp dấu sao ★, đọc hiểu), hãy giải đầy đủ từng câu trong mảng "exercises". Nếu không có câu hỏi bài tập, để "exercises": [].
-- Bóc tách đầy đủ các từ vựng quan trọng và cấu trúc ngữ pháp xuất hiện trong ảnh/đề bài.
+- Bóc tách đầy đủ các cấu trúc ngữ pháp xuất hiện trong ảnh/đề bài vào mảng "grammar".
 - Chỉ trả về duy nhất chuỗi JSON hợp lệ, không bọc markdown fence và không có text nào ngoài JSON.`;
 
       contentsParts.push({
@@ -221,6 +228,7 @@ Lưu ý:
           generationConfig: {
             responseMimeType: "application/json",
             temperature: 0.2,
+            maxOutputTokens: 16384,
           },
         },
         thinkingConfig
@@ -243,14 +251,15 @@ Lưu ý:
       if (Array.isArray(parsedData.words)) {
         parsedData.words = parsedData.words.map((w: any) => {
           const surface = (w.surface || "").trim();
-          const kMeta = kanjiDb[surface];
-          const wMeta = wordsDb[surface];
+          const cleanSurface = surface.replace(/\s*\d+$/, "").trim();
+          const kMeta = kanjiDb[surface] || kanjiDb[cleanSurface];
+          const wMeta = wordsDb[surface] || wordsDb[cleanSurface];
 
           // Build Han-Viet from each Kanji character if not already provided
           let inferredHanViet = "";
           if (!w.hanViet && surface) {
             const hvParts: string[] = [];
-            for (const ch of surface) {
+            for (const ch of cleanSurface) {
               if (kanjiDb[ch]?.hanViet) {
                 hvParts.push(kanjiDb[ch].hanViet);
               }

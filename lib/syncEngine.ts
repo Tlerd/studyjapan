@@ -44,13 +44,18 @@ export function generateRandomSyncKey(): string {
 
 export function getStoredSyncKey(): string {
   if (typeof window === "undefined") return DEFAULT_SHARED_KEY;
-  return localStorage.getItem(SYNC_KEY_STORAGE) || DEFAULT_SHARED_KEY;
+  let key = localStorage.getItem(SYNC_KEY_STORAGE);
+  if (!key || key.startsWith("JAP-") || key.toLowerCase() === "jap-k9kd" || key.toLowerCase() === "jap-x6ax") {
+    key = DEFAULT_SHARED_KEY;
+    localStorage.setItem(SYNC_KEY_STORAGE, key);
+  }
+  return key;
 }
 
 export function getOrCreateSyncKey(): string {
   if (typeof window === "undefined") return DEFAULT_SHARED_KEY;
   let key = localStorage.getItem(SYNC_KEY_STORAGE);
-  if (!key) {
+  if (!key || key.startsWith("JAP-") || key.toLowerCase() === "jap-k9kd" || key.toLowerCase() === "jap-x6ax") {
     key = DEFAULT_SHARED_KEY;
     localStorage.setItem(SYNC_KEY_STORAGE, key);
   }

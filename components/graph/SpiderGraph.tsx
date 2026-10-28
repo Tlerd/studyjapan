@@ -282,8 +282,10 @@ export function SpiderGraph({
 
   if (!graphData) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-muted text-sm">
-        Không có dữ liệu đồ thị
+      <div className="w-full h-full min-h-[460px] bg-bg relative rounded-2xl overflow-hidden border border-line flex flex-col items-center justify-center text-muted text-sm gap-2 p-6 text-center">
+        <span className="text-4xl mb-1">🕸️</span>
+        <p className="font-semibold text-text">Nhập chữ Hán, từ vựng hoặc romaji để hiển thị mạng nhện</p>
+        <p className="text-xs text-muted">Ví dụ: 日, học, nihon, gakusei, taberu...</p>
       </div>
     );
   }

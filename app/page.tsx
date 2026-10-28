@@ -41,31 +41,44 @@ function SpiderGraphContent() {
   const [, startTransition] = useTransition();
 
   const lastSearchParamQ = useRef<string | null>(qParam);
+  const isMountedRef = useRef<boolean>(false);
 
   // Sync state whenever URL query params change (e.g. user clicked a Kanji link /?q=... or back/forward)
   useEffect(() => {
     const q = searchParams.get("q");
     if (q !== lastSearchParamQ.current) {
       lastSearchParamQ.current = q;
-      const target = q ? q.trim() : "学";
-      setQuery(target);
-      setDebouncedQuery(target);
-      setBreadcrumbs((prev) => {
-        if (prev.includes(target)) {
-          return prev.slice(0, prev.indexOf(target) + 1);
-        }
-        return [...prev, target];
-      });
+      if (q !== null) {
+        const target = q.trim();
+        setQuery(target);
+        setDebouncedQuery(target);
+        if (target) {
+          setBreadcrumbs((prev) => {
+            if (prev.includes(target)) {
+              return prev.slice(0, prev.indexOf(target) + 1);
+            }
+            return [...prev, target];
+          });
 
-      const kanjiDb = kanjiData as Record<string, any>;
-      const wordsDb = wordsData as Record<string, any>;
-      const itemLevel = kanjiDb[target]?.jlpt || wordsDb[target]?.jlpt;
-      if (itemLevel && itemLevel >= 1 && itemLevel <= 5) {
-        if (itemLevel < currentLevel) {
-          setCurrentLevel(itemLevel as Level);
+          const kanjiDb = kanjiData as Record<string, any>;
+          const wordsDb = wordsData as Record<string, any>;
+          const itemLevel = kanjiDb[target]?.jlpt || wordsDb[target]?.jlpt;
+          if (itemLevel && itemLevel >= 1 && itemLevel <= 5) {
+            if (itemLevel < currentLevel) {
+              setCurrentLevel(itemLevel as Level);
+            }
+          }
+        } else {
+          setSelectedNode(null);
         }
+      } else if (isMountedRef.current) {
+        // User intentionally cleared the search box
+        setQuery("");
+        setDebouncedQuery("");
+        setSelectedNode(null);
       }
     }
+    isMountedRef.current = true;
 
     const lvl = searchParams.get("level");
     if (lvl) {
@@ -89,12 +102,14 @@ function SpiderGraphContent() {
         if (trimmed) {
           if (url.searchParams.get("q") !== trimmed) {
             url.searchParams.set("q", trimmed);
+            lastSearchParamQ.current = trimmed;
             window.history.replaceState(null, "", url.pathname + url.search);
           }
         } else {
           if (url.searchParams.has("q")) {
             url.searchParams.delete("q");
-            window.history.replaceState(null, "", url.pathname + url.search);
+            lastSearchParamQ.current = null;
+            window.history.replaceState(null, "", url.pathname + (url.searchParams.toString() ? url.search : ""));
           }
         }
       }
@@ -105,6 +120,11 @@ function SpiderGraphContent() {
   // Convert romaji to kana on the fly as user types
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
+    if (!val) {
+      setQuery("");
+      setSelectedNode(null);
+      return;
+    }
     if (/^[a-zA-Z\s\-]+$/.test(val)) {
       setQuery(wanakana.toHiragana(val));
     } else {
@@ -177,12 +197,18 @@ function SpiderGraphContent() {
               <button
                 type="button"
                 onClick={() => {
+                  lastSearchParamQ.current = null;
                   setQuery("");
                   setDebouncedQuery("");
-                  lastSearchParamQ.current = "";
-                  router.push("/", { scroll: false });
+                  setSelectedNode(null);
+                  if (typeof window !== "undefined") {
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete("q");
+                    window.history.replaceState(null, "", url.pathname + (url.searchParams.toString() ? url.search : ""));
+                  }
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-text"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-text cursor-pointer p-1"
+                title="Xóa tìm kiếm"
               >
                 ✕
               </button>
