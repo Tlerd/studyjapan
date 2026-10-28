@@ -89,8 +89,155 @@ async function compressImageDataUrl(dataUrl: string, maxDim = 1600): Promise<{ b
   });
 }
 
+function renderChatMessageContent(content: string) {
+  const lines = content.split("\n");
+  return (
+    <div className="space-y-1">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) return <div key={idx} className="h-1" />;
+
+        // Check for bullet line with colon: e.g. "o 会議（かいぎ）: Cuộc họp" or "• 会議: Cuộc họp" or "1. 会議: Cuộc họp"
+        const colonIdx = trimmed.indexOf(":");
+        if (colonIdx > 0 && colonIdx < 120) {
+          const leftPart = trimmed.substring(0, colonIdx).trim();
+          const rightPart = trimmed.substring(colonIdx + 1).trim();
+
+          const bulletMatch = leftPart.match(/^([•\-\*o]|\d+[\.\)])\s*(.*)$/);
+          const bullet = bulletMatch ? bulletMatch[1] : null;
+          const jpPart = bulletMatch ? bulletMatch[2] : leftPart;
+
+          return (
+            <div key={idx} className="flex items-start gap-1.5 leading-relaxed text-xs sm:text-sm py-0.5">
+              <span className="text-accent font-bold select-none shrink-0 text-sm">
+                {bullet || "•"}
+              </span>
+              <div className="flex-1">
+                <strong className="font-ja text-text font-bold text-[13px] sm:text-sm">{jpPart}</strong>
+                <span className="text-muted mx-1">:</span>
+                <span className="text-text">{rightPart}</span>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <p key={idx} className="whitespace-pre-wrap leading-relaxed text-xs sm:text-sm">
+            {line}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+function renderBilingualContent(scanResult: {
+  rawText?: string;
+  translatedText?: string;
+  words?: Array<{ surface: string; reading?: string; hanViet?: string; meaning?: string; contextSentence?: string }>;
+  grammar?: Array<{ pattern: string; formation?: string; meaning?: string; explanation?: string }>;
+}) {
+  const transText = (scanResult.translatedText || "").trim();
+
+  // 1. If translatedText already has formatted line-by-line with ":"
+  const lines = transText.split("\n").map((l) => l.trim()).filter(Boolean);
+  const hasLineByLine = lines.length > 1 && lines.some((l) => l.includes(":") && l.indexOf(":") < 80);
+
+  if (hasLineByLine) {
+    return (
+      <div className="space-y-1.5 bg-unk-bg/40 p-3 sm:p-4 rounded-xl border border-line divide-y divide-line/40">
+        {lines.map((line, idx) => {
+          const colonIdx = line.indexOf(":");
+          if (colonIdx > 0 && colonIdx < 100) {
+            const leftPart = line.substring(0, colonIdx).trim();
+            const rightPart = line.substring(colonIdx + 1).trim();
+            const bulletMatch = leftPart.match(/^([•\-\*o]|\d+[\.\)])\s*(.*)$/);
+            const bullet = bulletMatch ? bulletMatch[1] : "•";
+            const jpPart = bulletMatch ? bulletMatch[2] : leftPart;
+
+            return (
+              <div key={idx} className="flex items-start gap-2 pt-1.5 first:pt-0 text-xs sm:text-sm leading-relaxed">
+                <span className="text-accent font-bold select-none shrink-0 text-sm">{bullet}</span>
+                <div className="flex-1">
+                  <strong className="font-ja text-text font-bold text-[13px] sm:text-sm">{jpPart}</strong>
+                  <span className="text-muted mx-1.5">:</span>
+                  <span className="text-text">{rightPart}</span>
+                </div>
+              </div>
+            );
+          }
+          return (
+            <p key={idx} className="text-xs sm:text-sm text-text pt-1.5 first:pt-0 font-medium leading-relaxed">
+              {line}
+            </p>
+          );
+        })}
+      </div>
+    );
+  }
+
+  // 2. If translatedText is a continuous block, but we have extracted words/grammar
+  if (scanResult.words && scanResult.words.length > 0) {
+    return (
+      <div className="space-y-1.5 bg-unk-bg/40 p-3 sm:p-4 rounded-xl border border-line divide-y divide-line/40">
+        {scanResult.words.map((w, idx) => (
+          <div key={idx} className="flex items-start gap-2 pt-1.5 first:pt-0 text-xs sm:text-sm leading-relaxed">
+            <span className="text-accent font-bold select-none shrink-0 text-sm">•</span>
+            <div className="flex-1">
+              <strong className="font-ja text-text font-bold text-[13px] sm:text-sm">
+                {w.surface}
+                {w.reading && w.reading !== w.surface && (
+                  <span className="text-xs font-normal text-muted ml-1">（{w.reading}）</span>
+                )}
+                {w.hanViet && (
+                  <span className="text-[10px] font-mono text-purple-600 bg-purple-500/10 px-1 py-0.2 rounded ml-1.5">
+                    {w.hanViet}
+                  </span>
+                )}
+              </strong>
+              <span className="text-muted mx-1.5">:</span>
+              <span className="text-text font-medium">{w.meaning || "Chưa có nghĩa"}</span>
+              {w.contextSentence && (
+                <span className="block text-[11px] text-muted font-ja italic mt-0.5">
+                  Ví dụ: {w.contextSentence}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+
+        {scanResult.grammar && scanResult.grammar.length > 0 && (
+          <div className="pt-2 space-y-1.5">
+            <span className="text-[11px] font-bold text-accent uppercase block">Cấu trúc ngữ pháp:</span>
+            {scanResult.grammar.map((g, idx) => (
+              <div key={`g-${idx}`} className="flex items-start gap-2 text-xs sm:text-sm leading-relaxed">
+                <span className="text-blue-500 font-bold select-none shrink-0 text-sm">📐</span>
+                <div className="flex-1">
+                  <strong className="font-ja text-text font-bold text-[13px] sm:text-sm">{g.pattern}</strong>
+                  {g.formation && <span className="text-xs text-muted ml-1 font-mono">[{g.formation}]</span>}
+                  <span className="text-muted mx-1.5">:</span>
+                  <span className="text-text font-medium">{g.meaning}</span>
+                  {g.explanation && <span className="block text-[11px] text-muted mt-0.5">{g.explanation}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // 3. Fallback: raw translation text
+  return (
+    <p className="text-xs sm:text-sm text-text leading-relaxed whitespace-pre-wrap bg-unk-bg/50 p-3 rounded-xl border border-line">
+      {transText || "Chưa có bản dịch."}
+    </p>
+  );
+}
+
 export default function ScanAndReviewPage() {
   const [activeTab, setActiveTab] = useState<SidebarTab>("scan");
+  const [transViewMode, setTransViewMode] = useState<"bilingual" | "raw" | "vi">("bilingual");
 
   // AI Configuration State
   const [selectedModel, setSelectedModel] = useState<string>("Gemini 3.8 Flash");
@@ -1372,16 +1519,71 @@ export default function ScanAndReviewPage() {
 
                   {/* Raw Text & Translation Summary */}
                   {currentScanResult.rawText && (
-                    <div className="card p-4 space-y-2">
-                      <span className="text-[11px] font-bold uppercase text-muted block">
-                        📄 Văn bản trích xuất & Bản dịch:
-                      </span>
-                      <p className="font-ja text-sm font-medium text-text whitespace-pre-wrap leading-relaxed">
-                        {currentScanResult.rawText}
-                      </p>
-                      {currentScanResult.translatedText && (
-                        <p className="text-xs text-muted italic border-t border-line/60 pt-2">
-                          Dịch: {currentScanResult.translatedText}
+                    <div className="card p-4 space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-line pb-2.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-base">🌐</span>
+                          <h3 className="font-bold text-xs sm:text-sm text-text">
+                            Bản dịch & Đối chiếu song ngữ
+                          </h3>
+                        </div>
+
+                        {/* View Mode Toggle */}
+                        <div className="flex items-center gap-1 bg-unk-bg p-0.5 rounded-lg border border-line text-[11px] self-start sm:self-auto">
+                          <button
+                            type="button"
+                            onClick={() => setTransViewMode("bilingual")}
+                            className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+                              transViewMode === "bilingual"
+                                ? "bg-card text-accent font-bold shadow-xs"
+                                : "text-muted hover:text-text"
+                            }`}
+                          >
+                            📖 Song ngữ đối chiếu
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setTransViewMode("raw")}
+                            className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+                              transViewMode === "raw"
+                                ? "bg-card text-accent font-bold shadow-xs"
+                                : "text-muted hover:text-text"
+                            }`}
+                          >
+                            📄 Bản gốc Nhật
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setTransViewMode("vi")}
+                            className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+                              transViewMode === "vi"
+                                ? "bg-card text-accent font-bold shadow-xs"
+                                : "text-muted hover:text-text"
+                            }`}
+                          >
+                            🇻🇳 Bản dịch Việt
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Mode 1: Bilingual Aligned View (Image 1 Style) */}
+                      {transViewMode === "bilingual" && (
+                        <div className="space-y-2 pt-1">
+                          {renderBilingualContent(currentScanResult)}
+                        </div>
+                      )}
+
+                      {/* Mode 2: Raw Japanese text */}
+                      {transViewMode === "raw" && (
+                        <p className="font-ja text-sm font-medium text-text whitespace-pre-wrap leading-relaxed bg-unk-bg/50 p-3 rounded-xl border border-line">
+                          {currentScanResult.rawText}
+                        </p>
+                      )}
+
+                      {/* Mode 3: Vietnamese translation */}
+                      {transViewMode === "vi" && (
+                        <p className="text-xs sm:text-sm text-text leading-relaxed whitespace-pre-wrap bg-unk-bg/50 p-3 rounded-xl border border-line">
+                          {currentScanResult.translatedText || "Chưa có bản dịch."}
                         </p>
                       )}
                     </div>
@@ -1631,7 +1833,11 @@ export default function ScanAndReviewPage() {
                                 : "bg-unk-bg border border-line text-text rounded-tl-none space-y-1"
                             }`}
                           >
-                            <p className="whitespace-pre-wrap">{msg.content}</p>
+                            {msg.role === "assistant" ? (
+                              renderChatMessageContent(msg.content)
+                            ) : (
+                              <p className="whitespace-pre-wrap">{msg.content}</p>
+                            )}
                             <span className="block text-[9px] opacity-70 text-right mt-0.5">{msg.timestamp}</span>
                           </div>
                         </div>
@@ -1642,6 +1848,7 @@ export default function ScanAndReviewPage() {
                     {/* Quick Question Chips */}
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {[
+                        "Dịch sát nghĩa dòng theo dòng",
                         "Tại sao câu bài tập lại chọn đáp án đó?",
                         "Phân tích rõ hơn về trợ từ trong bài",
                         "Cho tôi thêm 2 câu ví dụ thực tế",

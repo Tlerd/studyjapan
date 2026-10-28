@@ -150,7 +150,7 @@ export async function POST(req: NextRequest) {
       const promptText = `Hãy nhận diện hình ảnh/văn bản tiếng Nhật này và trả về kết quả dưới định dạng JSON duy nhất tuân thủ đúng cấu trúc sau:
 {
   "rawText": "Toàn bộ văn bản tiếng Nhật đọc được từ ảnh hoặc đề bài",
-  "translatedText": "Bản dịch tiếng Việt tự nhiên và chuẩn xác cho đoạn văn",
+  "translatedText": "Bản dịch đối chiếu dòng-theo-dòng gắn liền với từng dòng/mục tiếng Nhật. Ví dụ:\n• 会議（かいぎ）: Cuộc họp, hội nghị\n• 課長（かちょう）: Trưởng nhóm, trưởng phòng (nhỏ/bộ phận)\nNếu là đoạn văn thì từng câu Nhật kèm dịch Việt ngay dưới: [Câu Nhật] -> ↳ Dịch: [Câu Việt]. TUYỆT ĐỐI không dồn thành một đoạn văn tiếng Việt tách rời.",
   "exercises": [
     {
       "id": "ex-1",
@@ -185,6 +185,7 @@ export async function POST(req: NextRequest) {
 }
 
 Lưu ý:
+- QUY TẮC DỊCH VÀ TRÌNH BÀY BẮT BUỘC: translatedText PHẢI là bản dịch song ngữ đối chiếu dòng-theo-dòng (hoặc mục-theo-mục) gắn liền tiếng Nhật và tiếng Việt: 'Tiếng Nhật (Cách đọc Hiragana) : Nghĩa tiếng Việt'. TUYỆT ĐỐI không viết một khối toàn tiếng Nhật rồi dồn một khối tiếng Việt tách rời ở dưới.
 - Nếu ảnh có câu hỏi bài tập (trắc nghiệm, điền từ, sắp xếp dấu sao ★, đọc hiểu), hãy giải đầy đủ từng câu trong mảng "exercises". Nếu không có câu hỏi bài tập, để "exercises": [].
 - Bóc tách đầy đủ các từ vựng quan trọng và cấu trúc ngữ pháp xuất hiện trong ảnh/đề bài.
 - Chỉ trả về duy nhất chuỗi JSON hợp lệ, không bọc markdown fence và không có text nào ngoài JSON.`;

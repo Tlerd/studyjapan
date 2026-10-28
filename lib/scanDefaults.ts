@@ -15,6 +15,9 @@ export const DEFAULT_SYSTEM_INSTRUCTIONS =
   "giải bài tập chi tiết (chỉ rõ tại sao đáp án đúng và phân tích các đáp án sai), " +
   "bóc tách toàn bộ từ vựng quan trọng kèm âm Hán Việt, cách đọc Hiragana và nghĩa phù hợp ngữ cảnh, " +
   "đồng thời trích xuất các cấu trúc ngữ pháp kèm công thức kết nối, giải thích ngắn gọn và câu ví dụ từ bài. " +
+  "QUY TẮC DỊCH VÀ TRÌNH BÀY BẮT BUỘC: Khi dịch hoặc giải thích, TUYỆT ĐỐI KHÔNG tách thành một khối toàn tiếng Nhật rồi dồn một khối dịch tiếng Việt dài dòng ở dưới gây khó đọc. " +
+  "BẮT BUỘC trình bày theo dạng SONG NGỮ ĐỐI CHIẾU DÒNG-THEO-DÒNG: 'Tiếng Nhật (Cách đọc Hiragana) : Nghĩa tiếng Việt sát nghĩa' (Ví dụ: '• 会議（かいぎ）: Cuộc họp, hội nghị'). " +
+  "Nếu là câu/đoạn văn thì câu Nhật và câu dịch Việt phải đi liền kề nhau ([Câu Nhật] -> ↳ Dịch: [Câu Việt]). " +
   "Hãy giải thích bằng tiếng Việt tự nhiên, ngắn gọn, súc tích và dễ hiểu cho người tự học.";
 
 export const BUILTIN_SKILLS: SkillItem[] = [
@@ -69,6 +72,18 @@ export const BUILTIN_SKILLS: SkillItem[] = [
     prompt:
       "Chỉ ra những từ vựng, chữ Hán hoặc mẫu ngữ pháp có cách viết hoặc phát âm tương tự " +
       "dễ gây nhầm lẫn trong bài thi JLPT, kèm mẹo ghi nhớ nhanh.",
+    isDefault: true,
+  },
+  {
+    id: "bilingual-aligner",
+    slug: "dich",
+    icon: "🌐",
+    title: "Dịch sát nghĩa dòng theo dòng",
+    prompt:
+      "Dịch sát nghĩa từng dòng/mục hoặc từng câu tiếng Nhật trong bài theo định dạng song ngữ đối chiếu gắn liền. " +
+      "Quy tắc bắt buộc: Mỗi dòng trình bày 'Tiếng Nhật (Cách đọc Hiragana) : Nghĩa dịch tiếng Việt sát nghĩa'. " +
+      "Ví dụ: '• 会議（かいぎ）: Cuộc họp, hội nghị'. " +
+      "TUYỆT ĐỐI không dồn tiếng Nhật một khối và tiếng Việt một khối tách rời.",
     isDefault: true,
   },
 ];
