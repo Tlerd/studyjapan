@@ -242,24 +242,37 @@ export async function pushScannedItemToMainDeck(
     scanned.meaning
   );
 
-  await db.items.put(item);
+  const existingItem = await db.items.get(item.id);
+  if (!existingItem) {
+    await db.items.put(item);
+  }
 
-  const cardsToAdd: StudyCard[] = [
-    {
+  const existingCard1 = await db.cards.get(`card-${item.id}-recog`);
+  const existingCard2 = await db.cards.get(
+    `card-${item.id}-${scanned.kind === "word" ? "recall" : "particle"}`
+  );
+
+  const cardsToAdd: StudyCard[] = [];
+  if (!existingCard1) {
+    cardsToAdd.push({
       id: `card-${item.id}-recog`,
       itemId: item.id,
       skill: "recognize",
       fsrsCard: initialCard,
-    },
-    {
+    });
+  }
+  if (!existingCard2) {
+    cardsToAdd.push({
       id: `card-${item.id}-${scanned.kind === "word" ? "recall" : "particle"}`,
       itemId: item.id,
       skill: scanned.kind === "word" ? "recall" : "particle",
       fsrsCard: initialCard,
-    },
-  ];
+    });
+  }
 
-  await db.cards.bulkPut(cardsToAdd);
+  if (cardsToAdd.length > 0) {
+    await db.cards.bulkPut(cardsToAdd);
+  }
 
   // Đánh dấu đã đẩy sang main SRS
   await db.scannedItems.update(scanned.id, { pushedToMainSRS: true });

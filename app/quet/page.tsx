@@ -841,8 +841,23 @@ export default function ScanAndReviewPage() {
       };
       await db.scanSources.put(sourceRecord);
 
+      // De-duplicate words within the current scan by trimmed surface
+      const uniqueWordsMap = new Map<string, ScannedWordMeta>();
       for (const w of currentScanResult.words) {
         if (!selectedWordsToSave.has(w.surface)) continue;
+        const norm = (w.surface || "").trim();
+        if (!norm) continue;
+        if (!uniqueWordsMap.has(norm)) {
+          uniqueWordsMap.set(norm, { ...w, surface: norm });
+        } else {
+          const existingItem = uniqueWordsMap.get(norm)!;
+          if (!existingItem.contextSentence && w.contextSentence) {
+            existingItem.contextSentence = w.contextSentence;
+          }
+        }
+      }
+
+      for (const w of Array.from(uniqueWordsMap.values())) {
         const itemId = `sw-${w.surface}`;
         const existing = await db.scannedItems.get(itemId);
 
@@ -878,8 +893,18 @@ export default function ScanAndReviewPage() {
         }
       }
 
+      // De-duplicate grammar within current scan by trimmed pattern
+      const uniqueGrammarMap = new Map<string, ScannedGrammarMeta>();
       for (const g of currentScanResult.grammar) {
         if (!selectedGrammarToSave.has(g.pattern)) continue;
+        const norm = (g.pattern || "").trim();
+        if (!norm) continue;
+        if (!uniqueGrammarMap.has(norm)) {
+          uniqueGrammarMap.set(norm, { ...g, pattern: norm });
+        }
+      }
+
+      for (const g of Array.from(uniqueGrammarMap.values())) {
         const itemId = `sg-${g.pattern.replace(/^[〜~]/, "").trim()}`;
         const existing = await db.scannedItems.get(itemId);
 
