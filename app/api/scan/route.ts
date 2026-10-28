@@ -10,6 +10,7 @@ interface RequestPayload {
   mode?: "scan" | "chat";
   imageBase64?: string;
   mimeType?: string;
+  images?: Array<{ base64: string; mimeType?: string }>;
   textInput?: string;
   model?: string;
   effort?: "low" | "medium" | "high";
@@ -131,8 +132,23 @@ export async function POST(req: NextRequest) {
     if (mode === "scan") {
       const contentsParts: any[] = [];
 
-      // 1. Image part if provided
-      if (body.imageBase64) {
+      // 1. Image parts if provided (single or multiple images)
+      if (body.images && Array.isArray(body.images) && body.images.length > 0) {
+        for (const img of body.images) {
+          if (!img.base64) continue;
+          let cleanBase64 = img.base64;
+          const commaIdx = cleanBase64.indexOf(",");
+          if (commaIdx !== -1) {
+            cleanBase64 = cleanBase64.substring(commaIdx + 1);
+          }
+          contentsParts.push({
+            inlineData: {
+              mimeType: img.mimeType || "image/jpeg",
+              data: cleanBase64,
+            },
+          });
+        }
+      } else if (body.imageBase64) {
         let cleanBase64 = body.imageBase64;
         const commaIdx = cleanBase64.indexOf(",");
         if (commaIdx !== -1) {
@@ -147,7 +163,7 @@ export async function POST(req: NextRequest) {
       }
 
       // 2. Text prompt part
-      const promptText = `Hãy nhận diện hình ảnh/văn bản tiếng Nhật này và trả về kết quả dưới định dạng JSON duy nhất tuân thủ đúng cấu trúc sau:
+      const promptText = `Hãy nhận diện hình ảnh/văn bản tiếng Nhật này (bao gồm tất cả các trang ảnh được tải lên nếu có nhiều ảnh) và trả về kết quả dưới định dạng JSON duy nhất tuân thủ đúng cấu trúc sau:
 {
   "rawText": "Toàn bộ văn bản tiếng Nhật đọc được từ ảnh hoặc đề bài",
   "translatedText": "Bản dịch đối chiếu dòng-theo-dòng gắn liền với từng dòng/mục tiếng Nhật. Ví dụ:\n• 会議（かいぎ）: Cuộc họp, hội nghị\n• 課長（かちょう）: Trưởng nhóm, trưởng phòng (nhỏ/bộ phận)\nNếu là đoạn văn thì từng câu Nhật kèm dịch Việt ngay dưới: [Câu Nhật] -> ↳ Dịch: [Câu Việt]. TUYỆT ĐỐI không dồn thành một đoạn văn tiếng Việt tách rời.",

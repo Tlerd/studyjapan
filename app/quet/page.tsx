@@ -264,8 +264,11 @@ export default function ScanAndReviewPage() {
     targetField: null,
   });
 
-  // Scan & Input State
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  // Scan & Input State (Multiple Images Support)
+  const [selectedImages, setSelectedImages] = useState<
+    Array<{ id: string; dataUrl: string; name: string; hash: string }>
+  >([]);
+  const imagePreview = selectedImages[0]?.dataUrl || null;
   const [imageHashCurrent, setImageHashCurrent] = useState<string>("");
   const [textInput, setTextInput] = useState<string>("");
   const [isScanning, setIsScanning] = useState<boolean>(false);
@@ -310,7 +313,9 @@ export default function ScanAndReviewPage() {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [reviewScope, setReviewScope] = useState<"all" | "words" | "grammar">("all");
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileLibraryInputRef = useRef<HTMLInputElement | null>(null);
+  const cameraInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = fileLibraryInputRef;
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const chatInputRef = useRef<HTMLInputElement | null>(null);
@@ -394,42 +399,86 @@ export default function ScanAndReviewPage() {
     });
   };
 
-  // Handle Image File Selection with Proactive Duplicate Discard
-  const handleImageFile = useCallback(async (file: File) => {
-    setDuplicateWarning(null);
-    setExistingScanMatch(null);
-    setIsDuplicateSaveBlocked(false);
-    setCurrentScanResult(null);
-    setSaveSuccessMsg("");
+  // Handle Multiple Image Files Selection with Proactive Duplicate Discard
+  const handleFilesSelected = useCallback(
+    async (files: FileList | File[]) => {
+      setDuplicateWarning(null);
+      setExistingScanMatch(null);
+      setIsDuplicateSaveBlocked(false);
+      setCurrentScanResult(null);
+      setSaveSuccessMsg("");
 
-    const buffer = await file.arrayBuffer();
+      const fileArray = Array.from(files);
+      if (!fileArray.length) return;
 
-    // Layer 1 Duplicate Check (SHA-256) BEFORE keeping the image
-    try {
-      const hash = await computeImageHash(buffer);
-      const existing = await db.scanSources.where("imageHash").equals(hash).first();
-      if (existing) {
-        setImagePreview(null);
-        setImageHashCurrent("");
-        if (fileInputRef.current) fileInputRef.current.value = "";
-        setDuplicateWarning(
-          `⚠️ Ảnh trùng lặp! Ảnh này đã từng quét trong "${existing.title}" (${new Date(existing.createdAt).toLocaleDateString("vi-VN")}). ` +
-          `Hệ thống tự động loại bỏ để không lưu trùng.`
-        );
-        setExistingScanMatch(existing);
-        return;
+      const newItems: Array<{ id: string; dataUrl: string; name: string; hash: string }> = [];
+
+      for (let i = 0; i < fileArray.length; i++) {
+        const file = fileArray[i];
+        if (!file.type.startsWith("image/")) continue;
+
+        const buffer = await file.arrayBuffer();
+        let hash = "";
+        try {
+          hash = await computeImageHash(buffer);
+          const existing = await db.scanSources.where("imageHash").equals(hash).first();
+          if (existing) {
+            setDuplicateWarning(
+              `⚠️ Ảnh "${file.name}" đã từng quét trong "${existing.title}". Hệ thống tự bỏ qua ảnh này.`
+            );
+            setExistingScanMatch(existing);
+            continue;
+          }
+        } catch {
+          hash = `hash-${Date.now()}-${i}`;
+        }
+
+        const dataUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target?.result as string);
+          reader.readAsDataURL(file);
+        });
+
+        newItems.push({
+          id: `img-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+          dataUrl,
+          name: file.name || `Trang ${selectedImages.length + newItems.length + 1}`,
+          hash,
+        });
       }
-      setImageHashCurrent(hash);
-    } catch {
-      setImageHashCurrent("");
-    }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setImagePreview(e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
-  }, []);
+      if (newItems.length > 0) {
+        setSelectedImages((prev) => [...prev, ...newItems]);
+        setImageHashCurrent(newItems[0]?.hash || "");
+      }
+
+      if (fileLibraryInputRef.current) fileLibraryInputRef.current.value = "";
+      if (cameraInputRef.current) cameraInputRef.current.value = "";
+    },
+    [selectedImages.length]
+  );
+
+  const handleImageFile = useCallback(
+    (file: File) => {
+      handleFilesSelected([file]);
+    },
+    [handleFilesSelected]
+  );
+
+  const handleRemoveImage = (id: string) => {
+    setSelectedImages((prev) => {
+      const next = prev.filter((img) => img.id !== id);
+      setImageHashCurrent(next[0]?.hash || "");
+      return next;
+    });
+  };
+
+  const handleClearAllImages = () => {
+    setSelectedImages([]);
+    setImageHashCurrent("");
+    if (fileLibraryInputRef.current) fileLibraryInputRef.current.value = "";
+    if (cameraInputRef.current) cameraInputRef.current.value = "";
+  };
 
   // Listen to Global Paste (Ctrl + V)
   useEffect(() => {
@@ -438,20 +487,21 @@ export default function ScanAndReviewPage() {
       const items = e.clipboardData?.items;
       if (!items) return;
 
+      const files: File[] = [];
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.startsWith("image/")) {
           const file = items[i].getAsFile();
-          if (file) {
-            handleImageFile(file);
-            break;
-          }
+          if (file) files.push(file);
         }
+      }
+      if (files.length > 0) {
+        handleFilesSelected(files);
       }
     };
 
     window.addEventListener("paste", handlePaste);
     return () => window.removeEventListener("paste", handlePaste);
-  }, [activeTab, handleImageFile]);
+  }, [activeTab, handleFilesSelected]);
 
   // Load an existing saved scan session into view
   const handleOpenSavedScan = async (source: ScanSource) => {
@@ -673,7 +723,7 @@ export default function ScanAndReviewPage() {
 
   // Execute Scan
   const handleStartScan = async () => {
-    if (!imagePreview && !textInput.trim()) {
+    if (selectedImages.length === 0 && !textInput.trim()) {
       alert("Vui lòng tải ảnh lên hoặc nhập đề bài tiếng Nhật.");
       return;
     }
@@ -684,13 +734,14 @@ export default function ScanAndReviewPage() {
     setSaveSuccessMsg("");
 
     try {
-      let imageBase64: string | undefined;
-      let mimeType = "image/jpeg";
+      let compressedImages: Array<{ base64: string; mimeType: string }> = [];
 
-      if (imagePreview) {
-        const compressed = await compressImageDataUrl(imagePreview);
-        imageBase64 = compressed.base64;
-        mimeType = compressed.mimeType;
+      if (selectedImages.length > 0) {
+        compressedImages = await Promise.all(
+          selectedImages.map(async (img) => {
+            return await compressImageDataUrl(img.dataUrl);
+          })
+        );
       }
 
       // Check if user explicitly called any skills via @ or / in textInput
@@ -701,8 +752,9 @@ export default function ScanAndReviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mode: "scan",
-          imageBase64,
-          mimeType,
+          images: compressedImages,
+          imageBase64: compressedImages[0]?.base64,
+          mimeType: compressedImages[0]?.mimeType || "image/jpeg",
           textInput: textInput.trim() || undefined,
           model: selectedModel,
           effort: selectedEffort,
@@ -777,7 +829,7 @@ export default function ScanAndReviewPage() {
       const sourceRecord: ScanSource = {
         id: currentScanResult.id,
         title,
-        imageHash: imageHashCurrent,
+        imageHash: selectedImages.map((img) => img.hash).filter(Boolean).join("|") || imageHashCurrent,
         textHash,
         rawText: currentScanResult.rawText,
         translatedText: currentScanResult.translatedText,
@@ -864,7 +916,7 @@ export default function ScanAndReviewPage() {
       }
 
       setCurrentScanResult((prev) => (prev ? { ...prev, isAlreadySaved: true } : prev));
-      setImagePreview(null);
+      setSelectedImages([]);
       setImageHashCurrent("");
       setSaveSuccessMsg(`✓ Đã gom văn bản, từ vựng và ngữ pháp vào Kho Ôn tập riêng!`);
       loadDatabaseData();
@@ -1300,56 +1352,183 @@ export default function ScanAndReviewPage() {
 
               {/* Upload Dropzone & Controls */}
               <div className="card p-4 space-y-4">
+                {/* Hidden input for Photo Library / Multi-image file picker (desktop & mobile albums) */}
                 <input
-                  ref={fileInputRef}
+                  ref={fileLibraryInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files.length > 0) {
+                      handleFilesSelected(e.target.files);
+                    }
+                  }}
+                />
+
+                {/* Hidden input for direct camera capture */}
+                <input
+                  ref={cameraInputRef}
                   type="file"
                   accept="image/*"
                   capture="environment"
                   className="hidden"
                   onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleImageFile(file);
+                    if (e.target.files && e.target.files.length > 0) {
+                      handleFilesSelected(e.target.files);
+                    }
                   }}
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Image Dropzone */}
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-line hover:border-accent rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors bg-card/40 min-h-[180px]"
-                  >
-                    {imagePreview ? (
-                      <div className="relative w-full flex flex-col items-center">
-                        <img
-                          src={imagePreview}
-                          alt="Ảnh đã chọn"
-                          className="max-h-48 rounded-xl object-contain border border-line shadow-sm"
-                        />
+                  {/* Multi-Image Upload Area / Gallery */}
+                  {selectedImages.length === 0 ? (
+                    <div
+                      onDragOver={(e) => e.preventDefault()}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                          handleFilesSelected(e.dataTransfer.files);
+                        }
+                      }}
+                      className="border-2 border-dashed border-line hover:border-accent rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-colors bg-card/40 min-h-[200px]"
+                    >
+                      <div className="space-y-3 w-full max-w-sm">
+                        <div className="flex items-center justify-center gap-2.5">
+                          <button
+                            type="button"
+                            onClick={() => fileLibraryInputRef.current?.click()}
+                            className="flex-1 py-3 px-3 rounded-xl bg-accent text-accent-ink font-bold text-xs sm:text-sm hover:opacity-90 transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                          >
+                            <span className="text-base">🖼️</span>
+                            <span>Chọn ảnh / Album</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => cameraInputRef.current?.click()}
+                            className="flex-1 py-3 px-3 rounded-xl border border-accent text-accent hover:bg-accent-soft/20 font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                          >
+                            <span className="text-base">📷</span>
+                            <span>Chụp ảnh</span>
+                          </button>
+                        </div>
+
+                        <div className="text-muted text-[11px] leading-relaxed">
+                          <p className="font-semibold text-text">Hỗ trợ chọn nhiều ảnh cùng lúc</p>
+                          <p className="mt-0.5">
+                            Kéo thả nhiều ảnh vào đây hoặc dán bằng <kbd className="px-1 py-0.5 rounded bg-unk-bg border border-line font-mono text-[10px]">Ctrl+V</kbd>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      onDragOver={(e) => e.preventDefault()}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                          handleFilesSelected(e.dataTransfer.files);
+                        }
+                      }}
+                      className="border border-line rounded-2xl p-3 bg-card/40 flex flex-col min-h-[200px] justify-between"
+                    >
+                      <div>
+                        {/* Top Action Bar */}
+                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-line">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-bold text-accent">
+                              📚 Đã chọn {selectedImages.length} ảnh
+                            </span>
+                            <span className="text-[11px] text-muted">
+                              ({selectedImages.length > 1 ? "nhiều trang gộp chung" : "1 trang"})
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={handleClearAllImages}
+                            className="text-[11px] text-red-500 hover:underline font-semibold flex items-center gap-1 cursor-pointer"
+                          >
+                            <span>✕</span>
+                            <span>Xóa hết</span>
+                          </button>
+                        </div>
+
+                        {/* Thumbnail Grid */}
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-52 overflow-y-auto pr-1">
+                          {selectedImages.map((img, idx) => (
+                            <div
+                              key={img.id}
+                              className="group relative rounded-xl overflow-hidden border border-line bg-card shadow-xs flex flex-col"
+                            >
+                              <div className="relative aspect-3/4 w-full bg-black/5 flex items-center justify-center overflow-hidden">
+                                <img
+                                  src={img.dataUrl}
+                                  alt={`Trang ${idx + 1}`}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                                />
+
+                                {/* Page Badge */}
+                                <span className="absolute bottom-1 left-1 bg-black/75 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded shadow">
+                                  #{idx + 1}
+                                </span>
+
+                                {/* Remove Button */}
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveImage(img.id);
+                                  }}
+                                  title="Xóa ảnh này"
+                                  className="absolute top-1 right-1 w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center text-xs shadow hover:bg-red-600 transition-colors cursor-pointer"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+
+                              <span className="text-[10px] text-muted truncate px-1 py-0.5 text-center font-medium">
+                                {img.name || `Trang ${idx + 1}`}
+                              </span>
+                            </div>
+                          ))}
+
+                          {/* Quick Add More Tile */}
+                          <button
+                            type="button"
+                            onClick={() => fileLibraryInputRef.current?.click()}
+                            className="aspect-3/4 w-full rounded-xl border-2 border-dashed border-accent/60 hover:border-accent hover:bg-accent-soft/20 flex flex-col items-center justify-center gap-1 text-accent transition-all cursor-pointer p-1"
+                            title="Thêm ảnh từ thư viện"
+                          >
+                            <span className="text-xl">➕</span>
+                            <span className="text-[10px] font-bold text-center leading-tight">Thêm ảnh</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Quick Action Footer */}
+                      <div className="flex items-center gap-2 pt-2 mt-2 border-t border-line">
                         <button
                           type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setImagePreview(null);
-                            setImageHashCurrent("");
-                            if (fileInputRef.current) fileInputRef.current.value = "";
-                          }}
-                          className="mt-2 text-xs text-red-500 hover:underline font-semibold"
+                          onClick={() => fileLibraryInputRef.current?.click()}
+                          className="flex-1 py-1.5 px-2 rounded-lg border border-line hover:border-accent text-text text-[11px] font-medium transition-colors flex items-center justify-center gap-1 cursor-pointer"
                         >
-                          ✕ Bỏ ảnh này
+                          <span>🖼️</span>
+                          <span>Chọn thêm ảnh</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => cameraInputRef.current?.click()}
+                          className="flex-1 py-1.5 px-2 rounded-lg border border-line hover:border-accent text-text text-[11px] font-medium transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                        >
+                          <span>📷</span>
+                          <span>Chụp thêm ảnh</span>
                         </button>
                       </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <span className="text-4xl">📷</span>
-                        <p className="text-sm font-semibold text-text">
-                          Bấm để Chụp ảnh hoặc Chọn file từ máy
-                        </p>
-                        <p className="text-xs text-muted">
-                          Hoặc chụp màn hình rồi bấm <kbd className="px-1.5 py-0.5 rounded bg-unk-bg border border-line font-mono text-[10px]">Ctrl+V</kbd> để dán ảnh
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
 
                   {/* Text Input / Note with @ and / mention support */}
                   <div className="flex flex-col gap-1.5 relative">
@@ -1470,12 +1649,20 @@ export default function ScanAndReviewPage() {
 
                   <button
                     type="button"
-                    disabled={isScanning || (!imagePreview && !textInput.trim())}
+                    disabled={isScanning || (selectedImages.length === 0 && !textInput.trim())}
                     onClick={handleStartScan}
-                    className="px-5 py-2 rounded-xl bg-accent text-accent-ink font-bold text-xs sm:text-sm hover:opacity-90 transition-all shadow-md disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="px-5 py-2 rounded-xl bg-accent text-accent-ink font-bold text-xs sm:text-sm hover:opacity-90 transition-all shadow-md disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>{isScanning ? "⏳" : "⚡"}</span>
-                    <span>{isScanning ? "Gemini đang phân tích..." : "Bắt đầu Quét & Giải bài"}</span>
+                    <span>
+                      {isScanning
+                        ? "Gemini đang phân tích..."
+                        : selectedImages.length > 1
+                        ? `Bắt đầu Quét & Giải bài (${selectedImages.length} ảnh)`
+                        : selectedImages.length === 1
+                        ? "Bắt đầu Quét & Giải bài (1 ảnh)"
+                        : "Bắt đầu Quét & Giải bài"}
+                    </span>
                   </button>
                 </div>
               </div>
