@@ -30,10 +30,10 @@ import {
   type ReflexCard,
   type ReflexRound,
   type QuizQuestionMode,
+  type QuizCategoryType,
 } from "../../lib/scanQuiz";
 import { reviewCard, Rating, type ReviewRating } from "../../lib/srs";
 import { triggerBackgroundAutoSync } from "../../lib/syncEngine";
-import { ExamPaperView } from "../../components/exam/ExamPaperView";
 
 type SidebarTab = "scan" | "exercises" | "words" | "grammar" | "review";
 
@@ -319,9 +319,10 @@ export default function ScanAndReviewPage() {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [reviewScope, setReviewScope] = useState<"all" | "words" | "grammar">("all");
 
-  // Dedicated Vocabulary, Reflex Game & Exam State
-  const [vocabSubTab, setVocabSubTab] = useState<"quiz" | "reflex" | "exam">("quiz");
+  // Dedicated Context Quiz & Reflex Game State
+  const [vocabSubTab, setVocabSubTab] = useState<"kanji" | "vocab" | "reflex">("kanji");
   const [quizMode, setQuizMode] = useState<QuizQuestionMode>("mixed");
+  const [quizTypeInput, setQuizTypeInput] = useState<string>("");
   const [reflexRounds, setReflexRounds] = useState<ReflexRound[]>([]);
   const [currentRoundIndex, setCurrentRoundIndex] = useState<number>(0);
   const [selectedCardMap, setSelectedCardMap] = useState<{
@@ -1090,29 +1091,34 @@ export default function ScanAndReviewPage() {
     loadDatabaseData();
   };
 
-  // Setup Quiz for Review Tab
+  // Setup Quiz for Review Tab (Trắc nghiệm ngữ cảnh Chữ Hán, Từ vựng, hoặc Ghép phản xạ)
   const handleStartQuiz = (
     customScope?: "all" | "words" | "grammar",
-    customSubTab?: "quiz" | "reflex" | "exam",
+    customSubTab?: "kanji" | "vocab" | "reflex",
     customMode?: QuizQuestionMode
   ) => {
     const scope = customScope || reviewScope;
+    const sub = customSubTab || vocabSubTab;
+
     let pool = allScannedItems;
     if (selectedSourceFilter !== "all") {
       pool = pool.filter((i) => i.sourceIds.includes(selectedSourceFilter));
     }
-    if (scope === "words") pool = pool.filter((i) => i.kind === "word");
-    if (scope === "grammar") pool = pool.filter((i) => i.kind === "grammar");
+
+    if (sub === "kanji" || sub === "vocab") {
+      pool = pool.filter((i) => i.kind === "word");
+    } else if (scope === "words") {
+      pool = pool.filter((i) => i.kind === "word");
+    } else if (scope === "grammar") {
+      pool = pool.filter((i) => i.kind === "grammar");
+    }
 
     if (pool.length === 0) {
       alert("Chưa có mục nào trong phạm vi này để ôn tập. Hãy quét ảnh và gom từ trước!");
       return;
     }
 
-    // Riêng phần luyện từ vựng: tạo câu hỏi hết luôn cho toàn bộ từ vựng, không tạo 10 câu 1 lần
-    const maxCount: number | "all" = scope === "words" ? "all" : pool.length <= 15 ? "all" : 15;
     const currentMode = customMode || quizMode;
-
     const currentSourceTitle =
       selectedSourceFilter !== "all"
         ? allScanSources.find((s) => s.id === selectedSourceFilter)?.title
@@ -1123,8 +1129,12 @@ export default function ScanAndReviewPage() {
       titleMap[s.id] = s.title;
     });
 
-    const questions = generateScanQuizBatch(pool, maxCount, {
+    const quizType: QuizCategoryType =
+      sub === "kanji" ? "kanji" : sub === "vocab" ? "vocab" : "all";
+
+    const questions = generateScanQuizBatch(pool, "all", {
       mode: currentMode,
+      quizType,
       sourceTitle: currentSourceTitle,
       sourceTitleMap: titleMap,
     });
@@ -1133,11 +1143,11 @@ export default function ScanAndReviewPage() {
     setQuizIndex(0);
     setQuizSelectedOption(null);
     setQuizIsAnswered(false);
+    setQuizTypeInput("");
     setQuizScore(0);
     setQuizCompleted(false);
 
-    const activeSub = customSubTab || vocabSubTab;
-    if (activeSub === "reflex") {
+    if (sub === "reflex") {
       handleStartReflexGame(pool, 0);
     }
   };
@@ -1244,7 +1254,7 @@ export default function ScanAndReviewPage() {
   const handleStartReviewForSource = (
     sourceId: string,
     scope: "words" | "grammar" | "all" = "words",
-    subTab: "quiz" | "reflex" | "exam" = "quiz"
+    subTab: "kanji" | "vocab" | "reflex" = "kanji"
   ) => {
     setSelectedSourceFilter(sourceId);
     setReviewScope(scope);
@@ -1253,7 +1263,7 @@ export default function ScanAndReviewPage() {
 
     const sourceItems = allScannedItems.filter((i) => i.sourceIds.includes(sourceId));
     const pool =
-      scope === "words"
+      subTab === "kanji" || subTab === "vocab" || scope === "words"
         ? sourceItems.filter((i) => i.kind === "word")
         : scope === "grammar"
         ? sourceItems.filter((i) => i.kind === "grammar")
@@ -1265,9 +1275,12 @@ export default function ScanAndReviewPage() {
       titleMap[s.id] = s.title;
     });
 
-    const maxCount = scope === "words" ? "all" : pool.length <= 15 ? "all" : 15;
-    const questions = generateScanQuizBatch(pool, maxCount, {
+    const quizType: QuizCategoryType =
+      subTab === "kanji" ? "kanji" : subTab === "vocab" ? "vocab" : "all";
+
+    const questions = generateScanQuizBatch(pool, "all", {
       mode: quizMode,
+      quizType,
       sourceTitle: currentSource?.title,
       sourceTitleMap: titleMap,
     });
@@ -1276,6 +1289,7 @@ export default function ScanAndReviewPage() {
     setQuizIndex(0);
     setQuizSelectedOption(null);
     setQuizIsAnswered(false);
+    setQuizTypeInput("");
     setQuizScore(0);
     setQuizCompleted(false);
 
@@ -1286,7 +1300,7 @@ export default function ScanAndReviewPage() {
 
   const handleReviewCurrentScan = async (
     scope: "words" | "grammar" | "all" = "words",
-    subTab: "quiz" | "reflex" | "exam" = "quiz"
+    subTab: "kanji" | "vocab" | "reflex" = "kanji"
   ) => {
     if (!currentScanResult) return;
 
@@ -1300,10 +1314,23 @@ export default function ScanAndReviewPage() {
   const handleAnswerQuiz = (option: string) => {
     if (quizIsAnswered) return;
     const currentQ = quizQuestions[quizIndex];
-    setQuizSelectedOption(option);
+    if (!currentQ) return;
+    const cleaned = option.trim();
+    setQuizSelectedOption(cleaned);
     setQuizIsAnswered(true);
 
-    const isCorrect = option === currentQ.correctAnswer;
+    const normalize = (s: string) => s.trim().toLowerCase().replace(/\s+/g, "");
+    const normInput = normalize(cleaned);
+    const normCorrect = normalize(currentQ.correctAnswer);
+    const normReading = currentQ.reading ? normalize(currentQ.reading) : "";
+    const normTarget = currentQ.targetWord ? normalize(currentQ.targetWord) : "";
+
+    const isCorrect =
+      normInput === normCorrect ||
+      (normReading && normInput === normReading) ||
+      (normTarget && normInput === normTarget) ||
+      currentQ.options.some((opt) => normalize(opt) === normCorrect && normalize(opt) === normInput);
+
     if (isCorrect) setQuizScore((prev) => prev + 1);
 
     updateFsrsReview(currentQ.itemId, isCorrect ? Rating.Good : Rating.Again);
@@ -1327,6 +1354,7 @@ export default function ScanAndReviewPage() {
   };
 
   const handleNextQuizQuestion = () => {
+    setQuizTypeInput("");
     if (quizIndex < quizQuestions.length - 1) {
       setQuizIndex((prev) => prev + 1);
       setQuizSelectedOption(null);
@@ -1549,15 +1577,24 @@ export default function ScanAndReviewPage() {
                         {new Date(src.createdAt).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit" })}
                       </p>
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => handleStartReviewForSource(src.id, "words", "quiz")}
-                      title="Ôn tập riêng cho lần quét này"
-                      className="px-2 py-1 rounded-md bg-accent/15 text-accent hover:bg-accent hover:text-accent-ink text-[10px] font-bold transition-all shrink-0 flex items-center gap-0.5 shadow-2xs"
-                    >
-                      <span>🎯</span>
-                      <span>Ôn riêng</span>
-                    </button>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => handleStartReviewForSource(src.id, "words", "kanji")}
+                        title="Ôn trắc nghiệm Chữ Hán kèm ngữ cảnh"
+                        className="px-1.5 py-1 rounded-md bg-accent/15 text-accent hover:bg-accent hover:text-accent-ink text-[10px] font-bold transition-all shadow-2xs"
+                      >
+                        🈸 Hán
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleStartReviewForSource(src.id, "words", "vocab")}
+                        title="Ôn trắc nghiệm Từ vựng kèm ngữ cảnh"
+                        className="px-1.5 py-1 rounded-md bg-unk-bg hover:bg-accent hover:text-accent-ink text-[10px] font-bold transition-all text-text shadow-2xs"
+                      >
+                        📖 Từ
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1962,12 +1999,21 @@ export default function ScanAndReviewPage() {
                       <div className="flex items-center gap-1 bg-card/80 p-0.5 rounded-xl border border-accent/40 shadow-xs">
                         <button
                           type="button"
-                          onClick={() => handleReviewCurrentScan("words", "quiz")}
-                          title="Trắc nghiệm toàn diện toàn bộ từ vựng lần chụp này"
+                          onClick={() => handleReviewCurrentScan("words", "kanji")}
+                          title="Tạo các câu trắc nghiệm Chữ Hán kèm câu ngữ cảnh từ đề thi vừa quét"
                           className="px-3 py-1.5 rounded-lg bg-accent text-accent-ink text-xs font-bold hover:opacity-90 transition-all flex items-center gap-1"
                         >
-                          <span>🎯</span>
-                          <span>Ôn từ vựng ({currentScanResult.words.length})</span>
+                          <span>🈸</span>
+                          <span>Ôn Chữ Hán ({currentScanResult.words.length})</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleReviewCurrentScan("words", "vocab")}
+                          title="Tạo các câu trắc nghiệm Từ vựng kèm câu ngữ cảnh đục lỗ từ đề thi vừa quét"
+                          className="px-3 py-1.5 rounded-lg hover:bg-unk-bg text-text text-xs font-bold transition-all flex items-center gap-1"
+                        >
+                          <span>📖</span>
+                          <span>Ôn Từ vựng ({currentScanResult.words.length})</span>
                         </button>
                         <button
                           type="button"
@@ -1978,19 +2024,10 @@ export default function ScanAndReviewPage() {
                           <span>⚡</span>
                           <span>Ghép phản xạ</span>
                         </button>
-                        <button
-                          type="button"
-                          onClick={() => handleReviewCurrentScan("words", "exam")}
-                          title="Làm bài trên format đề thi thực tế (Chữ Hán & Từ vựng)"
-                          className="px-3 py-1.5 rounded-lg hover:bg-unk-bg text-text text-xs font-bold transition-all flex items-center gap-1"
-                        >
-                          <span>📄</span>
-                          <span>Ôn theo đề</span>
-                        </button>
                         {currentScanResult.grammar.length > 0 && (
                           <button
                             type="button"
-                            onClick={() => handleReviewCurrentScan("grammar", "quiz")}
+                            onClick={() => handleReviewCurrentScan("grammar", "vocab")}
                             title="Luyện ngữ pháp & đục lỗ"
                             className="px-2.5 py-1.5 rounded-lg hover:bg-unk-bg text-text text-xs font-bold transition-all"
                           >
@@ -2785,6 +2822,46 @@ export default function ScanAndReviewPage() {
               );
             };
 
+            const renderPromptSentence = (promptText: string) => {
+              if (promptText.includes("[ ______ ]")) {
+                const parts = promptText.split("[ ______ ]");
+                return (
+                  <span className="leading-relaxed">
+                    {parts.map((part, i) => (
+                      <React.Fragment key={i}>
+                        <span>{part}</span>
+                        {i < parts.length - 1 && (
+                          <span className="inline-block px-3 py-0.5 mx-1.5 rounded-lg bg-accent/20 text-accent border border-dashed border-accent font-bold">
+                            ______
+                          </span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </span>
+                );
+              }
+              const bracketRegex = /\[\s*([^\]]+?)\s*\]/g;
+              if (bracketRegex.test(promptText)) {
+                const parts = promptText.split(/\[\s*[^\]]+?\s*\]/);
+                const matches = promptText.match(/\[\s*([^\]]+?)\s*\]/g) || [];
+                return (
+                  <span className="leading-relaxed">
+                    {parts.map((part, i) => (
+                      <React.Fragment key={i}>
+                        <span>{part}</span>
+                        {i < matches.length && (
+                          <span className="inline-block px-2.5 py-0.5 mx-1 rounded-lg bg-amber-500/15 text-amber-800 dark:text-amber-200 border border-amber-500/40 font-bold underline decoration-wavy decoration-amber-500">
+                            {matches[i].replace(/[\[\]]/g, "").trim()}
+                          </span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </span>
+                );
+              }
+              return <span className="leading-relaxed">{promptText}</span>;
+            };
+
             return (
               <div className="space-y-4">
                 {/* Header Card with Mode Tabs as shown in screenshot */}
@@ -2793,11 +2870,11 @@ export default function ScanAndReviewPage() {
                     <h2 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-text">
                       <span>🎯</span>
                       <span>
-                        Kiểm Tra Toàn Diện {totalWordsCount} Mục & Ghép Cặp Phản Xạ
+                        Ôn Luyện Trắc Nghiệm Ngữ Cảnh & Ghép Cặp Phản Xạ
                       </span>
                     </h2>
                     <p className="text-xs sm:text-sm text-muted">
-                      Luyện tập trắc nghiệm bao phủ toàn bộ {totalWordsCount} từ hoặc rèn tốc độ nối nhanh Kanji - Hiragana - Nghĩa tiếng Việt.
+                      Trắc nghiệm Chữ Hán & Từ vựng theo ngữ cảnh câu như trong đề ({totalWordsCount} từ), hoặc rèn tốc độ ghép cặp phản xạ.
                     </p>
                   </div>
 
@@ -2805,17 +2882,32 @@ export default function ScanAndReviewPage() {
                     <button
                       type="button"
                       onClick={() => {
-                        setVocabSubTab("quiz");
-                        if (quizQuestions.length === 0) handleStartQuiz("words", "quiz");
+                        setVocabSubTab("kanji");
+                        handleStartQuiz("words", "kanji");
                       }}
                       className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                        vocabSubTab === "quiz"
+                        vocabSubTab === "kanji"
                           ? "bg-card text-accent shadow-xs border border-line/60"
                           : "text-muted hover:text-text"
                       }`}
                     >
-                      <span>📝</span>
-                      <span>Trắc nghiệm {totalWordsCount} Từ</span>
+                      <span>🈸</span>
+                      <span>Trắc nghiệm Chữ Hán ({poolWords.length})</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVocabSubTab("vocab");
+                        handleStartQuiz("words", "vocab");
+                      }}
+                      className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        vocabSubTab === "vocab"
+                          ? "bg-card text-accent shadow-xs border border-line/60"
+                          : "text-muted hover:text-text"
+                      }`}
+                    >
+                      <span>📖</span>
+                      <span>Trắc nghiệm Từ vựng ({poolWords.length})</span>
                     </button>
                     <button
                       type="button"
@@ -2830,38 +2922,13 @@ export default function ScanAndReviewPage() {
                       }`}
                     >
                       <span>⚡</span>
-                      <span>Trò chơi Ghép cặp Phản xạ</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setVocabSubTab("exam");
-                      }}
-                      className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                        vocabSubTab === "exam"
-                          ? "bg-card text-accent shadow-xs border border-line/60"
-                          : "text-muted hover:text-text"
-                      }`}
-                    >
-                      <span>📄</span>
-                      <span>Ôn theo đề thi</span>
+                      <span>Ghép cặp Phản xạ</span>
                     </button>
                   </div>
                 </div>
 
-                {/* EXAM PAPER VIEW */}
-                {vocabSubTab === "exam" && (
-                  <ExamPaperView
-                    scannedItems={currentFilteredPool}
-                    defaultCategory="kanji"
-                    onBackToOverview={() => setVocabSubTab("quiz")}
-                  />
-                )}
-
-                {/* Filter and Scope Controls (shown for Quiz & Reflex tabs) */}
-                {vocabSubTab !== "exam" && (
-                  <>
-                    <div className="card p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+                {/* Filter and Scope Controls */}
+                <div className="card p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-muted font-semibold">Phạm vi:</span>
                     <select
@@ -2938,14 +3005,18 @@ export default function ScanAndReviewPage() {
                       <span>
                         {vocabSubTab === "reflex" && reviewScope === "words"
                           ? "Bắt đầu ghép phản xạ"
-                          : `Bắt đầu phiên ôn (${reviewScope === "words" ? totalWordsCount : currentFilteredPool.length} câu)`}
+                          : vocabSubTab === "kanji"
+                          ? `Bắt đầu trắc nghiệm Chữ Hán (${poolWords.length} câu)`
+                          : vocabSubTab === "vocab"
+                          ? `Bắt đầu trắc nghiệm Từ vựng (${poolWords.length} câu)`
+                          : `Bắt đầu phiên ôn (${currentFilteredPool.length} câu)`}
                       </span>
                     </button>
                   </div>
                 </div>
 
-                {/* ===================== SUB-TAB 1: TRẮC NGHIỆM TOÀN DIỆN ===================== */}
-                {(vocabSubTab === "quiz" || reviewScope !== "words") && (
+                {/* ===================== SUB-TAB 1 & 2: TRẮC NGHIỆM CHỮ HÁN & TỪ VỰNG ===================== */}
+                {(vocabSubTab === "kanji" || vocabSubTab === "vocab" || reviewScope !== "words") && (
                   <>
                     {quizQuestions.length > 0 && !quizCompleted && currentQ && (
                       <div className="card p-5 sm:p-6 space-y-5">
@@ -2962,23 +3033,25 @@ export default function ScanAndReviewPage() {
                           </div>
 
                           <div className="flex items-center gap-2">
-                            <select
-                              value={quizMode}
-                              onChange={(e) => {
-                                const newMode = e.target.value as QuizQuestionMode;
-                                setQuizMode(newMode);
-                                handleStartQuiz(reviewScope, "quiz", newMode);
-                              }}
-                              className="px-2.5 py-1.5 text-xs rounded-xl border border-line bg-card font-medium"
-                            >
-                              <option value="mixed">Hỗn hợp (Nhật ↔ Việt + Ngữ cảnh)</option>
-                              <option value="ja-vi">Nhật → Nghĩa Việt</option>
-                              <option value="vi-ja">Nghĩa Việt → Tiếng Nhật</option>
-                            </select>
+                            {vocabSubTab !== "kanji" && vocabSubTab !== "vocab" && (
+                              <select
+                                value={quizMode}
+                                onChange={(e) => {
+                                  const newMode = e.target.value as QuizQuestionMode;
+                                  setQuizMode(newMode);
+                                  handleStartQuiz(reviewScope, vocabSubTab, newMode);
+                                }}
+                                className="px-2.5 py-1.5 text-xs rounded-xl border border-line bg-card font-medium"
+                              >
+                                <option value="mixed">Hỗn hợp (Nhật ↔ Việt + Ngữ cảnh)</option>
+                                <option value="ja-vi">Nhật → Nghĩa Việt</option>
+                                <option value="vi-ja">Nghĩa Việt → Tiếng Nhật</option>
+                              </select>
+                            )}
 
                             <button
                               type="button"
-                              onClick={() => handleStartQuiz(reviewScope, "quiz", quizMode)}
+                              onClick={() => handleStartQuiz(reviewScope, vocabSubTab, quizMode)}
                               className="px-3 py-1.5 rounded-xl border border-line bg-card hover:bg-unk-bg text-xs font-bold flex items-center gap-1.5 text-text"
                             >
                               <span>🔄</span>
@@ -2987,24 +3060,25 @@ export default function ScanAndReviewPage() {
                           </div>
                         </div>
 
-                        {/* Question prompt matching Screenshot 1 */}
-                        <div className="space-y-2 text-center py-5">
+                        {/* Question prompt matching JLPT exam format */}
+                        <div className="space-y-3 text-center py-4">
                           <p className="text-[11px] font-bold text-accent uppercase tracking-wider">
                             {currentQ.sourceTitle ? `MỤC ${currentQ.itemIndex || quizIndex + 1}: ${currentQ.sourceTitle} • ` : ""}
-                            {currentQ.kind === "grammar"
-                              ? "NGỮ PHÁP (ĐỤC LỖ / Ý NGHĨA)"
-                              : currentQ.type === "word-recall"
-                              ? "CHỌN TỪ TIẾNG NHẬT ĐÚNG"
-                              : "CHỌN NGHĨA TIẾNG VIỆT ĐÚNG"}
+                            {currentQ.subPrompt ||
+                              (currentQ.kind === "kanji"
+                                ? "TRẮC NGHIỆM CHỮ HÁN THEO NGỮ CẢNH ĐỀ THI"
+                                : currentQ.kind === "grammar"
+                                ? "NGỮ PHÁP (ĐỤC LỖ / Ý NGHĨA)"
+                                : "TRẮC NGHIỆM TỪ VỰNG THEO NGỮ CẢNH")}
                           </p>
 
-                          <h3 className="font-ja text-3xl sm:text-4xl font-extrabold text-text leading-tight mt-1">
-                            {currentQ.prompt}
-                          </h3>
+                          <div className="font-ja text-2xl sm:text-3xl font-extrabold text-text leading-snug mt-1 px-4">
+                            {renderPromptSentence(currentQ.prompt)}
+                          </div>
 
-                          {currentQ.reading && currentQ.reading !== currentQ.prompt && (
+                          {currentQ.reading && currentQ.reading !== currentQ.prompt && !currentQ.prompt.includes(currentQ.reading) && (
                             <p className="font-ja text-base text-muted font-medium mt-1">
-                              {currentQ.reading}
+                              Cách đọc: {currentQ.reading}
                             </p>
                           )}
 
@@ -3015,49 +3089,93 @@ export default function ScanAndReviewPage() {
                           )}
                         </div>
 
-                        {/* Options in 2x2 grid matching Screenshot 1 */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
-                          {currentQ.options.map((opt, idx) => {
-                            const isSelected = quizSelectedOption === opt;
-                            const isCorrect = opt === currentQ.correctAnswer;
-                            const optIndex = currentQ.optionIndices?.[opt];
-
-                            let btnStyle = "border-line bg-card hover:border-accent hover:bg-accent-soft/10 text-text shadow-2xs";
-                            if (quizIsAnswered) {
-                              if (isCorrect) {
-                                btnStyle = "border-green-500 bg-green-500/20 text-green-700 dark:text-green-300 font-bold ring-2 ring-green-500/30";
-                              } else if (isSelected) {
-                                btnStyle = "border-red-500 bg-red-500/20 text-red-700 dark:text-red-300 ring-2 ring-red-500/30";
-                              } else {
-                                btnStyle = "opacity-40 border-line bg-card";
-                              }
-                            }
-
-                            return (
+                        {/* Answering Area: 1) Type/Write input, 2) Fast 4-options click */}
+                        <div className="space-y-4 max-w-2xl mx-auto">
+                          {/* Option 2: Viết / Gõ đáp án nhanh */}
+                          {!quizIsAnswered && (
+                            <form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                if (!quizTypeInput.trim()) return;
+                                const val = quizTypeInput.trim();
+                                if (["1", "2", "3", "4"].includes(val)) {
+                                  const idx = parseInt(val, 10) - 1;
+                                  if (currentQ.options[idx]) {
+                                    handleAnswerQuiz(currentQ.options[idx]);
+                                    return;
+                                  }
+                                }
+                                handleAnswerQuiz(val);
+                              }}
+                              className="flex items-center gap-2 bg-unk-bg/60 p-1.5 rounded-2xl border border-line focus-within:border-accent"
+                            >
+                              <span className="pl-3 text-sm text-muted">⌨️</span>
+                              <input
+                                type="text"
+                                value={quizTypeInput}
+                                onChange={(e) => setQuizTypeInput(e.target.value)}
+                                placeholder="Gõ đáp án hoặc phím 1..4 rồi nhấn Enter..."
+                                className="flex-1 bg-transparent px-2 py-1.5 text-sm font-ja text-text focus:outline-hidden"
+                              />
                               <button
-                                key={idx}
-                                type="button"
-                                disabled={quizIsAnswered}
-                                onClick={() => handleAnswerQuiz(opt)}
-                                className={`px-4 py-3.5 rounded-2xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-center justify-between gap-3 ${btnStyle}`}
+                                type="submit"
+                                disabled={!quizTypeInput.trim()}
+                                className="px-4 py-1.5 rounded-xl bg-accent text-accent-ink text-xs font-bold hover:opacity-90 transition-all disabled:opacity-40"
                               >
-                                <span className="truncate">{opt}</span>
-                                {optIndex !== undefined && (
-                                  <span className="text-[11px] font-mono text-muted/70 shrink-0 font-bold">
-                                    #{optIndex}
-                                  </span>
-                                )}
+                                Kiểm tra
                               </button>
-                            );
-                          })}
+                            </form>
+                          )}
+
+                          {/* Option 1: Bấm chọn nhanh 4 thẻ trắc nghiệm (2x2 grid matching Screenshot 1) */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {currentQ.options.map((opt, idx) => {
+                              const isSelected = quizSelectedOption === opt;
+                              const isCorrect = opt === currentQ.correctAnswer;
+                              const optIndex = currentQ.optionIndices?.[opt];
+
+                              let btnStyle = "border-line bg-card hover:border-accent hover:bg-accent-soft/10 text-text shadow-2xs";
+                              if (quizIsAnswered) {
+                                if (isCorrect) {
+                                  btnStyle = "border-green-500 bg-green-500/20 text-green-700 dark:text-green-300 font-bold ring-2 ring-green-500/30";
+                                } else if (isSelected) {
+                                  btnStyle = "border-red-500 bg-red-500/20 text-red-700 dark:text-red-300 ring-2 ring-red-500/30";
+                                } else {
+                                  btnStyle = "opacity-40 border-line bg-card";
+                                }
+                              }
+
+                              return (
+                                <button
+                                  key={idx}
+                                  type="button"
+                                  disabled={quizIsAnswered}
+                                  onClick={() => handleAnswerQuiz(opt)}
+                                  className={`px-4 py-3.5 rounded-2xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-center justify-between gap-3 ${btnStyle}`}
+                                >
+                                  <span className="font-ja truncate">
+                                    <span className="inline-block w-5 text-muted font-mono font-bold mr-1">
+                                      {idx + 1}.
+                                    </span>
+                                    {opt}
+                                  </span>
+                                  {optIndex !== undefined && (
+                                    <span className="text-[11px] font-mono text-muted/70 shrink-0 font-bold">
+                                      #{optIndex}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
 
                         {quizIsAnswered && (
-                          <div className="pt-3 border-t border-line space-y-3">
+                          <div className="pt-3 border-t border-line space-y-3 max-w-2xl mx-auto">
                             {currentQ.explanation && (
                               <div className="p-3.5 rounded-xl bg-unk-bg/70 border border-line/50 text-xs text-text space-y-1">
-                                <span className="font-bold text-accent uppercase text-[10px] block">Giải thích:</span>
-                                <p className="leading-relaxed">{currentQ.explanation}</p>
+                                <span className="font-bold text-accent uppercase text-[10px] block">Giải thích & Ngữ cảnh:</span>
+                                <p className="leading-relaxed font-ja">{currentQ.explanation}</p>
                               </div>
                             )}
 
@@ -3090,7 +3208,7 @@ export default function ScanAndReviewPage() {
                         <div className="flex flex-wrap justify-center gap-3 pt-2">
                           <button
                             type="button"
-                            onClick={() => handleStartQuiz(reviewScope, "quiz")}
+                            onClick={() => handleStartQuiz(reviewScope, vocabSubTab)}
                             className="px-4 py-2 rounded-xl bg-accent text-accent-ink font-bold text-xs shadow-sm hover:opacity-90"
                           >
                             Làm phiên khác
@@ -3112,8 +3230,32 @@ export default function ScanAndReviewPage() {
                     {quizQuestions.length === 0 && !quizCompleted && (
                       <div className="card p-8 text-center space-y-3">
                         <span className="text-4xl">📚</span>
-                        <p className="text-sm font-medium">Bấm "Bắt đầu phiên ôn" để tạo câu hỏi trắc nghiệm toàn diện bao phủ toàn bộ từ vựng.</p>
-                        <p className="text-xs text-muted">Kho hiện có {totalWordsCount} từ vựng và {poolGrammar.length} mẫu ngữ pháp sẵn sàng.</p>
+                        <p className="text-sm font-medium">Bấm "Bắt đầu trắc nghiệm" để tạo câu hỏi kèm ngữ cảnh trích xuất từ đề thi.</p>
+                        <p className="text-xs text-muted">Kho hiện có {totalWordsCount} từ vựng sẵn sàng cho việc luyện Chữ Hán và Từ vựng.</p>
+                        <div className="flex flex-wrap justify-center gap-2 pt-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setVocabSubTab("kanji");
+                              handleStartQuiz("words", "kanji");
+                            }}
+                            className="px-4 py-2 rounded-xl bg-accent text-accent-ink font-bold text-xs shadow-sm hover:opacity-90 flex items-center gap-1.5"
+                          >
+                            <span>🈸</span>
+                            <span>Ôn trắc nghiệm Chữ Hán</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setVocabSubTab("vocab");
+                              handleStartQuiz("words", "vocab");
+                            }}
+                            className="px-4 py-2 rounded-xl border border-line bg-card hover:bg-unk-bg text-text font-bold text-xs transition-all flex items-center gap-1.5"
+                          >
+                            <span>📖</span>
+                            <span>Ôn trắc nghiệm Từ vựng</span>
+                          </button>
+                        </div>
                       </div>
                     )}
                   </>
@@ -3261,8 +3403,6 @@ export default function ScanAndReviewPage() {
                       </div>
                     )}
                   </>
-                )}
-                </>
                 )}
               </div>
             );
