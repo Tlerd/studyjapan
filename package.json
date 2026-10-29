@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "check": "node scripts/check.mjs",
+    "prepare": "git config core.hooksPath .githooks || exit 0",
     "test": "vitest run",
     "test:watch": "vitest",
     "ci:check": "tsx scripts/ci-monitor.ts",
@@ -15,6 +16,9 @@
     "build:kanji": "tsx scripts/build-kanji.ts"
   },
   "packageManager": "pnpm@10.5.2",
+  "engines": {
+    "node": ">=22"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
