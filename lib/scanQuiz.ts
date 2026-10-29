@@ -352,8 +352,8 @@ export function buildVocabContextQuestions(
         explanation: `Điền "${w.surface}" [${w.reading || ""}] (${w.meaning}). Câu đầy đủ: "${baseSentence}"${w.examples?.[0]?.vi ? ` - Dịch: ${w.examples[0].vi}` : ""}`,
       });
     } else {
-      // Dạng 2: Câu hỏi theo ngữ cảnh tình huống / mô tả
-      const promptText = `[Ngữ cảnh / Tình huống]: ${w.meaning || w.surface}`;
+      // Dạng 2: Câu hỏi theo tình huống / mô tả nghĩa
+      const promptText = w.meaning || w.surface;
 
       const wrongPool = allSurfaces.filter((s) => s !== w.surface);
       while (wrongPool.length < 3) {
@@ -379,7 +379,7 @@ export function buildVocabContextQuestions(
         type: "vocab-context",
         prompt: promptText,
         targetWord: w.surface,
-        subPrompt: "Từ vựng tiếng Nhật phù hợp với tình huống này là gì?",
+        subPrompt: "Chọn từ vựng tiếng Nhật phù hợp với nghĩa này:",
         reading: w.reading,
         hint: w.hanViet ? `Âm Hán Việt: ${w.hanViet}` : undefined,
         options: questionOptions,

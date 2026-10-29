@@ -2822,7 +2822,12 @@ export default function ScanAndReviewPage() {
               );
             };
 
-            const renderPromptSentence = (promptText: string) => {
+            const renderPromptSentence = (rawText: string) => {
+              // Strip any legacy "[Ngữ cảnh / Tình huống]:" prefix if present
+              const promptText = (rawText || "")
+                .replace(/^\[\s*Ngữ cảnh\s*\/\s*Tình huống\s*\]\s*:\s*/i, "")
+                .trim();
+
               if (promptText.includes("[ ______ ]")) {
                 const parts = promptText.split("[ ______ ]");
                 return (
@@ -2840,6 +2845,7 @@ export default function ScanAndReviewPage() {
                   </span>
                 );
               }
+
               const bracketRegex = /\[\s*([^\]]+?)\s*\]/g;
               if (bracketRegex.test(promptText)) {
                 const parts = promptText.split(/\[\s*[^\]]+?\s*\]/);
@@ -2850,7 +2856,7 @@ export default function ScanAndReviewPage() {
                       <React.Fragment key={i}>
                         <span>{part}</span>
                         {i < matches.length && (
-                          <span className="inline-block px-2.5 py-0.5 mx-1 rounded-lg bg-amber-500/15 text-amber-800 dark:text-amber-200 border border-amber-500/40 font-bold underline decoration-wavy decoration-amber-500">
+                          <span className="text-accent font-bold mx-1">
                             {matches[i].replace(/[\[\]]/g, "").trim()}
                           </span>
                         )}

@@ -116,4 +116,26 @@ describe("Trắc nghiệm ngữ cảnh Chữ Hán & Từ vựng từ đề thi",
     expect(questions.length).toBe(3);
     expect(questions.every((q) => q.type === "vocab-context")).toBe(true);
   });
+
+  it("5. Từ vựng không có câu ví dụ tạo câu hỏi mô tả không bị dính prefix hay gạch dưới", () => {
+    const wordWithoutExample: ScannedItem[] = [
+      {
+        id: "sw-fukuro",
+        kind: "word",
+        surface: "袋",
+        reading: "ふくろ",
+        meaning: "Túi (Ví dụ: Túi đựng rác)",
+        examples: [],
+        level: 5,
+        sourceIds: ["scan-1"],
+        pushedToMainSRS: false,
+        addedAt: new Date().toISOString(),
+      },
+    ];
+
+    const questions = buildVocabContextQuestions(wordWithoutExample);
+    expect(questions.length).toBe(1);
+    expect(questions[0].prompt).toBe("Túi (Ví dụ: Túi đựng rác)");
+    expect(questions[0].prompt).not.toContain("[Ngữ cảnh / Tình huống]");
+  });
 });
