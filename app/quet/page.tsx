@@ -33,6 +33,7 @@ import {
 } from "../../lib/scanQuiz";
 import { reviewCard, Rating, type ReviewRating } from "../../lib/srs";
 import { triggerBackgroundAutoSync } from "../../lib/syncEngine";
+import { ExamPaperView } from "../../components/exam/ExamPaperView";
 
 type SidebarTab = "scan" | "exercises" | "words" | "grammar" | "review";
 
@@ -318,8 +319,8 @@ export default function ScanAndReviewPage() {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [reviewScope, setReviewScope] = useState<"all" | "words" | "grammar">("all");
 
-  // Dedicated Vocabulary & Reflex Game State
-  const [vocabSubTab, setVocabSubTab] = useState<"quiz" | "reflex">("quiz");
+  // Dedicated Vocabulary, Reflex Game & Exam State
+  const [vocabSubTab, setVocabSubTab] = useState<"quiz" | "reflex" | "exam">("quiz");
   const [quizMode, setQuizMode] = useState<QuizQuestionMode>("mixed");
   const [reflexRounds, setReflexRounds] = useState<ReflexRound[]>([]);
   const [currentRoundIndex, setCurrentRoundIndex] = useState<number>(0);
@@ -1092,7 +1093,7 @@ export default function ScanAndReviewPage() {
   // Setup Quiz for Review Tab
   const handleStartQuiz = (
     customScope?: "all" | "words" | "grammar",
-    customSubTab?: "quiz" | "reflex",
+    customSubTab?: "quiz" | "reflex" | "exam",
     customMode?: QuizQuestionMode
   ) => {
     const scope = customScope || reviewScope;
@@ -1243,7 +1244,7 @@ export default function ScanAndReviewPage() {
   const handleStartReviewForSource = (
     sourceId: string,
     scope: "words" | "grammar" | "all" = "words",
-    subTab: "quiz" | "reflex" = "quiz"
+    subTab: "quiz" | "reflex" | "exam" = "quiz"
   ) => {
     setSelectedSourceFilter(sourceId);
     setReviewScope(scope);
@@ -1285,7 +1286,7 @@ export default function ScanAndReviewPage() {
 
   const handleReviewCurrentScan = async (
     scope: "words" | "grammar" | "all" = "words",
-    subTab: "quiz" | "reflex" = "quiz"
+    subTab: "quiz" | "reflex" | "exam" = "quiz"
   ) => {
     if (!currentScanResult) return;
 
@@ -1976,6 +1977,15 @@ export default function ScanAndReviewPage() {
                         >
                           <span>⚡</span>
                           <span>Ghép phản xạ</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleReviewCurrentScan("words", "exam")}
+                          title="Làm bài trên format đề thi thực tế (Chữ Hán & Từ vựng)"
+                          className="px-3 py-1.5 rounded-lg hover:bg-unk-bg text-text text-xs font-bold transition-all flex items-center gap-1"
+                        >
+                          <span>📄</span>
+                          <span>Ôn theo đề</span>
                         </button>
                         {currentScanResult.grammar.length > 0 && (
                           <button
@@ -2822,11 +2832,36 @@ export default function ScanAndReviewPage() {
                       <span>⚡</span>
                       <span>Trò chơi Ghép cặp Phản xạ</span>
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVocabSubTab("exam");
+                      }}
+                      className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        vocabSubTab === "exam"
+                          ? "bg-card text-accent shadow-xs border border-line/60"
+                          : "text-muted hover:text-text"
+                      }`}
+                    >
+                      <span>📄</span>
+                      <span>Ôn theo đề thi</span>
+                    </button>
                   </div>
                 </div>
 
-                {/* Filter and Scope Controls */}
-                <div className="card p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+                {/* EXAM PAPER VIEW */}
+                {vocabSubTab === "exam" && (
+                  <ExamPaperView
+                    scannedItems={currentFilteredPool}
+                    defaultCategory="kanji"
+                    onBackToOverview={() => setVocabSubTab("quiz")}
+                  />
+                )}
+
+                {/* Filter and Scope Controls (shown for Quiz & Reflex tabs) */}
+                {vocabSubTab !== "exam" && (
+                  <>
+                    <div className="card p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-muted font-semibold">Phạm vi:</span>
                     <select
@@ -3226,6 +3261,8 @@ export default function ScanAndReviewPage() {
                       </div>
                     )}
                   </>
+                )}
+                </>
                 )}
               </div>
             );
